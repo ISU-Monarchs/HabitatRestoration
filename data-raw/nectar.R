@@ -31,7 +31,10 @@ nectar = read_dir(path = ".",
 
   gather(distance, count,
          -species, -year, -month, -day, -recorder, -site, -transect, -round,
-         na.rm=TRUE)
+         na.rm=TRUE) %>% 
+	
+	mutate(count = as.numeric(count))            # Not sure why I have to do this
+	
 
 #   # The above gather should really explicitly gather the distances, but the code below doesn't work
 #   # because the gather does not recognize the column names.
