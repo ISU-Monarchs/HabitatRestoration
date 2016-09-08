@@ -27,4 +27,5 @@ nectar = read_dir(path = ".",
                "extension")) %>%
   select(-na,-extension)
 
-devtools::use_data(nectar)
+devtools::use_data(nectar,
+                   overwrite = TRUE)
