@@ -1,5 +1,5 @@
-The nectar data is stored in this directory. 
-Cory Haggard is in charge of this directory.
+The bee data is stored in this directory. 
+Nancy Shryock is in charge of this directory.
 
 
 Create the following subdirectory to store your data
