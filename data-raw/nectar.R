@@ -19,13 +19,13 @@ read_dir = function(path, pattern, into) {
 
 ###########################################################
 
-nectar = read_dir(path = ".",
+nectar = read_dir(path = "nectar",
                   pattern = "*.csv",
-                  into = c("na","type",
+                  into = c("nectar",
                            "year","month","day","recorder",
                            "site","transect","round",
                            "extension")) %>%
-  select(-na,-type,-extension) %>%             # Might want to include type in the future
+  select(-nectar, -na, -type, -extension) %>%             # Might want to include type in the future
 
   rename(species = `Nectar Plant Species`) %>%
 
@@ -33,7 +33,7 @@ nectar = read_dir(path = ".",
          -species, -year, -month, -day, -recorder, -site, -transect, -round,
          na.rm=TRUE) %>% 
 	
-	mutate(count = as.numeric(count))            # Not sure why I have to do this
+	mutate(count = as.numeric(count))            # some columns are character
 	
 
 #   # The above gather should really explicitly gather the distances, but the code below doesn't work
