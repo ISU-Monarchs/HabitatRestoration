@@ -19,18 +19,21 @@ read_dir = function(path, pattern, into) {
 
 ###########################################################
 
-nectar = read_dir(path = "nectar",
-                  pattern = "*.csv",
-                  into = c("nectar",
-                           "year","month","day","recorder",
-                           "site","transect","round",
-                           "extension")) %>%
-  select(-nectar, -na, -type, -extension) %>%             # Might want to include type in the future
+bee = read_dir(path = "bee",
+               pattern = "*.csv",
+               into = c("bee",
+                        "year","month","day","recorder",
+                        "site","transect","round",
+                        "extension")) %>%
+  select(-bee, -extension) %>%      
 
-  rename(species = `Nectar Plant Species`) %>%
+  # rename(nectar_plant_species = `Nectar Plant Species`,
+  #        `Pollinator Species`) %>%
 
   gather(distance, count,
-         -species, -year, -month, -day, -recorder, -site, -transect, -round,
+         -`Nectar Plant Species`, 
+         -`Pollinator Species`,
+         -year, -month, -day, -recorder, -site, -transect, -round,
          na.rm=TRUE) %>% 
 	
 	mutate(count = as.numeric(count))            # some columns are character
@@ -45,5 +48,5 @@ nectar = read_dir(path = "nectar",
 #           gather_cols = c("0-19m", "20-39m", "40-50m", "60-79m", "80-100m"),
 #           na.rm       = TRUE) %>%
 
-devtools::use_data(nectar,
+devtools::use_data(bee,
                    overwrite = TRUE)
