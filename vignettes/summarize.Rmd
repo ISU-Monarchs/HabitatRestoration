@@ -1,0 +1,19 @@
+---
+title: "Vignette Title"
+author: "Jarad Niemi"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Count total nectar plant species
+
+```{r}
+library(ISUmonarch)
+nectar %>%
+  group_by(`Nectar Plant Species`) %>%
+  summarize(total = sum(count))
+```
