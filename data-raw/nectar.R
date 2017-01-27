@@ -25,12 +25,14 @@ nectar = read_dir(path = "nectar",
                            "year","month","day","recorder",
                            "site","transect","round",
                            "extension")) %>%
-  select(-nectar, -na, -type, -extension) %>%             # Might want to include type in the future
+  select(-nectar, -extension) %>%             # Might want to include type in the future
 
-  rename(species = `Nectar Plant Species`) %>%
+  # rename(nectar_plant_species = `Nectar Plant Species`) %>%
 
   gather(distance, count,
-         -species, -year, -month, -day, -recorder, -site, -transect, -round,
+         -`Nectar Plant Species`, 
+         -year, -month, -day, 
+         -recorder, -site, -transect, -round,
          na.rm=TRUE) %>% 
 	
 	mutate(count = as.numeric(count))            # some columns are character
