@@ -1,0 +1,6 @@
+"section",csg,wsg,forbs,milkweed,woody_species,bare_ground,leaf_litter,litter_depth
+"0m",16,16,16,0,0,0,63,4
+"10m",63,16,38,0,0,63,63,2
+"20m",3,3,16,0,0,38,63,2
+"30m",16,16,16,0,0,38,38,3
+"40m",0,16,38,0,0,86,3,2.5
