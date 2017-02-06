@@ -1,8 +1,9 @@
-require(dplyr)
-require(tidyr)
+library(dplyr)
+library(tidyr)
+library(readr)
 
 my_read_csv = function(f, into) {
-  readr::read_csv(f) %>%
+  readr::read_csv(f, col_types = cols(.default = "c")) %>%
     mutate(file=f) %>%
     separate(file, into)
 }
