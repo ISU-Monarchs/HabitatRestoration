@@ -1,4 +1,4 @@
-The landscape data is stored in this directory. 
+The environment data is stored in this directory. 
 Cory Haggard is in charge of this directory.
 
 
