@@ -117,3 +117,80 @@ robel %>%
   print(include.rownames = FALSE) # type="html" for html file
 ```
 
+\newpage
+
+## Monarch
+
+Adults
+
+```{r monarch_adults, results='asis', echo=FALSE}
+monarch %>%
+  filter(site %in% sites) %>%
+  filter(!grepl("instar", distance)) %>%
+  filter(distance != "stems") %>%
+  filter(distance != "eggs") %>%
+  group_by(site) %>%
+  summarize(sum_no_extra = sum(count[distance != "extra_monarch"]),
+            sum_all      = sum(count)) %>%
+  t() %>%
+  xtable() %>%
+  print() # type="html" for html file
+```
+
+Stems
+
+```{r monarch_stems, results='asis', echo=FALSE}
+monarch %>%
+  filter(site %in% sites) %>%
+  filter(distance == "stems") %>%
+  group_by(site) %>%
+  summarize(total = sum(count)) %>%
+  tidyr::spread(site, total, fill='.') %>%
+  xtable() %>%
+  print(include.rownames = FALSE) # type="html" for html file
+```
+
+Eggs
+
+```{r monarch_eggs, results='asis', echo=FALSE}
+monarch %>%
+  filter(site %in% sites) %>%
+  filter(distance == "eggs") %>%
+  group_by(site) %>%
+  summarize(total = sum(count)) %>%
+  tidyr::spread(site, total, fill='.') %>%
+  xtable() %>%
+  print(include.rownames = FALSE) # type="html" for html file
+```
+
+Instar
+
+```{r monarch_instar, results='asis', echo=FALSE}
+monarch %>%
+  filter(site %in% sites) %>%
+  filter(!grepl("instar", distance)) %>%
+  group_by(site) %>%
+  summarize(total = sum(count)) %>%
+  tidyr::spread(site, total, fill='.') %>%
+  xtable() %>%
+  print(include.rownames = FALSE) # type="html" for html file
+```
+
+
+\newpage
+## Environment
+
+Did any of the surveys reveal milkweed or flowering plants at each site?
+
+```{r environment, results='asis', echo=FALSE}
+environment %>%
+  filter(site %in% sites) %>%
+  group_by(site) %>%
+  summarize(milkweed      = any(milkweed == "yes"),
+            flower_plants = any(flowering_plants == "yes")) %>%
+  t() %>% 
+  xtable() %>%
+  print() # type="html" for html file
+```
+
+
