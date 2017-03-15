@@ -3,6 +3,7 @@ library(tidyr)
 library(readr)
 
 my_read_csv = function(f, into) {
+  cat("Reading",f,"\n")
   readr::read_csv(f, col_types = cols(.default = "c")) %>%
     mutate(file=f) %>%
     separate(file, into)
@@ -21,32 +22,20 @@ read_dir = function(path, pattern, into) {
 ###########################################################
 
 daubenmire = read_dir(path = "daubenmire",
-                  pattern = "*.csv",
+                  pattern = "csv$",
                   into = c("daubenmire",
                            "year","month","day","recorder",
                            "site","transect","round",
                            "extension")) %>%
-  select(-daubenmire, -extension) %>%             # Might want to include type in the future
+  select(-daubenmire, -extension) %>%             
 
-  # rename(daubenmire_plant_species = `daubenmire Plant Species`) %>%
-
-  gather(distance, count,
-         -`daubenmire Plant Species`, 
+  gather(something, percentage,
+         -section, 
          -year, -month, -day, 
          -recorder, -site, -transect, -round,
-         na.rm = TRUE) %>% 
+         na.rm = TRUE) %>%
+  
+  mutate(percentage = as.numeric(gsub("<","",percentage)))
 	
-	mutate(count = as.numeric(count))            # some columns are character
-	
-
-#   # The above gather should really explicitly gather the distances, but the code below doesn't work
-#   # because the gather does not recognize the column names.
-#   #
-#   # Convert from wide to long format for distances
-#   gather_(key_col     = "distance",
-#           value_col   = "count",
-#           gather_cols = c("0-19m", "20-39m", "40-50m", "60-79m", "80-100m"),
-#           na.rm       = TRUE) %>%
-
 devtools::use_data(daubenmire,
                    overwrite = TRUE)
