@@ -29,7 +29,7 @@ daubenmire = read_dir(path = "daubenmire",
                            "extension")) %>%
   select(-daubenmire, -extension) %>%             
 
-  gather(something, percentage,
+  gather(land_cover, percentage,
          -section, 
          -year, -month, -day, 
          -recorder, -site, -transect, -round,
