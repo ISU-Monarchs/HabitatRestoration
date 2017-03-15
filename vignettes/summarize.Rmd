@@ -9,20 +9,25 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-## Count total nectar plant species
-
 ```{r, message=FALSE}
 library(dplyr)
 library(ISUmonarch)
 library(xtable)
 ```
 
+## Nectar
+
 ```{r, results='asis'}
+sites = c("byd1", "byd2", "cra1", "uth1", "uth2", "uth3")
+
 nectar %>%
-  filter(site %in% c("byd1", "byd2", "cra1", "uth1", "uth2", "uth3")) %>%
+  filter(site %in% sites) %>%
   group_by(`Nectar Plant Species`, round, site) %>%
   summarize(total = sum(count)) %>%
   tidyr::spread(site, total, fill='.') %>%
   xtable() %>%
   print(type = "html", include.rownames = FALSE)
 ```
+
+## Daubenmire
+
