@@ -90,3 +90,30 @@ daubenmire_round_average %>%
 
 
 \newpage
+
+## Robel
+
+```{r robel, results='asis', echo=FALSE}
+robel %>%
+  filter(site %in% sites) %>%
+  group_by(round, site) %>%
+  summarize(mean_count = round(mean(count),1)) %>%
+  tidyr::spread(site, mean_count, fill='.') %>%
+  xtable() %>%
+  print(include.rownames = FALSE) # type="html" for html file
+```
+
+Average across all rounds
+
+```{r robel_average, results='asis', echo=FALSE}
+robel %>%
+  filter(site %in% sites) %>%
+  group_by(round, site) %>%
+  summarize(mean_count = mean(count)) %>%
+  group_by(site) %>%
+  summarize(mean_count = round(mean(mean_count),1)) %>%
+  tidyr::spread(site, mean_count, fill='.') %>%
+  xtable() %>%
+  print(include.rownames = FALSE) # type="html" for html file
+```
+
