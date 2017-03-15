@@ -38,6 +38,25 @@ nectar %>%
 ```
 
 \newpage
+Nectar density
+
+```{r nectar_density, results='asis', echo=FALSE}
+nectar %>%
+  filter(site %in% sites) %>%
+  group_by(`Nectar Plant Species`, round, site) %>%
+  summarize(total = sum(count)) %>%
+  mutate(total = round(ifelse(site=="cra1", total/70, total/100),2)) %>%
+  tidyr::spread(site, total, fill='.') %>%
+  arrange(round, `Nectar Plant Species`) %>% 
+  mutate(uth1 = ".") %>%
+  select(`Nectar Plant Species`, round, byd1, byd2, cra1, uth1, uth2, uth3) %>%
+  xtable(align = "clc|rrrrrr") %>%
+  print(include.rownames = FALSE,
+        hline.after = c(-1,0,9,21,32)) # type="html" for html file
+```
+
+
+\newpage
 ## Daubenmire
 
 ```{r daubenmire, results='asis', echo=FALSE}
@@ -51,7 +70,11 @@ daubenmire_round_average = daubenmire %>%
                                      "woody_species",
                                      "bare_ground",
                                      "leaf_litter",
-                                     "litter_depth"))) %>%
+                                     "litter_depth")),
+         land_cover = recode(land_cover, 
+                             csg = "cool season grass",
+                             wsg = "warm season grass",
+                             litter_depth = "litter depth (cm)")) %>%
   group_by(land_cover, round, site) %>%
   summarize(mean_percentage = round(mean(percentage),1))  
 
@@ -92,8 +115,6 @@ daubenmire_round_average %>%
   print(include.rownames = FALSE) # type="html" for html file
 ```
 
-
-\newpage
 
 ## Robel
 
@@ -136,7 +157,8 @@ monarch %>%
   group_by(site) %>%
   summarize(sum_no_extra = sum(count[distance != "extra_monarch"]),
             sum_all      = sum(count)) %>%
-  t() %>%
+  tidyr::gather("Adult monarchs", count, -site) %>%
+  tidyr::spread(site, count) %>%
   xtable() %>%
   print() # type="html" for html file
 ```
@@ -167,19 +189,22 @@ monarch %>%
   print(include.rownames = FALSE) # type="html" for html file
 ```
 
+
 Instar
 ```{r monarch_instar, results='asis', echo=FALSE}
 monarch %>%
   filter(site %in% sites) %>%
-  filter(!grepl("instar", distance)) %>%
+  filter(grepl("instar", distance)) %>%
   group_by(site) %>%
   summarize(total = sum(count)) %>%
   tidyr::spread(site, total, fill='na') %>%
   xtable() %>%
-  print(include.rownames = FALSE) # type="html" for html file
+  print(include.rownames = FALSE,
+        table.placement = "!h") # type="html" for html file
 ```
 
-\newpage
+
+
 ## Bee
 
 Total number of bees observed.
@@ -193,15 +218,14 @@ bee %>%
   mutate(byd1 = 0, uth1 = 0) %>%
   select_("byd1","byd2","cra1","uth1","uth2","uth3") %>% 
   xtable(digits=0) %>%
-  print(include.rownames=FALSE) # type="html" for html file
+  print(include.rownames=FALSE,
+        table.placement = "!h") # type="html" for html file
 ```
 
 
-
-\newpage
 ## Environment
 
-Did any of the surveys reveal milkweed or flowering plants at each site?
+Did any survey at each site reveal milkweed or flowering plants?
 
 ```{r environment, results='asis', echo=FALSE}
 environment %>%
@@ -209,9 +233,11 @@ environment %>%
   group_by(site) %>%
   summarize(milkweed      = any(milkweed == "yes"),
             flower_plants = any(flowering_plants == "yes")) %>%
-  t() %>% 
+  tidyr::gather(plant, bool, -site) %>%
+  mutate(bool = ifelse(bool, "Yes", "No")) %>%
+  tidyr::spread(site, bool) %>%
   xtable() %>%
-  print() # type="html" for html file
+  print(table.placement = "!h") # type="html" for html file
 ```
 
 
