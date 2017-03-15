@@ -11,9 +11,18 @@ vignette: >
 
 ## Count total nectar plant species
 
-```{r}
+```{r, message=FALSE}
+library(dplyr)
 library(ISUmonarch)
+library(xtable)
+```
+
+```{r, results='asis'}
 nectar %>%
-  group_by(`Nectar Plant Species`) %>%
-  summarize(total = sum(count))
+  filter(site %in% c("byd1", "byd2", "cra1", "uth1", "uth2", "uth3")) %>%
+  group_by(`Nectar Plant Species`, round, site) %>%
+  summarize(total = sum(count)) %>%
+  tidyr::spread(site, total, fill='.') %>%
+  xtable() %>%
+  print(type = "html", include.rownames = FALSE)
 ```
