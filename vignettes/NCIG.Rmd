@@ -2,6 +2,8 @@
 title: "ISU Monarch Data Summary for NCIG"
 author: "Jarad Niemi"
 date: "`r Sys.Date()`"
+header-includes:
+  - \usepackage{rotating}
 output: rmarkdown::pdf_document
 vignette: >
   %\VignetteIndexEntry{ISU Monarch Data Summary for NCIG}
@@ -9,60 +11,72 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, message=FALSE, echo=FALSE}
+```{r setup, purl=FALSE, echo=FALSE}
+library("knitr")
+opts_chunk$set(echo=FALSE, 
+               results = 'asis',
+               message = FALSE)
+```
+
+```{r packages}
 library(dplyr)
 library(ISUmonarch)
 library(xtable)
 options(xtable.comment = FALSE)
 ```
 
-```{r sites, echo=FALSE}
+```{r sites}
 sites = c("all1","all2","arm2","ber1","ber3","cre1","dun2","dun3",
           "pio1","pio2","gro1","gro2","nkn1","nkn2","nor1","sut1","sie1",
           "prd1","prd2","var1")
 ```
 
 
+
 ## Nectar
 
-```{r nectar, results='asis', echo=FALSE}
+```{r nectar}
 nectar %>%
   filter(site %in% sites) %>%
-  group_by(`Nectar Plant Species`, round, site) %>%
-  summarize(total = sum(count)) %>%
-  tidyr::spread(site, total, fill='.') %>%
-  arrange(round, `Nectar Plant Species`) %>% 
-  mutate(uth1 = ".") %>%
-  select_("`Nectar Plant Species`", "round", sites) %>%
-  xtable() %>%
-  print(include.rownames = FALSE,
-        hline.after = c(-1,0,9,21,32)) # type="html" for html file
+  group_by(`Nectar Plant Species`, site) %>%
+  summarize(total = mean(count) %>% round(1)) %>%
+  tidyr::spread(site, total, fill=NA) %>%
+  arrange(`Nectar Plant Species`) %>% 
+  # select_("`Nectar Plant Species`", sites) %>%
+  xtable(digits = 1,
+         caption="Nectar plant species: mean count across all surveys") %>%
+  print(include.rownames = FALSE, NA.string="-") 
 ```
+
+
+
 
 \newpage
 Nectar density
 
-```{r nectar_density, results='asis', echo=FALSE}
+```{r nectar_density}
 nectar %>%
   filter(site %in% sites) %>%
-  group_by(`Nectar Plant Species`, round, site) %>%
-  summarize(total = sum(count)) %>%
-  mutate(total = round(ifelse(site=="cra1", total/70, total/100),2)) %>%
-  tidyr::spread(site, total, fill='.') %>%
-  arrange(round, `Nectar Plant Species`) %>% 
-  mutate(uth1 = ".") %>%
-  select_("`Nectar Plant Species`", "round", sites) %>%
-  xtable() %>%
-  print(include.rownames = FALSE,
-        hline.after = c(-1,0,9,21,32)) # type="html" for html file
+  group_by(`Nectar Plant Species`, site) %>%
+  summarize(count = sum(count)) %>%
+  ungroup() %>%
+  left_join(ISUmonarch::length) %>%
+  mutate(density = 100*count / length) %>%
+  select(-count, -length) %>%
+  tidyr::spread(site, density, fill=NA) %>%
+  arrange(`Nectar Plant Species`) %>% 
+  # select_("`Nectar Plant Species`", sites) %>%
+  xtable(digits = 0,
+         caption="Nectar plant species density: average density (count / 100 m2) across all rounds") %>%
+  print(include.rownames = FALSE, NA.string="-") 
 ```
 
 
 \newpage
 ## Daubenmire
 
-```{r daubenmire, results='asis', echo=FALSE}
-daubenmire_round_average = daubenmire %>%
+```{r daubenmire}
+daubenmire_average <- daubenmire %>%
   filter(site %in% sites) %>% 
   mutate(land_cover = factor(land_cover, 
                             levels=c("csg",
@@ -77,132 +91,138 @@ daubenmire_round_average = daubenmire %>%
                              csg = "cool season grass",
                              wsg = "warm season grass",
                              litter_depth = "litter depth (cm)")) %>%
-  group_by(land_cover, round, site) %>%
+  group_by(land_cover, site) %>%
   summarize(mean_percentage = round(mean(percentage),1))  
 
-daubenmire_round_average %>%
+daubenmire_average %>%
   mutate(mean_percentage = round(mean_percentage,1))  %>%
-  tidyr::spread(site, mean_percentage, fill='na') %>%
+  tidyr::spread(land_cover, mean_percentage, fill=NA) %>%
   ungroup() %>% 
-  arrange(round, land_cover) %>% 
-  xtable() %>%
-  print(include.rownames = FALSE,
-        hline.after = c(-1,0,8,16,24)) # type="html" for html file
-```
-
-Averaged across rounds
-
-```{r daubenmire_average, results='asis', echo=FALSE}
-daubenmire_round_average %>% 
-  group_by(land_cover, site) %>%
-  summarize(mean_percentage = round(mean(mean_percentage),1)) %>% 
-  tidyr::spread(site, mean_percentage, fill='na') %>%
-  ungroup() %>% 
-  arrange(land_cover) %>% 
-  xtable() %>%
-  print(include.rownames = FALSE) # type="html" for html file
+  arrange(site) %>% 
+  xtable(digits = 1,
+         caption="Daubenmire: average land cover \\% across all rounds") %>%
+  print(include.rownames = FALSE, NA.string="na",
+        rotate.colnames = TRUE) 
 ```
 
 \newpage
 
-Averaged across sites and rounds
+Averaged across sites 
 
-```{r daubenmire_average2, results='asis', echo=FALSE}
-daubenmire_round_average %>% 
+```{r daubenmire_average2}
+daubenmire_average %>% 
   group_by(land_cover) %>%
-  summarize(mean_percentage = round(mean(mean_percentage),1)) %>% 
+  summarize(average = round(mean(mean_percentage),1)) %>% 
   ungroup() %>% 
-  arrange(land_cover) %>% 
-  xtable() %>%
-  print(include.rownames = FALSE) # type="html" for html file
+  tidyr::spread(land_cover, average) %>%
+  xtable(caption="Daubenmire: average land cover \\% across all rounds and sites") %>%
+  print(include.rownames = FALSE,
+        rotate.colnames = TRUE) 
 ```
 
 
 ## Robel
 
-```{r robel, results='asis', echo=FALSE}
-robel %>%
-  filter(site %in% sites) %>%
-  group_by(round, site) %>%
-  summarize(mean_count = round(mean(count),1)) %>%
-  tidyr::spread(site, mean_count, fill='na') %>%
-  xtable() %>%
-  print(include.rownames = FALSE) # type="html" for html file
-```
-
-Average across all rounds
-
-```{r robel_average, results='asis', echo=FALSE}
+```{r robel_average}
 robel %>%
   filter(site %in% sites) %>%
   group_by(round, site) %>%
   summarize(mean_count = mean(count)) %>%
   group_by(site) %>%
-  summarize(mean_count = round(mean(mean_count),1)) %>%
-  tidyr::spread(site, mean_count, fill='na') %>%
-  xtable() %>%
-  print(include.rownames = FALSE) # type="html" for html file
+  summarize(average = mean(mean_count)) %>%
+  # tidyr::spread(site, mean_count, fill='na') %>%
+  xtable(digits = 1,
+         caption="Robel: average across all rounds") %>%
+  print(include.rownames = FALSE) 
 ```
 
 \newpage
 
 ## Monarch
 
-Adults
+```{r}
+monarch %>% 
+  filter(site %in% sites) %>%
+  mutate(group = "survey",
+         group = ifelse(grepl("instar",distance), "instar", group),
+         group = ifelse(distance == "stems",      "stems" , group),
+         group = ifelse(distance == "eggs",       "eggs"  , group),
+         group = ifelse(distance == "extra_monarch", "extra", group),
+         group = ifelse(distance == "watch_monarch", "watch", group)) %>%
+  select(site, group, count) %>%
+  group_by(site, group) %>%
+  summarize(count = sum(count)) %>%
+  tidyr::spread(group,count, fill=0) %>%
+  mutate(Total  = survey + extra) %>%
+  ungroup() %>%
+  rename(Survey = survey,
+         Stems = stems,
+         Eggs = eggs,
+         Instar = instar) %>%
+  select(site, Total, Survey, Instar, Stems, Eggs) %>%
+  xtable(digits = 0,
+         caption="Monarch: adults, instar, stems, and eggs") %>%
+  print(include.rownames = FALSE,
+        add.to.row = list(pos = list(-1), 
+                          command = "& \\multicolumn{2}{c}{Adults} \\\\")) 
+```
 
-```{r monarch_adults, results='asis', echo=FALSE}
+
+
+```{r monarch_adults}
 monarch %>%
   filter(site %in% sites) %>%
   filter(!grepl("instar", distance)) %>%
   filter(distance != "stems") %>%
   filter(distance != "eggs") %>%
   group_by(site) %>%
-  summarize(sum_no_extra = sum(count[distance != "extra_monarch"]),
-            sum_all      = sum(count)) %>%
+  summarize(`without extras` = sum(count[distance != "extra_monarch"]),
+            Total      = sum(count)) %>%
   tidyr::gather("Adult monarchs", count, -site) %>%
-  tidyr::spread(site, count) %>%
-  xtable() %>%
-  print() # type="html" for html file
+  tidyr::spread(`Adult monarchs`, count) %>%
+  xtable(digits = 0,
+         caption = "Adult monarchs") %>%
+  print(include.rownames=FALSE) 
 ```
 
 Stems
 
-```{r monarch_stems, results='asis', echo=FALSE}
+```{r monarch_stems}
 monarch %>%
   filter(site %in% sites) %>%
   filter(distance == "stems") %>%
   group_by(site) %>%
   summarize(mean = round(mean(count),1)) %>%
-  tidyr::spread(site, mean, fill='na') %>%
-  xtable() %>%
-  print(include.rownames = FALSE) # type="html" for html file
+  xtable(digits = 1,
+         caption = "Stems") %>%
+  print(include.rownames = FALSE) 
 ```
 
 Eggs
 
-```{r monarch_eggs, results='asis', echo=FALSE}
+```{r monarch_eggs}
 monarch %>%
   filter(site %in% sites) %>%
   filter(distance == "eggs") %>%
   group_by(site) %>%
   summarize(total = sum(count)) %>%
-  tidyr::spread(site, total, fill='na') %>%
-  xtable() %>%
-  print(include.rownames = FALSE) # type="html" for html file
+  xtable(digits=0,
+         caption = "Eggs") %>%
+  print(include.rownames = FALSE) 
 ```
 
 
 Instar
-```{r monarch_instar, results='asis', echo=FALSE}
+```{r monarch_instar}
 monarch %>%
   filter(site %in% sites) %>%
   filter(grepl("instar", distance)) %>%
   group_by(site) %>%
   summarize(total = sum(count)) %>%
-  tidyr::spread(site, total, fill='na') %>%
-  xtable() %>%
+  xtable(digits=0,
+         caption = "Instar") %>%
   print(include.rownames = FALSE,
-        table.placement = "!h") # type="html" for html file
+        table.placement = "!h") 
 ```
 
 
@@ -210,17 +230,19 @@ monarch %>%
 
 Did any survey at each site reveal milkweed or flowering plants?
 
-```{r environment, results='asis', echo=FALSE}
+```{r environment}
 environment %>%
   filter(site %in% sites) %>%
   group_by(site) %>%
-  summarize(milkweed      = any(milkweed == "yes"),
-            flower_plants = any(flowering_plants == "yes")) %>%
+  summarize(milkweed           = any(milkweed == "yes"),
+            `flowering plants` = any(flowering_plants == "yes")) %>%
   tidyr::gather(plant, bool, -site) %>%
-  mutate(bool = ifelse(bool, "Yes", "No")) %>%
-  tidyr::spread(site, bool) %>%
+  mutate(bool = ifelse(bool, "Yes", "--")) %>%
+  rename(present = bool) %>%
+  tidyr::spread(plant, present) %>%
+  arrange(site) %>%
   xtable() %>%
-  print(table.placement = "!h") # type="html" for html file
+  print(include.rownames=FALSE, table.placement = "!h") 
 ```
 
 
