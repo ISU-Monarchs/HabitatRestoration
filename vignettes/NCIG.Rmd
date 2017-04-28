@@ -175,7 +175,7 @@ robel %>%
   summarize(average = mean(mean_count)) %>%
   # tidyr::spread(site, mean_count, fill='na') %>%
   xtable(digits = 1,
-         caption="Robel: average across all rounds",
+         caption="Vegetation density using Robel measurements averaged across all rounds",
          label = "t:robel") %>%
   print(include.rownames = FALSE,
         caption.placement = "top") 
