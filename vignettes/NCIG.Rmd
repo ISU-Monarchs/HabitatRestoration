@@ -1,6 +1,6 @@
 ---
 title: "ISU Monarch Data Summary for NCIG"
-author: "Jarad Niemi"
+author: "Jarad Niemi and Seth Appelgate"
 date: "`r Sys.Date()`"
 header-includes:
   - \usepackage{rotating}
@@ -34,6 +34,31 @@ sites = c("all1","all2","arm1","arm2","ber1","ber3","cre1","dun2","dun3",
 ```
 
 
+Table \ref{t:nectar} provides count of nectar plant species averaged across all 
+data collection events. 
+Values in table represent the specific counting unit for each species, not necessarily a whole plant.
+Table \ref{t:nectar_density} provides nectar plant species density (per 100m2) averaged across all data collection events. 
+Values in table represent the specific counting unit for each species, not necessarily a whole plant.
+
+Table \ref{t:daubenmire} provides average land cover percentage averaged across 
+all data collection events.
+Table \ref{t:daubenmire_average} provides average land cover percentage averaged across all data collection events and all sites.
+
+Table \ref{t:robel} provides average amount of vegetation across all data 
+collection events.
+
+Table \ref{t:monarch} provides total number of monarchs sighted anywhere around 
+site during entire time at site, number of monarchs sighted during a survey 
+period, number of milkweed ramets (an upper limit of 20 per round per site, 
+although the same milkweed may have been surveyed in different rounds), 
+number of monarch eggs counted on milkweed plants (if no milkweed present, 
+no monarch eggs present, number of monarch larvae (caterpillars) counted on 
+milkweed plants (if no milkweed present, no larvae present).
+
+Table \ref{t:environment} provides a binary response of whether there were any 
+flowering plants or milkweed present in the area around the site during any 
+round.
+
 
 <!-- Nectar -->
 
@@ -45,8 +70,10 @@ nectar %>%
   tidyr::spread(site, total, fill=NA) %>%
   arrange(`Nectar Plant Species`) %>% 
   # select_("`Nectar Plant Species`", sites) %>%
+  # mutate(pio2 = NA, sut2 = NA, sie1 = NA) %>%
   xtable(digits = 1,
-         caption="Nectar plant species: mean count across all surveys") %>%
+         caption="Nectar plant species: mean count across all surveys",
+         label="t:nectar") %>%
   print(include.rownames = FALSE, NA.string="-", 
         table.placement = "p",
         caption.placement = "top",
@@ -71,8 +98,10 @@ nectar %>%
   tidyr::spread(site, density, fill=NA) %>%
   arrange(`Nectar Plant Species`) %>% 
   # select_("`Nectar Plant Species`", sites) %>%
+  # mutate(pio2 = NA, sut2 = NA, sie1 = NA) %>%
   xtable(digits = 0,
-         caption="Nectar plant species density: average density (count / 100 m2) across all rounds") %>%
+         caption="Nectar plant species density: average density (count / 100 m2) across all rounds",
+         label="t:nectar_density") %>%
   print(include.rownames = FALSE, NA.string="-", 
         table.placement = "p",
         caption.placement = "top",
@@ -109,7 +138,8 @@ daubenmire_average %>%
   ungroup() %>% 
   arrange(site) %>% 
   xtable(digits = 1,
-         caption="Daubenmire: average land cover \\% across all rounds") %>%
+         caption="Daubenmire: average land cover \\% across all rounds",
+         label = "t:daubenmire") %>%
   print(include.rownames = FALSE, NA.string="na",
         caption.placement = "top",
         rotate.colnames = TRUE) 
@@ -126,7 +156,8 @@ daubenmire_average %>%
   ungroup() %>% 
   tidyr::spread(land_cover, average) %>%
   xtable(digits = 1,
-         caption="Daubenmire: average land cover \\% across all rounds and sites") %>%
+         caption="Daubenmire: average land cover \\% across all rounds and sites",
+         label = "t:daubenmire_average") %>%
   print(include.rownames = FALSE,
         caption.placement = "top",
         rotate.colnames = TRUE) 
@@ -144,7 +175,8 @@ robel %>%
   summarize(average = mean(mean_count)) %>%
   # tidyr::spread(site, mean_count, fill='na') %>%
   xtable(digits = 1,
-         caption="Robel: average across all rounds") %>%
+         caption="Robel: average across all rounds",
+         label = "t:robel") %>%
   print(include.rownames = FALSE,
         caption.placement = "top") 
 ```
@@ -171,73 +203,19 @@ monarch %>%
   rename(Survey = survey,
          Stems = stems,
          Eggs = eggs,
-         Instar = instar) %>%
-  select(site, Total, Survey, Instar, Stems, Eggs) %>%
+         Larvae = instar) %>%
+  select(site, Total, Survey, Stems, Eggs, Larvae) %>%
   xtable(digits = 0,
-         caption="Monarch: adults, instar, stems, and eggs") %>%
+         caption="Monarch adults (total and during survey), milkweed ramets, monarch eggs on milkweed, and monarch larvae on milkweed.",
+         label = "t:monarch",
+         align = "cl|rr|r|rr") %>%
   print(include.rownames = FALSE,
         caption.placement = "top",
         add.to.row = list(pos = list(-1), 
-                          command = "& \\multicolumn{2}{c}{Adults} \\\\")) 
+                          command = "& \\multicolumn{2}{c|}{Monarch adults} & \\multicolumn{1}{c|}{Milkweed} & \\multicolumn{2}{c}{Monarch} \\\\")) 
 ```
 
 
-
-```{r monarch_adults}
-monarch %>%
-  filter(site %in% sites) %>%
-  filter(!grepl("instar", distance)) %>%
-  filter(distance != "stems") %>%
-  filter(distance != "eggs") %>%
-  group_by(site) %>%
-  summarize(`without extras` = sum(count[distance != "extra_monarch"]),
-            Total      = sum(count)) %>%
-  tidyr::gather("Adult monarchs", count, -site) %>%
-  tidyr::spread(`Adult monarchs`, count) %>%
-  xtable(digits = 0,
-         caption = "Adult monarchs") %>%
-  print(include.rownames=FALSE) 
-```
-
-<!-- Stems -->
-
-```{r monarch_stems}
-monarch %>%
-  filter(site %in% sites) %>%
-  filter(distance == "stems") %>%
-  group_by(site) %>%
-  summarize(mean = round(mean(count),1)) %>%
-  xtable(digits = 1,
-         caption = "Stems") %>%
-  print(include.rownames = FALSE) 
-```
-
-<!-- Eggs -->
-
-```{r monarch_eggs}
-monarch %>%
-  filter(site %in% sites) %>%
-  filter(distance == "eggs") %>%
-  group_by(site) %>%
-  summarize(total = sum(count)) %>%
-  xtable(digits=0,
-         caption = "Eggs") %>%
-  print(include.rownames = FALSE) 
-```
-
-
-<!-- Instar -->
-```{r monarch_instar}
-monarch %>%
-  filter(site %in% sites) %>%
-  filter(grepl("instar", distance)) %>%
-  group_by(site) %>%
-  summarize(total = sum(count)) %>%
-  xtable(digits=0,
-         caption = "Instar") %>%
-  print(include.rownames = FALSE,
-        table.placement = "!h") 
-```
 
 
 <!-- Environment -->
@@ -253,7 +231,9 @@ environment %>%
   rename(present = bool) %>%
   tidyr::spread(plant, present) %>%
   arrange(site) %>%
-  xtable(caption = "Environment: Flowering plants or milkweed present in area at least once during any round?") %>%
+  xtable(
+    caption = "Environment: Flowering plants or milkweed present in area at least once during any round?",
+    label = "t:environment") %>%
   print(include.rownames=FALSE,
         caption.placement = "top", 
         table.placement = "!h") 
