@@ -1,0 +1,242 @@
+---
+title: "ISU Monarch Data Summary for NCIG"
+author: "Jarad Niemi and Seth Appelgate"
+date: "`r Sys.Date()`"
+header-includes:
+  - \usepackage{rotating}
+  - \usepackage{caption} 
+  - \captionsetup[table]{skip=10pt}
+output: rmarkdown::pdf_document
+vignette: >
+  %\VignetteIndexEntry{ISU Monarch Data Summary for NCIG}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, purl=FALSE, echo=FALSE}
+library("knitr")
+opts_chunk$set(echo=FALSE, 
+               results = 'asis',
+               message = FALSE)
+```
+
+```{r packages}
+library(dplyr)
+library(ISUmonarch)
+library(xtable)
+options(xtable.comment = FALSE)
+```
+
+```{r sites}
+sites = c("all1","all2","arm1","arm2","ber1","ber3","cre1","dun2","dun3",
+          "pio1","pio2","gro1","gro2","nkn1","nkn2","nor1","sut1","sut2",
+          "sie1","prd1","prd2","var1","ver1")
+```
+
+
+Table \ref{t:nectar} provides count of nectar plant species averaged across all 
+data collection events. 
+Values in table represent the specific counting unit for each species, not necessarily a whole plant.
+Table \ref{t:nectar_density} provides nectar plant species density (per 100m2) averaged across all data collection events. 
+Values in table represent the specific counting unit for each species, not necessarily a whole plant.
+
+Table \ref{t:daubenmire} provides average land cover percentage averaged across 
+all data collection events.
+Table \ref{t:daubenmire_average} provides average land cover percentage averaged across all data collection events and all sites.
+
+Table \ref{t:robel} provides average amount of vegetation across all data 
+collection events.
+
+Table \ref{t:monarch} provides total number of monarchs sighted anywhere around 
+site during entire time at site, number of monarchs sighted during a survey 
+period, number of milkweed ramets (an upper limit of 20 per round per site, 
+although the same milkweed may have been surveyed in different rounds), 
+number of monarch eggs counted on milkweed plants (if no milkweed present, 
+no monarch eggs present, number of monarch larvae (caterpillars) counted on 
+milkweed plants (if no milkweed present, no larvae present).
+
+Table \ref{t:environment} provides a binary response of whether there were any 
+flowering plants or milkweed present in the area around the site during any 
+round.
+
+
+<!-- Nectar -->
+
+```{r nectar}
+nectar %>%
+  filter(site %in% sites) %>%
+  group_by(`Nectar Plant Species`, site) %>%
+  summarize(total = mean(count) %>% round(1)) %>%
+  tidyr::spread(site, total, fill=NA) %>%
+  arrange(`Nectar Plant Species`) %>% 
+  # select_("`Nectar Plant Species`", sites) %>%
+  # mutate(pio2 = NA, sut2 = NA, sie1 = NA) %>%
+  xtable(digits = 1,
+         caption="Nectar plant species: mean count across all surveys",
+         label="t:nectar") %>%
+  print(include.rownames = FALSE, NA.string="-", 
+        table.placement = "p",
+        caption.placement = "top",
+        size="\\small",
+        floating.environment = "sidewaystable") 
+```
+
+
+
+
+\newpage
+
+```{r nectar_density}
+nectar %>%
+  filter(site %in% sites) %>%
+  group_by(`Nectar Plant Species`, site) %>%
+  summarize(count = sum(count)) %>%
+  ungroup() %>%
+  left_join(ISUmonarch::length) %>%
+  mutate(density = 100*count / length) %>%
+  select(-count, -length) %>%
+  tidyr::spread(site, density, fill=NA) %>%
+  arrange(`Nectar Plant Species`) %>% 
+  # select_("`Nectar Plant Species`", sites) %>%
+  # mutate(pio2 = NA, sut2 = NA, sie1 = NA) %>%
+  xtable(digits = 0,
+         caption="Nectar plant species density: average density (count / 100 m2) across all rounds",
+         label="t:nectar_density") %>%
+  print(include.rownames = FALSE, NA.string="-", 
+        table.placement = "p",
+        caption.placement = "top",
+        size="\\small",
+        floating.environment = "sidewaystable") 
+```
+
+
+\newpage
+ <!-- Daubenmire -->
+
+```{r daubenmire}
+daubenmire_average <- daubenmire %>%
+  filter(site %in% sites) %>% 
+  mutate(land_cover = factor(land_cover, 
+                            levels=c("csg",
+                                     "wsg",
+                                     "forbs",
+                                     "milkweed",
+                                     "woody_species",
+                                     "bare_ground",
+                                     "leaf_litter",
+                                     "litter_depth")),
+         land_cover = recode(land_cover, 
+                             csg = "cool season grass",
+                             wsg = "warm season grass",
+                             litter_depth = "litter depth (cm)")) %>%
+  group_by(land_cover, site) %>%
+  summarize(mean_percentage = round(mean(percentage),1))  
+
+daubenmire_average %>%
+  mutate(mean_percentage = round(mean_percentage,1))  %>%
+  tidyr::spread(land_cover, mean_percentage, fill=NA) %>%
+  ungroup() %>% 
+  arrange(site) %>% 
+  xtable(digits = 1,
+         caption="Daubenmire: average land cover \\% across all rounds",
+         label = "t:daubenmire") %>%
+  print(include.rownames = FALSE, NA.string="na",
+        caption.placement = "top",
+        rotate.colnames = TRUE) 
+```
+
+\newpage
+
+<!-- Averaged across sites  -->
+
+```{r daubenmire_average2}
+daubenmire_average %>% 
+  group_by(land_cover) %>%
+  summarize(average = mean(mean_percentage)) %>% 
+  ungroup() %>% 
+  tidyr::spread(land_cover, average) %>%
+  xtable(digits = 1,
+         caption="Daubenmire: average land cover \\% across all rounds and sites",
+         label = "t:daubenmire_average") %>%
+  print(include.rownames = FALSE,
+        caption.placement = "top",
+        rotate.colnames = TRUE) 
+```
+
+
+ <!-- Robel -->
+
+```{r robel_average}
+robel %>%
+  filter(site %in% sites) %>%
+  group_by(round, site) %>%
+  summarize(mean_count = mean(count)) %>%
+  group_by(site) %>%
+  summarize(average = mean(mean_count)) %>%
+  # tidyr::spread(site, mean_count, fill='na') %>%
+  xtable(digits = 1,
+         caption="Vegetation density using Robel measurements averaged across all rounds",
+         label = "t:robel") %>%
+  print(include.rownames = FALSE,
+        caption.placement = "top") 
+```
+
+\newpage
+
+<!-- Monarch -->
+
+```{r}
+monarch %>% 
+  filter(site %in% sites) %>%
+  mutate(group = "survey",
+         group = ifelse(grepl("instar",distance), "instar", group),
+         group = ifelse(distance == "stems",      "stems" , group),
+         group = ifelse(distance == "eggs",       "eggs"  , group),
+         group = ifelse(distance == "extra_monarch", "extra", group),
+         group = ifelse(distance == "watch_monarch", "watch", group)) %>%
+  select(site, group, count) %>%
+  group_by(site, group) %>%
+  summarize(count = sum(count)) %>%
+  tidyr::spread(group,count, fill=0) %>%
+  mutate(Total  = survey + extra) %>%
+  ungroup() %>%
+  rename(Survey = survey,
+         Stems = stems,
+         Eggs = eggs,
+         Larvae = instar) %>%
+  select(site, Total, Survey, Stems, Eggs, Larvae) %>%
+  xtable(digits = 0,
+         caption="Monarch adults (total and during survey), milkweed ramets, monarch eggs on milkweed, and monarch larvae on milkweed.",
+         label = "t:monarch",
+         align = "cl|rr|r|rr") %>%
+  print(include.rownames = FALSE,
+        caption.placement = "top",
+        add.to.row = list(pos = list(-1), 
+                          command = "& \\multicolumn{2}{c|}{Monarch adults} & \\multicolumn{1}{c|}{Milkweed} & \\multicolumn{2}{c}{Monarch} \\\\")) 
+```
+
+
+
+
+<!-- Environment -->
+
+```{r environment}
+environment %>%
+  filter(site %in% sites) %>%
+  group_by(site) %>%
+  summarize(milkweed           = any(milkweed == "yes"),
+            `flowering plants` = any(flowering_plants == "yes")) %>%
+  tidyr::gather(plant, bool, -site) %>%
+  mutate(bool = ifelse(bool, "Yes", "--")) %>%
+  rename(present = bool) %>%
+  tidyr::spread(plant, present) %>%
+  arrange(site) %>%
+  xtable(
+    caption = "Environment: Flowering plants or milkweed present in area at least once during any round?",
+    label = "t:environment") %>%
+  print(include.rownames=FALSE,
+        caption.placement = "top", 
+        table.placement = "!h") 
+```
+
+
