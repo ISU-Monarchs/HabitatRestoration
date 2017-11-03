@@ -21,7 +21,7 @@ read_dir = function(path, pattern, into) {
 
 ###########################################################
 
-landscape = read_dir(path = "landscape",
+landscape2016 = read_dir(path = "landscape",
                      pattern = "csv$",
                      into = c("landscape",
                               "year","month","day","recorder",
@@ -29,5 +29,5 @@ landscape = read_dir(path = "landscape",
                               "extension")) %>%
   select(-landscape, -extension) 
 
-devtools::use_data(landscape,
+devtools::use_data(landscape2016,
                    overwrite = TRUE)
