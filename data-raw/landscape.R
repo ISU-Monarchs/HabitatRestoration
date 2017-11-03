@@ -21,13 +21,13 @@ read_dir = function(path, pattern, into) {
 
 ###########################################################
 
-environment = read_dir(path = "environment",
-                  pattern = "csv$",
-                  into = c("environment",
-                           "year","month","day","recorder",
-                           "site","transect","round",
-                           "extension")) %>%
-  select(-environment, -extension) 
-	
-devtools::use_data(environment,
+landscape = read_dir(path = "landscape",
+                     pattern = "csv$",
+                     into = c("landscape",
+                              "year","month","day","recorder",
+                              "site","transect","round",
+                              "extension")) %>%
+  select(-landscape, -extension) 
+
+devtools::use_data(landscape,
                    overwrite = TRUE)
