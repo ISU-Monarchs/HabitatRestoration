@@ -1,6 +1,5 @@
 source("bee.R")
 source("daubenmire.R")
-source("environment.R")
 source("length.R")
 source("monarch.R")
 source("nectar.R")
