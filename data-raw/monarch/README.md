@@ -49,8 +49,9 @@ For all years:
   
       'stems', 'eggs', 'instar' data was collected on 8/11/2016 but adult monarch data was not taken because of rain. Adult monarch data was sampled on 8/17/2016 to make up for missed data. No 'stems', 'eggs', 'instar' data was collected on 8/17/2016.
   
+Round 3 8-15-17 fis1. No survey, rain
       
-  
+      'NA' was entered for 'start_time', '#_inside_plot', '#_outside_plot', 'extra_monarchs'
   
   
   
