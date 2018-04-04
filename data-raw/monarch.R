@@ -3,7 +3,9 @@ library("tidyr")
 
 my_read_csv = function(f, into) {
   cat("Reading",f,"\n")
-  readr::read_csv(f, col_names = c("key","value")) %>%
+  readr::read_csv(f, 
+                  col_names = c("key","value"), 
+                  col_types = cols(.default = "c")) %>%
     mutate(file=f) %>%
     separate(file, into)
 }
