@@ -1,7 +1,8 @@
-library(dplyr)
-library(tidyr)
+library("dplyr")
+library("tidyr")
 
 my_read_csv = function(f, into) {
+  cat("Reading",f,"\n")
   readr::read_csv(f, col_names = c("key","value")) %>%
     mutate(file=f) %>%
     separate(file, into)
