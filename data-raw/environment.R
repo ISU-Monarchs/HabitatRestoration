@@ -31,10 +31,7 @@ environment <- read_dir(path = "environment",
   select(-environment, -extension) %>%
   tidyr::spread(variable, value)
 
-names(environment) <- gsub('“', '', names(environment))
-names(environment) <- gsub('”', '', names(environment))
-
-environment <- environment %>%
+environment2 <- environment %>%
   mutate(year           = as.numeric(year),
          month          = as.numeric(month),
          day            = as.numeric(day),
