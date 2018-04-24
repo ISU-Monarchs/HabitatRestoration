@@ -3,7 +3,9 @@ library("tidyr")
 
 my_read_csv = function(f, into) {
   cat("Reading",f,"\n")
-  readr::read_csv(f) %>%
+  readr::read_csv(f, 
+                  skip = 1,
+                  col_types = readr::cols(.default = "c")) %>%
     mutate(file=f) %>%
     separate(file, into)
 }
@@ -26,14 +28,20 @@ bee = read_dir(path = "bee",
                         "year","month","day","recorder",
                         "site","transect","round",
                         "extension")) %>%
-  select(-bee, -extension) %>%      
+  
+  # Some data files used Bee Species and others used Pollinator Species
+  mutate(pollinator = ifelse(is.na(`Bee Species`), 
+                             `Pollinator Species`,
+                             `Bee Species`)) %>%
+  
+  select(-bee, -extension, -`Bee Species`, -`Pollinator Species`) %>%      
 
   # rename(nectar_plant_species = `Nectar Plant Species`,
   #        `Pollinator Species`) %>%
 
   gather(distance, count,
          -`Nectar Plant Species`, 
-         -`Pollinator Species`,
+         -pollinator,
          -year, -month, -day, -recorder, -site, -transect, -round,
          na.rm=TRUE) %>% 
 	
