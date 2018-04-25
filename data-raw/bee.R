@@ -30,18 +30,18 @@ bee = read_dir(path = "bee",
                         "extension")) %>%
   
   # Some data files used Bee Species and others used Pollinator Species
-  mutate(pollinator = ifelse(is.na(`Bee Species`), 
-                             `Pollinator Species`,
-                             `Bee Species`)) %>%
+  mutate(`Bee Species` = ifelse(is.na(`Bee Species`), 
+                                `Pollinator Species`,
+                                `Bee Species`)) %>%
   
-  select(-bee, -extension, -`Bee Species`, -`Pollinator Species`) %>%      
-
+  select(-bee, -extension, -`Pollinator Species`) %>%      
+  
   # rename(nectar_plant_species = `Nectar Plant Species`,
   #        `Pollinator Species`) %>%
-
+  
   gather(distance, count,
          -`Nectar Plant Species`, 
-         -pollinator,
+         -`Bee Species`,
          -year, -month, -day, -recorder, -site, -transect, -round,
          na.rm=TRUE) %>% 
 	
