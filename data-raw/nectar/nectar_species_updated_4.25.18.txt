@@ -1,0 +1,98 @@
+common_name	field_count_unit	genus	species	technical_count	inflorescence_name_when_technical
+common milkweed	umbel	Asclepias	syriaca	simple umbel	
+swamp milkweed	umbel	Asclepias	incarnata	coumpound umbel	
+butterfly milkweed	umbel	Asclepias	tuberosa	coumpound umbel	
+whorled milkweed	umbel	Asclepias	verticillata	simple umbel	
+birdsfoot trefoil	umbel	Lotus	corniculatus	simple umbel	
+black medic	umbel	Medicago	lupulina	simple umbel	
+black eyed susan	head	Rudbeckia	hirta	head	
+brown eyed susan	head	Rudbeckia	triloba	head	
+buffalobur nightshade	head	Solanum	rostratum		
+canada goldenrod	ramet	Solidago	altissima	ramet	corymbiform (flat-topped cluster) arrangement of  heads
+common cinquefoil	head	Potentilla	simplex	flower	
+common dandelion	head	Taraxacum	officinale	head	
+common evening primrose	head	Oenothera	biennis	flower	
+common mullein	ramet	Verbascum	thapsus	spike	
+common purslane	head	Portulaca	oleracea	head	
+compass plant	head	Silphium	laciniatum	head	
+cup plant	head	Silphium	perfoliata		
+golden alexanders	umbel	Zizia	aurea	compound umbel	
+groundcherry	head	Physalis	heterophylla	flower	
+hawkweed	head	Hieracium			
+jerusalem artichoke	head	Helianthus	tuberosus	head	
+maximilian sunflower	head	Helianthus	maximiliani	head	
+ox eye sunflower	head	Heliopsis	helianthoides	head	
+partridge pea	head	Chamaecrista	fasciculata	flower	
+pineapple weed	head	Matricaria	discoidea	head	
+prairie coreopsis	head	Coreopsis	palmata	head	
+prickly lettuce	head	Lactuca	serriola	head	
+prickly sowthistle	head	Sonchus	asper	head	
+sawtooth sunflower	head	Helianthus	grosseserratus	head	
+showy goldenrod	ramet	Solidago	speciosa	ramet	corymbiform (flat-topped cluster) arrangement of  heads
+stiff goldenrod	ramet	Solidago	rigidum	ramet	corymbiform (flat-topped cluster) arrangement of  heads
+velvetleaf	head	Abutilon	theophrasti	flower	
+wild mustard	umbel	Sinapsis	arvensis	elongate raceme	
+wild parsnip	umbel	Pastinaca	sativa	compound umbel	
+yellow coneflower	head	Ratibida	pinnata	head	
+yellow sweet clover	ramet	Melilotus	officinalis	ramet	
+yellow wood sorrel	head	Oxalis	stricta	head	
+alfalfa	spike (flower cluster)	Medicago	sativa	raceme	
+blue vervain	spike	Verbena	hastata	raceme	
+blue wild indigo	spike	Baptisia	australis	raceme	
+canada thistle	head	Cirsium	arvense	head	
+clasping venus looking glass	head	Triodanis	perfoliata	head	
+crown vetch	head	Securigera	varia	head	
+great blue lobelia	ramet	Lobelia	siphilitica	raceme	
+hoary vervain	spike	Verbena	stricta	raceme	
+ironweed	ramet	Vernonia	fasciculata	ramet	corymbiform (flat-topped cluster) arrangement of  heads
+lanceleaf fogfruit	head	Phyla	lanceolata	spherical spike	
+leadplant	spike	Amorpha	canescens	raceme	
+musk thistle	head	Carduus	nutans	head	
+new england aster	head	Symphyotrichum	novae-angliae	head	
+pale purple coneflower	head	Echinacea	pallida	head	
+pennsylvania smartweed	spike	Polygonum	pensylvanicum	raceme	
+prairie blazing star	ramet	Liatris	pycnostachya	ramet	racemic heads
+prairie phlox	ramet	Phlox	pilosa	ramet	fls grouped in panicle
+prostrate vervain	spike	Verbena	bracteata	spike	
+purple prairie clover	head	Dalea	purpurea	spike	
+red clover	umbel	Trifolium	pratense	simple umbel	
+rough blazing star	ramet	Liatris	aspera	ramet	racemic heads
+showy tick trefoil	ramet	Desmodium	canadense	ramet	panicle (branched clusters of fls)
+wild bergamot	head	Monarda	fistulosa	head	
+chicory	head	Cichorium		head	
+smooth blue aster	head	Symphyotrichum	laeve	head	
+bedstraw	head	Galium			
+bladder campion	head	Silene	vulgaris	flower	
+canada anenome	head	Anemone	canadensis	head	
+canada milk vetch	spike	Astragalus	canadensis	raceme	
+carolina horsenettle	head	Solanum	carolinense	flower	
+common mallow	head	Malva	neglecta	flower	
+common yarrow	umbel	Achillea	millefolium	corymb	like umbel but not all fls' peduncles (stalk bearing each fl) branch from common point
+culvers root	spike	Veronicastrum	virginicum	spikiform racemes	
+eastern black nightshade	head	Solanum	ptycanthum	flower	
+eastern daisy fleabane	ramet	Erigeron	annus	ramet	fls are single heads terminating axillary peduncles
+field pennycress	umbel	Thlaspi	arvense		
+flowering spurge	head	Euphorbia	corollata	flower	
+foxglove beardtongue	head	Penstemon	digitalis	flower	
+hemp dogbane	umbel	Apocynum	cannabinum		
+hoary alyssum	umbel	Berteroa	incana		
+marestail	ramet	Conyza	canadensis		
+morning glory	head	Convolvulus		flower	
+plantain	spike	Plantago		spike	
+prairie cinquefoil	head	Potentilla	arguta	flower	
+prostrate knotweed	spike	Polygonum	aviculare		
+queen annes lace	umbel	Daucus	carota	compound umbel	
+rough avens	head	Geum	laciniatum		
+shepherds purse	umbel	Capsella	bursa-pastoris		
+shortstalk chickweed	head	Cerastium	brachypodum	flower	
+stinging nettle	ramet	Urtica	dioica	axillary catkin-like infls	"catkin = flowering spike that is downy, pendulous, and has fls of only a single sex"
+swamp smartweed	spike	Polygonum	hydropiperoides	spikiform racemes	"racemes that are like spikes (i.e. more dense fls on raceme than ""normal"" raceme"
+tall boneset	umbel	Eupatorium	altissimum	corymbiform heads	
+venice mallow	head	Hibiscus	trionum	flower	
+virginia mountain mint	umbel	Pycnanthemum	virginianum	umbel-like clusters of fls	not technically umbels
+white clover	umbel	Trifolium	repens	umbel	
+white heath aster	head	Symphyotrichum	ericoides	head	
+white prairie clover	head	Dalea	candida	spike	
+white sweet clover	ramet	Melilotus	alba	simple raceme	
+white wild indigo	spike	Baptisia	alba	raceme	
+whitestar	head	Ipomoea	lacunosa	flower	
