@@ -32,20 +32,21 @@ options(xtable.comment = FALSE)
 
 ```{r sites}
 NCIG_sites = c("all1","all2","arm1","arm2","ber1","ber3","cre1","dun2","dun3",
-               "pio1","pio2","gro1","gro2","nkn1","nkn2","nor1","sut1","sut2",
-               "sie1","prd1","prd2","var1","ver1")
+               "pio1","pio2","gro1","gro2","nkn1","nkn2","nor1","sut2",
+               "sie1","prd1","prd2","ver1")
 ```
 
 
-Table \ref{t:nectar} provides count of nectar plant species averaged across all 
+Table \ref{t:nectar2016} and \ref{t:nectar2017} provide mean count of nectar plant species averaged across all 
 data collection events. 
+Table \ref{t:ramet2017} provides mean count of milkweed ramets.
 Values in table represent the specific counting unit for each species, not necessarily a whole plant.
-Table \ref{t:nectar_density} provides nectar plant species density (per 100m2) averaged across all data collection events. 
+Table \ref{t:density2016} and \ref{t:density2017} provide nectar plant species density (per 100m2) averaged across all data collection events. 
+Table \ref{t:density2017ramet} provides mean density of milkweed ramets.
 Values in table represent the specific counting unit for each species, not necessarily a whole plant.
 
 Table \ref{t:daubenmire} provides average land cover percentage averaged across 
 all data collection events.
-Table \ref{t:daubenmire_average} provides average land cover percentage averaged across all data collection events and all sites.
 
 Table \ref{t:robel} provides average amount of vegetation across all data 
 collection events.
@@ -58,15 +59,15 @@ number of monarch eggs counted on milkweed plants (if no milkweed present,
 no monarch eggs present, number of monarch larvae (caterpillars) counted on 
 milkweed plants (if no milkweed present, no larvae present).
 
-Table \ref{t:environment} provides a binary response of whether there were any 
-flowering plants or milkweed present in the area around the site during any 
-round.
+<!-- Table \ref{t:environment} provides a binary response of whether there were any  -->
+<!-- flowering plants or milkweed present in the area around the site during any  -->
+<!-- round. -->
 
 
 <!-- Nectar -->
 
 ```{r nectar_table_function}
-nectar_table <- function(yr) {
+nectar_table <- function(yr, flt, label) {
   nectar %>%
     
     filter(site %in% NCIG_sites, year == yr) %>%
@@ -85,15 +86,11 @@ nectar_table <- function(yr) {
     tidyr::spread(site, total, fill=NA, drop=FALSE) %>%
     arrange(`Nectar Plant Species`) %>% 
     
-    filter(!(`Nectar Plant Species` %in% c("milkweed strip: common milkweed ramet",
-                                           "milkweed strip: common milkweed strip",
-                                           "butterfly milkweed ramet",
-                                           "common milkweed ramet",
-                                           "swamp milkweed ramet"))) %>%
+    filter(`Nectar Plant Species` %in% flt) %>%
     
     xtable(digits = 1,
            caption=paste(yr, "nectar plant species: mean count across all surveys"),
-           label="t:nectar") %>%
+           label = paste("t:",label,sep="")) %>%
     print(include.rownames = FALSE, NA.string="-", 
           table.placement = "p",
           caption.placement = "top",
@@ -102,9 +99,20 @@ nectar_table <- function(yr) {
 }
 ```
 
-```{r nectar}
-nectar_table(2016)
-nectar_table(2017) 
+```{r nectar, warning=FALSE}
+nectar_table(2016, unique(nectar$`Nectar Plant Species`), 
+             label = "nectar2016")
+nectar_table(2017, setdiff(unique(nectar$`Nectar Plant Species`),
+                                   c("milkweed strip: common milkweed ramet",
+                                     "milkweed strip: common milkweed strip",
+                                     "butterfly milkweed ramet",
+                                     "common milkweed ramet",
+                                     "swamp milkweed ramet")),
+             label = "nectar2017")
+nectar_table(2017, c("butterfly milkweed ramet",
+                             "common milkweed ramet",
+                             "swamp milkweed ramet"),
+             label = "ramet2017")
 ```
 
 
@@ -115,7 +123,7 @@ nectar_table(2017)
 
 
 ```{r nectar_density_table}
-nectar_density_table <- function(yr) {
+nectar_density_table <- function(yr, flt, label) {
   nectar %>%
     mutate(`Nectar Plant Species` = 
              fct_recode(`Nectar Plant Species`,
@@ -139,16 +147,11 @@ nectar_density_table <- function(yr) {
     
     mutate(pio2 = NA_real_, sut2 = NA_real_, sie1 = NA_real_) %>%
     
-    filter(!(`Nectar Plant Species` %in% c("milkweed strip: common milkweed ramet",
-                                           "milkweed strip: common milkweed strip",
-                                           "butterfly milkweed ramet",
-                                           "common milkweed ramet",
-                                           "swamp milkweed ramet"))) %>%
-    
+    filter(`Nectar Plant Species` %in% flt) %>%
     
     xtable(digits = 0,
            caption=paste(yr, "Nectar plant species density: average density (count / 100 m2) across all rounds"),
-           label="t:nectar_density") %>%
+           label=paste("t:",label,sep="")) %>%
     print(include.rownames = FALSE, NA.string="-", 
           table.placement = "p",
           caption.placement = "top",
@@ -158,8 +161,19 @@ nectar_density_table <- function(yr) {
 ```
 
 ```{r nectar_density}
-nectar_density_table(2016)
-nectar_density_table(2017)
+nectar_density_table(2016, unique(nectar$`Nectar Plant Species`),
+                     label = "density2016")
+nectar_density_table(2017, setdiff(unique(nectar$`Nectar Plant Species`),
+                                   c("milkweed strip: common milkweed ramet",
+                                     "milkweed strip: common milkweed strip",
+                                     "butterfly milkweed ramet",
+                                     "common milkweed ramet",
+                                     "swamp milkweed ramet")),
+                     label = "density2017")
+nectar_density_table(2017, c("butterfly milkweed ramet",
+                             "common milkweed ramet",
+                             "swamp milkweed ramet"),
+                     label = "density2017ramet")
 ```
 
 ```{r nectar_density2}
@@ -201,7 +215,8 @@ daubenmire_site <- daubenmire_average %>%
 
   tidyr::gather(tmp, value, -land_cover, -site) %>%
   arrange(site, land_cover, tmp) %>%
-  mutate(column = paste(land_cover, tmp, sep="@")) %>%
+  mutate(column = factor(paste(land_cover, tmp, sep="@"),
+                         levels = unique(paste(land_cover, tmp, sep="@")))) %>%
   select(site, column, value) %>%
   tidyr::spread(column, value, fill=NA) 
 
@@ -215,8 +230,13 @@ new_row <- paste(" & \\multicolumn{3}{c|}{",unique(tmp$row1),"}",
 new_row <- gsub("_", " ", new_row)
 new_row <- paste(new_row, "\\\\", collapse=" ")
   
+
+daubenmire_total <- cbind(data.frame(site="Mean"),
+                          colMeans(daubenmire_site[,-1]) %>% t() %>% as.data.frame)
+
+
 # Create table
-daubenmire_site %>%
+rbind(daubenmire_site, daubenmire_total) %>%
   xtable(digits = 0,
          align = paste("rr|",paste(rep("rrr|",floor(nc/3)),collapse=""),sep="",collapse=""),
          caption="Daubenmire: average land cover \\% across all rounds",
@@ -227,7 +247,8 @@ daubenmire_site %>%
                           command = new_row),
         caption.placement = "top",
           size="\\small",
-          floating.environment = "sidewaystable") 
+          floating.environment = "sidewaystable",
+        hline.after = c(-1,0,1,length(NCIG_sites))) 
 ```
 
 \newpage
@@ -266,7 +287,8 @@ robel %>%
          caption="Vegetation density using Robel measurements averaged across all rounds",
          label = "t:robel") %>%
   print(include.rownames = FALSE,
-        caption.placement = "top") 
+        caption.placement = "top",
+          floating.environment = "sidewaystable") 
 ```
 
 \newpage
