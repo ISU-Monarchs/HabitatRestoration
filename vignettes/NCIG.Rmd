@@ -27,6 +27,9 @@ library("xtable")
 options(xtable.comment = FALSE)
 ```
 
+\setlength{\tabcolsep}{3pt}
+
+
 ```{r sites}
 NCIG_sites = c("all1","all2","arm1","arm2","ber1","ber3","cre1","dun2","dun3",
                "pio1","pio2","gro1","gro2","nkn1","nkn2","nor1","sut1","sut2",
@@ -65,13 +68,29 @@ round.
 ```{r nectar_table_function}
 nectar_table <- function(yr) {
   nectar %>%
+    
     filter(site %in% NCIG_sites, year == yr) %>%
+    
+    mutate(`Nectar Plant Species` =
+             fct_recode(`Nectar Plant Species`,
+                        smartweed = "swamp smartweed",
+                        smartweed = "pennsylvania smartweed",
+                        `culvers root` = "culver's root",
+                        `shepherds purse` = "shepherd's purse",
+                        `yellow sweet clover` = "yellow sweetclover")) %>%
+    
     group_by(`Nectar Plant Species`, site) %>%
     summarize(total = mean(count) %>% round(1)) %>%
+    complete(site = NCIG_sites) %>%
     tidyr::spread(site, total, fill=NA, drop=FALSE) %>%
     arrange(`Nectar Plant Species`) %>% 
-    # select_("`Nectar Plant Species`", NCIG_sites) %>%
-    # mutate(pio2 = NA, sut2 = NA, sie1 = NA) %>%
+    
+    filter(!(`Nectar Plant Species` %in% c("milkweed strip: common milkweed ramet",
+                                           "milkweed strip: common milkweed strip",
+                                           "butterfly milkweed ramet",
+                                           "common milkweed ramet",
+                                           "swamp milkweed ramet"))) %>%
+    
     xtable(digits = 1,
            caption=paste(yr, "nectar plant species: mean count across all surveys"),
            label="t:nectar") %>%
@@ -98,9 +117,18 @@ nectar_table(2017)
 ```{r nectar_density_table}
 nectar_density_table <- function(yr) {
   nectar %>%
+    mutate(`Nectar Plant Species` = 
+             fct_recode(`Nectar Plant Species`,
+                        smartweed = "swamp smartweed",
+                        smartweed = "pennsylvania smartweed",
+                        `culvers root` = "culver's root",
+                        `shepherds purse` = "shepherd's purse",
+                        `yellow sweet clover` = "yellow sweetclover")) %>% 
+    
     filter(site %in% NCIG_sites, year == yr) %>%
     group_by(`Nectar Plant Species`, site) %>%
     summarize(count = sum(count)) %>%
+    complete(site = NCIG_sites) %>%
     ungroup() %>%
     left_join(ISUmonarch::length) %>%
     mutate(density = 100*count / length) %>%
@@ -108,7 +136,16 @@ nectar_density_table <- function(yr) {
     tidyr::spread(site, density, fill=NA) %>%
     arrange(`Nectar Plant Species`) %>% 
     # select_("`Nectar Plant Species`", NCIG_sites) %>%
-    # mutate(pio2 = NA, sut2 = NA, sie1 = NA) %>%
+    
+    mutate(pio2 = NA_real_, sut2 = NA_real_, sie1 = NA_real_) %>%
+    
+    filter(!(`Nectar Plant Species` %in% c("milkweed strip: common milkweed ramet",
+                                           "milkweed strip: common milkweed strip",
+                                           "butterfly milkweed ramet",
+                                           "common milkweed ramet",
+                                           "swamp milkweed ramet"))) %>%
+    
+    
     xtable(digits = 0,
            caption=paste(yr, "Nectar plant species density: average density (count / 100 m2) across all rounds"),
            label="t:nectar_density") %>%
@@ -125,6 +162,10 @@ nectar_density_table(2016)
 nectar_density_table(2017)
 ```
 
+```{r nectar_density2}
+# Make table for 
+# butterfly milkweed ramet, common milkweed ramet, swamp milkweed ramet
+```
 
 \newpage
  <!-- Daubenmire -->
@@ -140,14 +181,14 @@ daubenmire_average <- daubenmire %>%
                                      "woody_species",
                                      "bare_ground",
                                      "leaf_litter",
-                                     "litter_depth",
-                                     "butterfly_ramet",
-                                     "common_ramet",
-                                     "swamp_ramet")),
-         land_cover = recode(land_cover, 
-                             csg = "cool season grass",
-                             wsg = "warm season grass",
-                             litter_depth = "litter depth (cm)")) %>%
+                                     "litter_depth")),
+         land_cover = fct_recode(land_cover, 
+                             "cool season grass" = "csg",
+                             "warm season grass" = "wsg",
+                             "litter depth (cm)" = "litter_depth")) %>%
+  
+  filter(!is.na(land_cover)) %>%
+  
   group_by(land_cover, site, year) %>%
   summarize(mean_percentage = round(mean(percentage),1)) %>%
   ungroup()
@@ -156,7 +197,7 @@ daubenmire_site <- daubenmire_average %>%
   
   # Calculate year-over-year % change
   tidyr::spread(year, mean_percentage, fill=NA) %>%
-  mutate(`D (%)` = (`2017`-`2016`)/`2016` * 100)  %>%
+  mutate(`Diff` = `2017`-`2016`)  %>%
 
   tidyr::gather(tmp, value, -land_cover, -site) %>%
   arrange(site, land_cover, tmp) %>%
@@ -193,7 +234,7 @@ daubenmire_site %>%
 
 <!-- Averaged across sites  -->
 
-```{r daubenmire_average2}
+```{r daubenmire_average2, eval=FALSE}
 daubenmire_average %>% 
   group_by(land_cover) %>%
   summarize(average = mean(mean_percentage)) %>% 
@@ -210,15 +251,18 @@ daubenmire_average %>%
 
  <!-- Robel -->
 
-```{r robel_average, eval=FALSE}
+```{r robel_average}
 robel %>%
   filter(site %in% NCIG_sites) %>%
-  group_by(round, site) %>%
+  group_by(year, round, site) %>%
   summarize(mean_count = mean(count)) %>%
-  group_by(site) %>%
-  summarize(average = mean(mean_count)) %>%
-  # tidyr::spread(site, mean_count, fill='na') %>%
-  xtable(digits = 1,
+  group_by(year, site) %>%
+  summarize(average = mean(mean_count) %>% round(1)) %>%
+  
+  tidyr::spread(year, average, fill='na') %>%
+  
+  xtable(digits = 0,
+         align = "ll|rr",
          caption="Vegetation density using Robel measurements averaged across all rounds",
          label = "t:robel") %>%
   print(include.rownames = FALSE,
@@ -229,34 +273,46 @@ robel %>%
 
 <!-- Monarch -->
 
-```{rm eval=FALSE}
-monarch %>% 
+```{r monarch}
+monarch_summary <- monarch %>% 
   filter(site %in% NCIG_sites) %>%
+  
   mutate(group = "survey",
-         group = ifelse(grepl("instar",distance), "instar", group),
-         group = ifelse(distance == "stems",      "stems" , group),
-         group = ifelse(distance == "eggs",       "eggs"  , group),
-         group = ifelse(distance == "extra_monarch", "extra", group),
-         group = ifelse(distance == "watch_monarch", "watch", group)) %>%
-  select(site, group, count) %>%
-  group_by(site, group) %>%
+         group = ifelse(grepl("instar",distance),     "instar", group),
+         group = ifelse(distance == "stems",          "ramets" , group),
+         group = ifelse(grepl("ramet", distance),     "ramets" , group),
+         group = ifelse(grepl("eggs", distance),           "eggs"  , group),
+         group = ifelse(distance == "extra_monarchs", "extra",  group)) %>%
+  
+  select(site, year, group, count) %>%
+  group_by(site, year, group) %>%
   summarize(count = sum(count)) %>%
-  tidyr::spread(group,count, fill=0) %>%
+  tidyr::spread(group, count, fill=0) %>%
   mutate(Total  = survey + extra) %>%
   ungroup() %>%
   rename(Survey = survey,
-         Stems = stems,
+         Ramets = ramets,
          Eggs = eggs,
          Larvae = instar) %>%
-  select(site, Total, Survey, Stems, Eggs, Larvae) %>%
+  select(year, site, Total, Survey, Ramets, Eggs, Larvae) %>%
+  
+  tidyr::gather(Monarch, count, -year, -site) %>%
+  tidyr::spread(site, count, fill = 0) %>%
+  
+  mutate(Monarch = factor(Monarch, 
+                          levels = c("Total","Survey","Ramets","Eggs","Larvae"))) %>%
+  
+  arrange(Monarch,year)
+  
+monarch_summary %>%
   xtable(digits = 0,
          caption="Monarch adults (total and during survey), milkweed ramets, monarch eggs on milkweed, and monarch larvae on milkweed.",
-         label = "t:monarch",
-         align = "cl|rr|r|rr") %>%
+         label = "t:monarch") %>%
   print(include.rownames = FALSE,
         caption.placement = "top",
-        add.to.row = list(pos = list(-1), 
-                          command = "& \\multicolumn{2}{c|}{Monarch adults} & \\multicolumn{1}{c|}{Milkweed} & \\multicolumn{2}{c}{Monarch} \\\\")) 
+        size="\\small",
+        floating.environment = "sidewaystable",
+        hline.after = c(-1,0,2,4,6,8,10)) 
 ```
 
 
