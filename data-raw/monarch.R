@@ -28,13 +28,17 @@ monarch = read_dir(path = "monarch",
                         "year","month","day","recorder",
                         "site","transect","round",
                         "extension")) %>%
-  select(-monarch, -extension) %>%      
+  
+  select(-monarch, -extension) %>%
 
-  spread(key, value) %>%   
+  spread(key, value) %>%  
+  
+  mutate(extra_monarchs = ifelse(is.na(extra_monarchs), extra_monarch, extra_monarchs)) %>% 
+  select(-extra_monarch) %>%
   
   gather(distance, count,
          -year, -month, -day, -recorder, -site, -transect, -round,
-         -end_time, -sky, -start_time, -temp, -wind, 
+         -end_time, -sky, -start_time, -wind, -temp,
          na.rm=TRUE) %>% 
 	
 	mutate(count = as.numeric(count))            # some columns are character
