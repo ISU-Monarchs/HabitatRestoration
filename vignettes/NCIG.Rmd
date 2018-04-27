@@ -15,15 +15,15 @@ vignette: >
 
 ```{r setup, purl=FALSE, echo=FALSE}
 library("knitr")
-opts_chunk$set(echo=FALSE, 
+opts_chunk$set(echo    = FALSE, 
                results = 'asis',
                message = FALSE)
 ```
 
 ```{r packages}
-library(dplyr)
-library(ISUmonarch)
-library(xtable)
+suppressWarnings(library("tidyverse"))
+library("ISUmonarch")
+library("xtable")
 options(xtable.comment = FALSE)
 ```
 
@@ -62,23 +62,30 @@ round.
 
 <!-- Nectar -->
 
+```{r nectar_table_function}
+nectar_table <- function(yr) {
+  nectar %>%
+    filter(site %in% sites, year == yr) %>%
+    group_by(`Nectar Plant Species`, site) %>%
+    summarize(total = mean(count) %>% round(1)) %>%
+    tidyr::spread(site, total, fill=NA, drop=FALSE) %>%
+    arrange(`Nectar Plant Species`) %>% 
+    # select_("`Nectar Plant Species`", sites) %>%
+    # mutate(pio2 = NA, sut2 = NA, sie1 = NA) %>%
+    xtable(digits = 1,
+           caption=paste(yr, "nectar plant species: mean count across all surveys"),
+           label="t:nectar") %>%
+    print(include.rownames = FALSE, NA.string="-", 
+          table.placement = "p",
+          caption.placement = "top",
+          size="\\small",
+          floating.environment = "sidewaystable") 
+}
+```
+
 ```{r nectar}
-nectar %>%
-  filter(site %in% sites) %>%
-  group_by(`Nectar Plant Species`, site) %>%
-  summarize(total = mean(count) %>% round(1)) %>%
-  tidyr::spread(site, total, fill=NA) %>%
-  arrange(`Nectar Plant Species`) %>% 
-  # select_("`Nectar Plant Species`", sites) %>%
-  # mutate(pio2 = NA, sut2 = NA, sie1 = NA) %>%
-  xtable(digits = 1,
-         caption="Nectar plant species: mean count across all surveys",
-         label="t:nectar") %>%
-  print(include.rownames = FALSE, NA.string="-", 
-        table.placement = "p",
-        caption.placement = "top",
-        size="\\small",
-        floating.environment = "sidewaystable") 
+nectar_table(2016)
+nectar_table(2017) 
 ```
 
 
@@ -86,27 +93,36 @@ nectar %>%
 
 \newpage
 
+
+
+```{r nectar_density_table}
+nectar_density_table <- function(yr) {
+  nectar %>%
+    filter(site %in% sites, year == yr) %>%
+    group_by(`Nectar Plant Species`, site) %>%
+    summarize(count = sum(count)) %>%
+    ungroup() %>%
+    left_join(ISUmonarch::length) %>%
+    mutate(density = 100*count / length) %>%
+    select(-count, -length) %>%
+    tidyr::spread(site, density, fill=NA) %>%
+    arrange(`Nectar Plant Species`) %>% 
+    # select_("`Nectar Plant Species`", sites) %>%
+    # mutate(pio2 = NA, sut2 = NA, sie1 = NA) %>%
+    xtable(digits = 0,
+           caption=paste(yr, "Nectar plant species density: average density (count / 100 m2) across all rounds"),
+           label="t:nectar_density") %>%
+    print(include.rownames = FALSE, NA.string="-", 
+          table.placement = "p",
+          caption.placement = "top",
+          size="\\small",
+          floating.environment = "sidewaystable") 
+}
+```
+
 ```{r nectar_density}
-nectar %>%
-  filter(site %in% sites) %>%
-  group_by(`Nectar Plant Species`, site) %>%
-  summarize(count = sum(count)) %>%
-  ungroup() %>%
-  left_join(ISUmonarch::length) %>%
-  mutate(density = 100*count / length) %>%
-  select(-count, -length) %>%
-  tidyr::spread(site, density, fill=NA) %>%
-  arrange(`Nectar Plant Species`) %>% 
-  # select_("`Nectar Plant Species`", sites) %>%
-  # mutate(pio2 = NA, sut2 = NA, sie1 = NA) %>%
-  xtable(digits = 0,
-         caption="Nectar plant species density: average density (count / 100 m2) across all rounds",
-         label="t:nectar_density") %>%
-  print(include.rownames = FALSE, NA.string="-", 
-        table.placement = "p",
-        caption.placement = "top",
-        size="\\small",
-        floating.environment = "sidewaystable") 
+nectar_density_table(2016)
+nectar_density_table(2017)
 ```
 
 
@@ -129,7 +145,7 @@ daubenmire_average <- daubenmire %>%
                              csg = "cool season grass",
                              wsg = "warm season grass",
                              litter_depth = "litter depth (cm)")) %>%
-  group_by(land_cover, site) %>%
+  group_by(land_cover, site, year) %>%
   summarize(mean_percentage = round(mean(percentage),1))  
 
 daubenmire_average %>%
@@ -220,7 +236,7 @@ monarch %>%
 
 <!-- Environment -->
 
-```{r environment}
+```{r environment, eval=FALSE}
 environment %>%
   filter(site %in% sites) %>%
   group_by(site) %>%
