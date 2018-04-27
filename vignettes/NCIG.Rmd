@@ -28,9 +28,9 @@ options(xtable.comment = FALSE)
 ```
 
 ```{r sites}
-sites = c("all1","all2","arm1","arm2","ber1","ber3","cre1","dun2","dun3",
-          "pio1","pio2","gro1","gro2","nkn1","nkn2","nor1","sut1","sut2",
-          "sie1","prd1","prd2","var1","ver1")
+NCIG_sites = c("all1","all2","arm1","arm2","ber1","ber3","cre1","dun2","dun3",
+               "pio1","pio2","gro1","gro2","nkn1","nkn2","nor1","sut1","sut2",
+               "sie1","prd1","prd2","var1","ver1")
 ```
 
 
@@ -65,12 +65,12 @@ round.
 ```{r nectar_table_function}
 nectar_table <- function(yr) {
   nectar %>%
-    filter(site %in% sites, year == yr) %>%
+    filter(site %in% NCIG_sites, year == yr) %>%
     group_by(`Nectar Plant Species`, site) %>%
     summarize(total = mean(count) %>% round(1)) %>%
     tidyr::spread(site, total, fill=NA, drop=FALSE) %>%
     arrange(`Nectar Plant Species`) %>% 
-    # select_("`Nectar Plant Species`", sites) %>%
+    # select_("`Nectar Plant Species`", NCIG_sites) %>%
     # mutate(pio2 = NA, sut2 = NA, sie1 = NA) %>%
     xtable(digits = 1,
            caption=paste(yr, "nectar plant species: mean count across all surveys"),
@@ -98,7 +98,7 @@ nectar_table(2017)
 ```{r nectar_density_table}
 nectar_density_table <- function(yr) {
   nectar %>%
-    filter(site %in% sites, year == yr) %>%
+    filter(site %in% NCIG_sites, year == yr) %>%
     group_by(`Nectar Plant Species`, site) %>%
     summarize(count = sum(count)) %>%
     ungroup() %>%
@@ -107,7 +107,7 @@ nectar_density_table <- function(yr) {
     select(-count, -length) %>%
     tidyr::spread(site, density, fill=NA) %>%
     arrange(`Nectar Plant Species`) %>% 
-    # select_("`Nectar Plant Species`", sites) %>%
+    # select_("`Nectar Plant Species`", NCIG_sites) %>%
     # mutate(pio2 = NA, sut2 = NA, sie1 = NA) %>%
     xtable(digits = 0,
            caption=paste(yr, "Nectar plant species density: average density (count / 100 m2) across all rounds"),
@@ -131,34 +131,62 @@ nectar_density_table(2017)
 
 ```{r daubenmire}
 daubenmire_average <- daubenmire %>%
-  filter(site %in% sites) %>% 
+  filter(site %in% NCIG_sites) %>% 
   mutate(land_cover = factor(land_cover, 
-                            levels=c("csg",
+                            levels = c("csg",
                                      "wsg",
                                      "forbs",
                                      "milkweed",
                                      "woody_species",
                                      "bare_ground",
                                      "leaf_litter",
-                                     "litter_depth")),
+                                     "litter_depth",
+                                     "butterfly_ramet",
+                                     "common_ramet",
+                                     "swamp_ramet")),
          land_cover = recode(land_cover, 
                              csg = "cool season grass",
                              wsg = "warm season grass",
                              litter_depth = "litter depth (cm)")) %>%
   group_by(land_cover, site, year) %>%
-  summarize(mean_percentage = round(mean(percentage),1))  
+  summarize(mean_percentage = round(mean(percentage),1)) %>%
+  ungroup()
 
-daubenmire_average %>%
-  mutate(mean_percentage = round(mean_percentage,1))  %>%
-  tidyr::spread(land_cover, mean_percentage, fill=NA) %>%
-  ungroup() %>% 
-  arrange(site) %>% 
-  xtable(digits = 1,
+daubenmire_site <- daubenmire_average %>%
+  
+  # Calculate year-over-year % change
+  tidyr::spread(year, mean_percentage, fill=NA) %>%
+  mutate(`D (%)` = (`2017`-`2016`)/`2016` * 100)  %>%
+
+  tidyr::gather(tmp, value, -land_cover, -site) %>%
+  arrange(site, land_cover, tmp) %>%
+  mutate(column = paste(land_cover, tmp, sep="@")) %>%
+  select(site, column, value) %>%
+  tidyr::spread(column, value, fill=NA) 
+
+# Fix row names
+nc <- ncol(daubenmire_site)
+tmp <- data.frame(nms = names(daubenmire_site)[-1]) %>%
+  tidyr::separate(nms, c("row1", "row2"), sep="@")
+names(daubenmire_site)[-1] <- tmp$row2
+new_row <- paste(" & \\multicolumn{3}{c|}{",unique(tmp$row1),"}", 
+                 collapse="")
+new_row <- gsub("_", " ", new_row)
+new_row <- paste(new_row, "\\\\", collapse=" ")
+  
+# Create table
+daubenmire_site %>%
+  xtable(digits = 0,
+         align = paste("rr|",paste(rep("rrr|",floor(nc/3)),collapse=""),sep="",collapse=""),
          caption="Daubenmire: average land cover \\% across all rounds",
          label = "t:daubenmire") %>%
-  print(include.rownames = FALSE, NA.string="na",
+  print(include.rownames = FALSE, 
+        NA.string="na",
+        add.to.row = list(pos = list(-1), 
+                          command = new_row),
         caption.placement = "top",
-        rotate.colnames = TRUE) 
+          size="\\small",
+          floating.environment = "sidewaystable") 
 ```
 
 \newpage
@@ -182,9 +210,9 @@ daubenmire_average %>%
 
  <!-- Robel -->
 
-```{r robel_average}
+```{r robel_average, eval=FALSE}
 robel %>%
-  filter(site %in% sites) %>%
+  filter(site %in% NCIG_sites) %>%
   group_by(round, site) %>%
   summarize(mean_count = mean(count)) %>%
   group_by(site) %>%
@@ -201,9 +229,9 @@ robel %>%
 
 <!-- Monarch -->
 
-```{r}
+```{rm eval=FALSE}
 monarch %>% 
-  filter(site %in% sites) %>%
+  filter(site %in% NCIG_sites) %>%
   mutate(group = "survey",
          group = ifelse(grepl("instar",distance), "instar", group),
          group = ifelse(distance == "stems",      "stems" , group),
@@ -238,7 +266,7 @@ monarch %>%
 
 ```{r environment, eval=FALSE}
 environment %>%
-  filter(site %in% sites) %>%
+  filter(site %in% NCIG_sites) %>%
   group_by(site) %>%
   summarize(milkweed           = any(milkweed == "yes"),
             `flowering plants` = any(flowering_plants == "yes")) %>%
