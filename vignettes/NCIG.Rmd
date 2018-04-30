@@ -136,18 +136,21 @@ nectar_density_table <- function(yr, flt, label) {
                         `yellow sweet clover` = "yellow sweetclover")) %>% 
     
     filter(site %in% NCIG_sites, year == yr) %>%
-    group_by(`Nectar Plant Species`, site) %>%
+    
+    group_by(`Nectar Plant Species`, site, round) %>%
     summarize(count = sum(count)) %>%
+    
+    group_by(`Nectar Plant Species`, site) %>%
+    summarize(count = mean(count)) %>%
+    
     complete(site = NCIG_sites) %>%
     ungroup() %>%
     left_join(ISUmonarch::length) %>%
     mutate(density = 100*count / length) %>%
+    
     select(-count, -length) %>%
     tidyr::spread(site, density, fill=NA) %>%
     arrange(`Nectar Plant Species`) %>% 
-    # select_("`Nectar Plant Species`", NCIG_sites) %>%
-    
-    mutate(pio2 = NA_real_, sut2 = NA_real_, sie1 = NA_real_) %>%
     
     filter(`Nectar Plant Species` %in% flt) %>%
     
@@ -250,7 +253,7 @@ rbind(daubenmire_site, daubenmire_total) %>%
         caption.placement = "top",
           size="\\small",
           floating.environment = "sidewaystable",
-        hline.after = c(-1,0,1,length(NCIG_sites))) 
+        hline.after = c(-1,0,length(NCIG_sites))) 
 ```
 
 \newpage
