@@ -1,0 +1,98 @@
+common_name	field_count_unit	genus	species	native_introduced_both	planted_non_planted	technical_count	inflorescence_name_when_technical
+common milkweed	umbel	Asclepias	syriaca	native	planted	simple umbel	
+swamp milkweed	umbel	Asclepias	incarnata	native	planted	coumpound umbel	
+butterfly milkweed	umbel	Asclepias	tuberosa	native	planted	coumpound umbel	
+whorled milkweed	umbel	Asclepias	verticillata	native	non planted	simple umbel	
+birdsfoot trefoil	umbel	Lotus	corniculatus	introduced	non planted	simple umbel	
+black medic	umbel	Medicago	lupulina	introduced	non planted	simple umbel	
+black eyed susan	head	Rudbeckia	hirta	native	planted	head	
+brown eyed susan	head	Rudbeckia	triloba	native	non planted	head	
+buffalobur nightshade	head	Solanum	rostratum	native	non planted		
+canada goldenrod	ramet	Solidago	altissima	native	non planted	ramet	corymbiform (flat-topped cluster) arrangement of  heads
+common cinquefoil	head	Potentilla	simplex	native	non planted	flower	
+common dandelion	head	Taraxacum	officinale	both	non planted	head	
+common evening primrose	head	Oenothera	biennis	native	non planted	flower	
+common mullein	ramet	Verbascum	thapsus	introduced	non planted	spike	
+common purslane	head	Portulaca	oleracea	both	non planted	head	
+compass plant	head	Silphium	laciniatum	native	non planted	head	
+cup plant	head	Silphium	perfoliatum	native	non planted		
+golden alexanders	umbel	Zizia	aurea	native	planted	compound umbel	
+groundcherry	head	Physalis	heterophylla	native	non planted	flower	
+hawkweed	head	Hieracium		both	non planted		
+jerusalem artichoke	head	Helianthus	tuberosus	native	non planted	head	
+maximilian sunflower	head	Helianthus	maximiliani	native	non planted	head	
+ox eye sunflower	head	Heliopsis	helianthoides	native	planted	head	
+partridge pea	head	Chamaecrista	fasciculata	native	planted	flower	
+pineapple weed	head	Matricaria	discoidea	introduced	non planted	head	
+prairie coreopsis	head	Coreopsis	palmata	native	planted	head	
+prickly lettuce	head	Lactuca	serriola	introduced	non planted	head	
+prickly sowthistle	head	Sonchus	asper	introduced	non planted	head	
+sawtooth sunflower	head	Helianthus	grosseserratus	native	planted	head	
+showy goldenrod	ramet	Solidago	speciosa	native	planted	ramet	corymbiform (flat-topped cluster) arrangement of  heads
+stiff goldenrod	ramet	Solidago	rigidum	native	planted	ramet	corymbiform (flat-topped cluster) arrangement of  heads
+velvetleaf	head	Abutilon	theophrasti	introduced	non planted	flower	
+wild mustard	umbel	Sinapsis	arvensis	introduced	non planted	elongate raceme	
+wild parsnip	umbel	Pastinaca	sativa	introduced	non planted	compound umbel	
+yellow coneflower	head	Ratibida	pinnata	native	planted	head	
+yellow sweet clover	ramet	Melilotus	officinalis	introduced	non planted	ramet	
+yellow wood sorrel	head	Oxalis	stricta	native	non planted	head	
+alfalfa	spike (flower cluster)	Medicago	sativa	introduced	non planted	raceme	
+blue vervain	spike	Verbena	hastata	native	planted	raceme	
+blue wild indigo	spike	Baptisia	australis	native	non planted	raceme	
+canada thistle	head	Cirsium	arvense	introduced	non planted	head	
+clasping venus looking glass	head	Triodanis	perfoliata	native	non planted	head	
+crown vetch	head	Securigera	varia	introduced	non planted	head	
+great blue lobelia	ramet	Lobelia	siphilitica	native	planted	raceme	
+hoary vervain	spike	Verbena	stricta	native	planted	raceme	
+ironweed	ramet	Vernonia	fasciculata	native	planted	ramet	corymbiform (flat-topped cluster) arrangement of  heads
+lanceleaf fogfruit	head	Phyla	lanceolata	native	non planted	spherical spike	
+leadplant	spike	Amorpha	canescens	native	planted	raceme	
+musk thistle	head	Carduus	nutans	introduced	non planted	head	
+new england aster	head	Symphyotrichum	novae-angliae	native	planted	head	
+pale purple coneflower	head	Echinacea	pallida	native	planted	head	
+pennsylvania smartweed	spike	Polygonum	pensylvanicum	native	non planted	raceme	
+prairie blazing star	ramet	Liatris	pycnostachya	native	planted	ramet	racemic heads
+prairie phlox	ramet	Phlox	pilosa	native	planted	ramet	fls grouped in panicle
+prostrate vervain	spike	Verbena	bracteata	native	non planted	spike	
+purple prairie clover	head	Dalea	purpurea	native	planted	spike	
+red clover	umbel	Trifolium	pratense	introduced	non planted	simple umbel	
+rough blazing star	ramet	Liatris	aspera	native	planted	ramet	racemic heads
+showy tick trefoil	ramet	Desmodium	canadense	native	planted	ramet	panicle (branched clusters of fls)
+wild bergamot	head	Monarda	fistulosa	native	planted	head	
+chicory	head	Cichorium	intybus	introduced	non planted	head	
+smooth blue aster	head	Symphyotrichum	laeve	native	planted	head	
+bedstraw	head	Galium		both	non planted		
+bladder campion	head	Silene	vulgaris	introduced	non planted	flower	
+canada anenome	head	Anemone	canadensis	native	non planted	head	
+canada milk vetch	spike	Astragalus	canadensis	native	planted	raceme	
+carolina horsenettle	head	Solanum	carolinense	native	non planted	flower	
+common mallow	head	Malva	neglecta	introduced	non planted	flower	
+common yarrow	umbel	Achillea	millefolium	both	non planted	corymb	like umbel but not all fls' peduncles (stalk bearing each fl) branch from common point
+culvers root	spike	Veronicastrum	virginicum	native	planted	spikiform racemes	
+eastern black nightshade	head	Solanum	ptycanthum	native	non planted	flower	
+eastern daisy fleabane	ramet	Erigeron	annus	native	non planted	ramet	fls are single heads terminating axillary peduncles
+field pennycress	umbel	Thlaspi	arvense	introduced	non planted		
+flowering spurge	head	Euphorbia	corollata	native	non planted	flower	
+foxglove beardtongue	head	Penstemon	digitalis	native	planted	flower	
+hemp dogbane	umbel	Apocynum	cannabinum	native	non planted		
+hoary alyssum	umbel	Berteroa	incana	introduced	non planted		
+marestail	ramet	Conyza	canadensis	native	non planted		
+morning glory	head	Convolvulus		both	non planted	flower	
+plantain	spike	Plantago		both	non planted	spike	
+prairie cinquefoil	head	Potentilla	arguta	native	planted	flower	
+prostrate knotweed	spike	Polygonum	aviculare	introduced	non planted		
+queen annes lace	umbel	Daucus	carota	introduced	non planted	compound umbel	
+rough avens	head	Geum	laciniatum	native	non planted		
+shepherds purse	umbel	Capsella	bursa-pastoris	introduced	non planted		
+shortstalk chickweed	head	Cerastium	brachypodum	introduced	non planted	flower	
+stinging nettle	ramet	Urtica	dioica	both	non planted	axillary catkin-like infls	"catkin = flowering spike that is downy, pendulous, and has fls of only a single sex"
+swamp smartweed	spike	Polygonum	hydropiperoides	native	non planted	spikiform racemes	"racemes that are like spikes (i.e. more dense fls on raceme than ""normal"" raceme"
+tall boneset	umbel	Eupatorium	altissimum	native	planted	corymbiform heads	
+venice mallow	head	Hibiscus	trionum	introduced	non planted	flower	
+virginia mountain mint	umbel	Pycnanthemum	virginianum	native	planted	umbel-like clusters of fls	not technically umbels
+white clover	umbel	Trifolium	repens	introduced	non planted	umbel	
+white heath aster	head	Symphyotrichum	ericoides	native	planted	head	
+white prairie clover	head	Dalea	candida	native	planted	spike	
+white sweet clover	ramet	Melilotus	alba	introduced	non planted	simple raceme	
+white wild indigo	spike	Baptisia	alba	native	planted	raceme	
+whitestar	head	Ipomoea	lacunosa	native	non planted	flower	
