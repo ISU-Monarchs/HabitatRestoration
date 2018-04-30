@@ -80,6 +80,8 @@ nectar_table <- function(yr, flt, label) {
                         `shepherds purse` = "shepherd's purse",
                         `yellow sweet clover` = "yellow sweetclover")) %>%
     
+    group_by(`Nectar Plant Species`, site, round) %>%
+    summarize(count = sum(count)) %>%
     group_by(`Nectar Plant Species`, site) %>%
     summarize(total = mean(count) %>% round(1)) %>%
     complete(site = NCIG_sites) %>%
