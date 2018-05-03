@@ -72,14 +72,6 @@ nectar_table <- function(yr, flt, label) {
     
     filter(site %in% NCIG_sites, year == yr) %>%
     
-    mutate(`Nectar Plant Species` =
-             fct_recode(`Nectar Plant Species`,
-                        smartweed = "swamp smartweed",
-                        smartweed = "pennsylvania smartweed",
-                        `culvers root` = "culver's root",
-                        `shepherds purse` = "shepherd's purse",
-                        `yellow sweet clover` = "yellow sweetclover")) %>%
-    
     group_by(`Nectar Plant Species`, site, round) %>%
     summarize(count = sum(count)) %>%
     group_by(`Nectar Plant Species`, site) %>%
