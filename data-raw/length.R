@@ -2,19 +2,31 @@ library("readxl")
 library("dplyr")
 
 
-tmp <- read_excel("Site Metadata Git 4-7-17.xlsx", 1) 
+tmp <- readxl::read_excel("Site Metadata Git 4-7-17.xlsx", 
+                          sheet = 1,
+                          na = c("","NA")) 
 tmp <- tmp[, !duplicated(names(tmp))]
 
-length <- tmp %>%
-  rename(site   = site_id,
-         round1 = r1_transect_length,
-         round2 = r2_transect_length,
-         round3 = r3_transect_length) %>%
-  select(site, round1, round2, round3) %>%
-  tidyr::gather(round, length, -site) %>%
-  mutate(length = as.numeric(length)) %>%
-  na.omit() %>%
-  group_by(site) %>%
-  summarize(length = sum(length))
+# 2016
+length_2016 <- tmp %>%
+  rename(transectID   = transect_id,
+         round1 = `2016_r1_transect_length`,
+         round2 = `2016_r2_transect_length`,
+         round3 = `2016_r3_transect_length`) %>%
+  select(transectID, round1, round2, round3) %>%
+  tidyr::gather(round, length, -transectID) %>%
+  mutate(transectID = factor(transectID),
+         year = 2016)
+
+# 2017
+length_2017 <- tmp %>%
+  rename(transectID   = transect_id,
+         length = final_transect_length) %>%
+  select(transectID, length) %>%
+  mutate(transectID = factor(transectID),
+         year = 2017)
+
+length <- bind_rows(length_2016,
+                    length_2017)
 
 devtools::use_data(length, overwrite = TRUE)
