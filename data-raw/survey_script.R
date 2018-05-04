@@ -6,7 +6,7 @@ tmp <- readxl::read_excel("Site Metadata Git 4-7-17.xlsx",
 tmp <- tmp[, !duplicated(names(tmp))]
 
 # 2016
-length_2016 <- tmp %>%
+survey_2016 <- tmp %>%
   rename(transectID   = transect_id,
          round1 = `2016_r1_transect_length`,
          round2 = `2016_r2_transect_length`,
@@ -17,7 +17,7 @@ length_2016 <- tmp %>%
          year = 2016)
 
 # 2017
-length_2017 <- tmp %>%
+survey_2017 <- tmp %>%
   mutate(transectID   = transect_id,
          
          # This is hacky, but all rounds in 2017 had the same length.
@@ -30,6 +30,6 @@ length_2017 <- tmp %>%
   mutate(transectID = factor(transectID),
          year = 2017)
 
-length <- bind_rows(length_2016,
-                    length_2017) %>%
+survey <- bind_rows(survey_2016,
+                    survey_2017) %>%
   na.omit
