@@ -1,6 +1,4 @@
-library("readxl")
 library("dplyr")
-
 
 tmp <- readxl::read_excel("Site Metadata Git 4-7-17.xlsx", 
                           sheet = 1,
@@ -33,6 +31,5 @@ length_2017 <- tmp %>%
          year = 2017)
 
 length <- bind_rows(length_2016,
-                    length_2017)
-
-devtools::use_data(length, overwrite = TRUE)
+                    length_2017) %>%
+  na.omit
