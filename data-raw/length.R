@@ -20,9 +20,15 @@ length_2016 <- tmp %>%
 
 # 2017
 length_2017 <- tmp %>%
-  rename(transectID   = transect_id,
-         length = final_transect_length) %>%
-  select(transectID, length) %>%
+  mutate(transectID   = transect_id,
+         
+         # This is hacky, but all rounds in 2017 had the same length.
+         # But were surveys done in all rounds?
+         round1 = final_transect_length,
+         round2 = final_transect_length,
+         round3 = final_transect_length) %>%
+  select(transectID, round1, round2, round3) %>%
+  tidyr::gather(round, length, -transectID) %>%
   mutate(transectID = factor(transectID),
          year = 2017)
 
