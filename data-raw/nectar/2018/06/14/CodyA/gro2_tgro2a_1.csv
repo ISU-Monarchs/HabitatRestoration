@@ -1,5 +1,13 @@
-"Nectar Plant Species",0-10m,10-20m,20-30m,30-40m,40-50m,50-60m
-"common milkweed ramet",0,2,2,0,0,0
-"swamp milkweed ramet",0,0,0,0,0,0
-"butterfly milkweed ramet",0,0,0,0,0,0
-"red clover",580,2000,1200,1200,1200,1150
+"Nectar Plant Species",0-10m,10-20m,20-30m,30-40m,40-50m
+"common milkweed ramet",0,2,5,0,9
+"swamp milkweed ramet",0,0,0,0,4
+"butterfly milkweed ramet",0,0,0,0,0
+"red clover",0,12,2,0,0
+"foxglove beardtongue",57,0,33,13,30
+"golden alexanders",0,0,0,1,6
+"white clover",126,0,2,1,30
+"rough avens",1,0,0,0,0
+"eastern daisy fleabane",0,0,3,0,0
+"yellow sweet clover",0,0,11,3,4
+"yellow salsify",0,0,1,1,0
+"common dandelion",0,0,0,0,1
