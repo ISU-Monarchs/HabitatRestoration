@@ -5,7 +5,7 @@ library("dplyr")
 my_read_csv = function(f, into) {
   cat("Reading",f,"\n")
   readr::read_csv(f, 
-                  col_types = cols(
+                  col_types = readr::cols(
                     "Nectar Plant Species" = "c",
                     .default               = "i")) %>%
     dplyr::mutate(file=f) %>%
