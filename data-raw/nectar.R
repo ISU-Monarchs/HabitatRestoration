@@ -48,7 +48,9 @@ nectar = read_dir(path = "nectar",
   ungroup %>%
   
   dplyr::mutate(siteID     = factor(siteID),
-                transectID = factor(transectID))
+                transectID = factor(transectID),
+                
+                year = as.numeric(year))
 	
 
 devtools::use_data(nectar,
