@@ -26,7 +26,7 @@ bee = read_dir(path = "bee",
                pattern = "*.csv",
                into = c("bee",
                         "year","month","day","recorder",
-                        "site","transect","round",
+                        "siteID","transectID","round",
                         "extension")) %>%
   
   # Some data files used Bee Species and others used Pollinator Species
@@ -42,7 +42,7 @@ bee = read_dir(path = "bee",
   gather(distance, count,
          -`Nectar Plant Species`, 
          -`Bee Species`,
-         -year, -month, -day, -recorder, -site, -transect, -round,
+         -year, -month, -day, -recorder, -siteID, -transectID, -round,
          na.rm=TRUE) %>% 
 	
 	mutate(count = as.numeric(count))            # some columns are character

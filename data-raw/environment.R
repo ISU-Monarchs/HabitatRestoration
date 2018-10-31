@@ -26,7 +26,7 @@ environment <- read_dir(path = "environment",
                pattern = "*.csv",
                into = c("environment",
                         "year","month","day","recorder",
-                        "site","transect","round",
+                        "siteID","transectID","round",
                         "extension")) %>%
   select(-environment, -extension) %>%
   tidyr::spread(variable, value)

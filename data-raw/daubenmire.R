@@ -26,14 +26,14 @@ daubenmire = read_dir(path = "daubenmire",
                   pattern = "csv$",
                   into = c("daubenmire",
                            "year","month","day","recorder",
-                           "site","transect","round",
+                           "siteID","transectID","round",
                            "extension")) %>%
   select(-daubenmire, -extension) %>%             
 
   gather(land_cover, percentage,
          -section, 
          -year, -month, -day, 
-         -recorder, -site, -transect, -round,
+         -recorder, -siteID, -transectID, -round,
          na.rm = TRUE) %>%
   
   mutate(percentage = as.numeric(gsub("<","",percentage)))

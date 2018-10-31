@@ -25,7 +25,7 @@ landscape2016 = read_dir(path = "landscape",
                      pattern = "csv$",
                      into = c("landscape",
                               "year","month","day","recorder",
-                              "site","transect","round",
+                              "siteID","transectID","round",
                               "extension")) %>%
   select(-landscape, -extension) 
 
