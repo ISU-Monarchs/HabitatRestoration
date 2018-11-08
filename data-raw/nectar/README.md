@@ -6,8 +6,8 @@ If no nectar plants are present for entry, header is present but no plants are l
 
 **2016: see spreadsheet to determine if sections are 10m or 20m.
 
-**Scientific names are included in the file named
+**Scientific names and floral counting units are included in the file
 
-      Nectar Species Scientific Name and Counting unit Git.csv
+      data-raw/nectar/nectar_species_scientific_name_counting_unit.csv
       
   
