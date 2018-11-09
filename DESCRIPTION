@@ -1,6 +1,6 @@
 Package: ISUmonarch
 Title: An example of constructing an R package for data
-Version: 0.2.5
+Version: 0.2.6
 Authors@R: person("Jarad", "Niemi", email = "niemi@iastate.edu", role = c("aut", "cre"))
 Description: Contains an example data set as an R package. The raw data are
     available in data-raw/ and are then compiled and available to the package in
@@ -10,7 +10,7 @@ Depends:
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 5.0.1
+RoxygenNote: 6.1.0
 Suggests: testthat,
     knitr,
     rmarkdown
