@@ -16,7 +16,9 @@
 #'   \item milkweed_ramet: count of milkweed ramets in defined area surrounding plot
 #'   \item temperature: temperature in fahrenheit
 #'   \item wind: wind speed in miles per hour
-#'   \item currently_flowering_plants: daubenmire style land cover of currently flowering plants. Grouped by percentages: 0,0-5,5-25,25-50,50-75,75-100
+#'   \item sky: cloud cover group (clear, mostly clear, mostly cloudy, cloudy, rain)
+#'   \item currently_flowering_plants: daubenmire style land cover of currently flowering plants in defined area surrounding plot. Grouped by percentages: 0,0-5,5-25,25-50,50-75,75-100
+#'   \item dominant_flowering_species: dominant flowering plant species in defined area surrounding plot
 #' }
 #' @format A data frame with the variables above.
-"robel"
+"environment"
