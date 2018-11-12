@@ -4,7 +4,7 @@
 #'
 #' @format A data frame with the following variables:
 #' \itemize{
-#'   \item bee: type of bee: honey bee, bumble bee, or solitary bee
+#'   \item Nectar Plant Species: common name for nectar plant species on which the bee was nectaring
 #'   \item year: year of observation
 #'   \item month: month of observation
 #'   \item day: day of observation
@@ -12,9 +12,9 @@
 #'   \item siteID: id of the site
 #'   \item transectID: id of the transect
 #'   \item round: the round number: 1, 2, or 3
+#'   \item Bee Species: type of bee: honey bee, bumble bee, or solitary bee
 #'   \item distance: the interval of the observation in length of meters along transect
 #'   \item count: number of bees observed for each bee type
-#'   \item nectar: common name for nectar plant species
 #' }
 #' @format A data frame with the variables above.
 "bee"
