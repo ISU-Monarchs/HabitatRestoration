@@ -1,6 +1,6 @@
 #' Monarch
 #'
-#' This data set contains count data for monarch adults, eggs, and instars as well as count data for palmer amaranth.
+#' This data set contains weather data and count data for monarch adults, eggs, and instars during a survey as well as count data for palmer amaranth.
 #'
 #' @format A data frame with the following variables:
 #' \itemize{
@@ -18,7 +18,6 @@
 #'   \item wind: wind in miles per hour at start of survey
 #'   \item distance: the interval of the observation in length of meters along transect
 #'   \item count: count data for monarch adults, eggs, and instars. count data for palmer amaranth
-#'   
 #' }
 #' @format A data frame with the variables above.
 "monarch"
