@@ -6,7 +6,9 @@
 \title{Landscape}
 \format{A data frame with the following variables:
 \itemize{
-  \item landscape: contains general information about landscape surrounding plots. Yes/no answers to milkweed presence, flowering plants, and habitat type 
+  \item direction: direction (N,E,S, or W) of the surrouding landscape from the plot
+  \item milkweed: milkweed present in surrounding landscape? yes/no answer
+  \item flowering_plants: currently flowering plants present in surrounding landscape? yes/no answer
   \item year: year of observation
   \item month: month of observation
   \item day: day of observation
