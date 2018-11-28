@@ -36,7 +36,24 @@ daubenmire = read_dir(path = "daubenmire",
          -siteID, -transectID, -round,
          na.rm = TRUE) %>%
   
-  mutate(percentage = as.numeric(gsub("<","",percentage)))
-	
+  mutate(percentage = as.numeric(gsub("<","",percentage)),
+         
+         year = as.numeric(year),
+         month = as.numeric(month),
+         day = as.numeric(day),
+         
+         round = as.numeric(round)) %>%
+  
+  select(year, month, day, siteID, transectID, round, section, land_cover, percentage)
+
+# Need to create 3 data.frames: cover, milkweed, litter
+# see issue #38
+#
+# all three data.frames have these variables: year, month, day, siteID, transectID, round, section
+# cover has two new variables: class and percentage
+# milkweed has two new variables: milkweed_species and ramets
+# litter has one new column: depth
+
+
 devtools::use_data(daubenmire,
                    overwrite = TRUE)
