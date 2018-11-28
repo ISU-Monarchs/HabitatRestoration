@@ -25,11 +25,11 @@ read_dir = function(path, pattern, into) {
 monarch = read_dir(path = "monarch",
                pattern = "*.csv",
                into = c("monarch",
-                        "year","month","day","recorder",
+                        "year","month","day","observer",
                         "siteID","transectID","round",
                         "extension")) %>%
   
-  select(-monarch, -extension) %>%
+  select(-monarch, -extension, -observer) %>%
 
   spread(key, value) %>%  
   
@@ -37,7 +37,7 @@ monarch = read_dir(path = "monarch",
   select(-extra_monarch) %>%
   
   gather(distance, count,
-         -year, -month, -day, -recorder, -siteID, -transectID, -round,
+         -year, -month, -day, -siteID, -transectID, -round,
          -end_time, -sky, -start_time, -wind, -temp,
          na.rm=TRUE) %>% 
 	

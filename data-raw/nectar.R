@@ -27,17 +27,17 @@ read_dir = function(path, pattern, into) {
 nectar = read_dir(path = "nectar",
                   pattern = "*.csv",
                   into = c("nectar",
-                           "year","month","day","recorder",
+                           "year","month","day","observer",
                            "siteID","transectID","round",
                            "extension")) %>%
-  dplyr::select(-nectar, -extension) %>%             # Might want to include type in the future
+  dplyr::select(-nectar, -extension, -observer) %>%             # Might want to include type in the future
 
   # rename(nectar_plant_species = `Nectar Plant Species`) %>%
 
   tidyr::gather(distance, count,
          -`Nectar Plant Species`, 
          -year, -month, -day, 
-         -recorder, -siteID, -transectID, -round,
+         -siteID, -transectID, -round,
          na.rm=TRUE) %>% 
 	
   dplyr::group_by(`Nectar Plant Species`, year, month, day, siteID, transectID,

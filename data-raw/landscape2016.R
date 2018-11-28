@@ -24,10 +24,10 @@ read_dir = function(path, pattern, into) {
 landscape2016 = read_dir(path = "landscape",
                      pattern = "csv$",
                      into = c("landscape",
-                              "year","month","day","recorder",
+                              "year","month","day","observer",
                               "siteID","transectID","round",
                               "extension")) %>%
-  select(-landscape, -extension) 
+  select(-landscape, -extension, -observer) 
 
 devtools::use_data(landscape2016,
                    overwrite = TRUE)

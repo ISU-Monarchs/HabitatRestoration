@@ -25,10 +25,10 @@ read_dir = function(path, pattern, into) {
 environment <- read_dir(path = "environment",
                pattern = "*.csv",
                into = c("environment",
-                        "year","month","day","recorder",
+                        "year","month","day","observer",
                         "siteID","transectID","round",
                         "extension")) %>%
-  select(-environment, -extension) %>%
+  select(-environment, -extension, -observer) %>%
   tidyr::spread(variable, value)
 
 names(environment) <- gsub('“', '', names(environment)) 
