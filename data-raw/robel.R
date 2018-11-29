@@ -25,15 +25,15 @@ read_dir = function(path, pattern, into) {
 robel = read_dir(path = "daubenmire",
                   pattern = "csv2",
                   into = c("robel",
-                           "year","month","day","recorder",
+                           "year","month","day","observer",
                            "site","transect","round",
                            "extension")) %>%
-  select(-robel, -extension) %>%             
+  select(-robel, -extension, -observer) %>%             
 
   gather(distance, count,
          -Direction, 
          -year, -month, -day, 
-         -recorder, -site, -transect, -round,
+         -site, -transect, -round,
          na.rm = TRUE) %>%
   
   mutate(count = as.numeric(gsub(">","",count))) # 16 and above are 16
