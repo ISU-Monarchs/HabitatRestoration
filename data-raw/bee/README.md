@@ -22,3 +22,4 @@ Do not capitalize nectar or bee species names. Do not put dashes/hyphens/apostro
 Start time should be written in xx:xxPM format. Do not include a zero in the hour slot if it isn’t 10, 11, or 12. Examples: 9:36AM or 12:28PM
 
 2016: Data is NA for uth3 round 1 as site did not yet exist.
+2017: Cra1 round 3 was resampled 8-30-17 from original date of 8-15-17
