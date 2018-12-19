@@ -3,12 +3,8 @@ Seth Appelgate is in charge of this directory.
 Data entry individuals: 2016: Cory Haggard. 2017: Riley Nylin. 2018: Sydney Lizotte-Hall.
 Data verification: incomplete
 
-For 2016 only:
+2016 Notes
 
-  plot outline 
-    
-    round 1/2, only the transect location was decided. No plot edges had been established.
-  
   wind
   
       Round1:    calm, light, moderate, very windy
@@ -17,72 +13,115 @@ For 2016 only:
     
   temp
       
-      Data was collected from nearest weather station using various apps accessible via mobile device       at time of data collection 
+      Data was collected from nearest weather station using various apps accessible via mobile device at time of data collection 
   
   start_time, end_time
   
+      Only 2016 data included an end time
+      
       Written in ##:##AM or ##:##PM format
     
       If hour was a single number, a zero was not written in front.
       
           Example: 8:45AM was written, not 08:45AM
+  
+  start_time, end_time (length of survey mistakes)
       
+      start_time and end_time should have always been 20 minutes apart. A 20 minute survey in total. Observer mistakes were made and survey time varied at select sites and rounds. See '2016_survey_dates_transect_lengths' for length in minutes of each survey. Length of survey is sometimes NA due to missing data.
+
+  plot outline 
+    
+    round 1/2, only the transect location was decided. No plot edges had been established.      
+  
   Sections were only used for round 1/2 data 2016.
     
       An observation within a section indicates the number of an adult monarchs observed within the plot while standing in the section noted. 
       
-      Section length: 2016- see spreadsheet to determine if sections were 10m or 20m. 2017,2018            section length always 10m.
+      Section length: 2016- see spreadsheet to determine if sections were 10m or 20m. 2017,2018 section length always 10m.
 
   Bins were only used for round 3 data 2016
       
       An observation indicates that an adult monarch was observed at that distance from the recorder
+  Transect length not constant
+      
+      transect length changed as noted in '2016_survey_dates_transect_lengths' at sites: cre1, nkn1, nkn2, sie1, pre1a 
+ 
+  Resampling, Round 3: ber3, dun2, har1, van2, fis1, vos1, jon1
   
-  'watch_monarch' is a monarch seen during the monitoring time, off the transect. This data only exists for round 1/2 data in 2016 and was not listed as a line item on the data sheets. This data only exists if the observer voluntarily wrote down this observation.
+      'stems', 'eggs', 'instar' data was collected on 8/11/2016 but adult monarch data was not taken because of rain. Adult monarch data was sampled on 8/17/2016 to make up for missed data. No 'stems', 'eggs', 'instar' data was collected on 8/17/2016.
   
+   Missing data: Data is NA as site did not yet exist.  
+   
+      Round 1: ber3, dun3, bcr1, bcr2, tie1, app1
+      Round 2: app1
+   Missing data: Data is NA as transect location was moved.
+      
+      Round 1: uth3, arm1, nor1
+      Round 2: nor1
+   
+  'extra_monarch' is a monarch seen outside the monitoring time, anywhere at the site. This data was not listed as a line item on the data sheets. This data only exists if the observer voluntarily wrote down this observation.
+  
+  'watch_monarch' is a monarch seen during the monitoring time while the observer was standing still observing at the end of the transect. This data only exists for round 1/2 data in 2016 and was not listed as a specific line item on the data sheets. Observers were supposed to walk the transect at a speed of 2 minutes/10m section (which they did correctly). If the transect was shorter than 100m they were supposed to continue to observe at the end of the transect while stationary until reaching a total of 20 minutes of survey time. 'watch_monarch' only occurred if the site was shorter than 100m and the observer completed a 20 minute survey as they were uspposed to. The observer would do 'watch_monarch' for as long as the time of the 20 minutes was remaining after reaching the end of the transect. 'watch_monarch' did not occur if the observer errored and stopped collecting data at the end of the transect, having not reached 20 minutes of total observation time. 
   
   'stems' is the number of milkweed ramets observed with a limit of 0 - 20 ramets. Milkweed species was not specified but was almost always common milkweed. If 'stems' = 0, no rows for 'eggs' or 'instars' are listed
-  
-  
-For all years:
 
+2017 Notes
+
+  Transect length
+    
+    transect length remained the same as round 3 2016 except at sut2 and pre1a
+  
+  Missing data: funding cut. Round 1 data NA (not sampled) for sites under grant 'pork'. See '2017_survey_dates_transect_length'
+   
+    pre1a, pre1b, pre2a, pre2b, pre3a, pre3b, pre4a, pre4b, bcr1, bcr2, tie1, app1
+  
+  No survey, rain. 8-15-17 fis1. No resampling done.
+      
+      'NA' was entered for 'start_time', '#_inside_plot', '#_outside_plot', 'extra_monarchs'
+
+  Resample, missing data. Cra1 was resampled for 'bee' and 'environment' data 8-30-17 from original date of 8-15-17      
+  
+  
+2017 and Following Years Notes
+  
+  Transect length
+  
+    transect length remained the same across all surveys
+
+  Survey length
+  
+    surveys were always 20 minutes long
+    
+  '#_inside_plot' and '#_outside_plot' are count data of adult monarchs observed during a survey where first sighting was either inside the plot or outside the defined plot perimeter
+  
+  'common_ramets' 'swamp_ramets' 'butterfly_ramets' indicate the number of milkweed ramets observed for each species of milkweed with an upper limit of 20 milkweed ramets per species. 'eggs' and 'instar' indicate total number of eggs and monarch instars observed, summed across all milkweed ramets observed for each specific milkweed species.
+  
+  'palmer_amaranth' indicates observed number of palmer amaranth plants within the plot perimeter. No palmer plants have been observed at any site.
+    
+
+2018 Notes  
+
+  Missing data: fis1 all rounds
+  
+    site eliminated from study due to establishment failure. No more data to be collected.
+  
+All Years Notes:
+
+  Start time should be written in xx:xxPM format. Do not include a zero in the hour slot if it isn’t 10, 11, or 12. Examples: 9:36AM or 12:28PM
+  
   'extra_monarch' in 2016 or 'extra_monarchs' in all other years is a monarch seen outside the monitoring time, anywhere at the site. This data will exist for all years, all sites.
   
   'extra_monarch' in 2016 or 'extra monarchs' in all other years is always a number, never 'NA'
   
-  
   If 'wind', 'sky', or 'temp' were unfavorable monarch data was not collected:
   
-      'NA' was entered for 'start_time' and 'end_time'
+      'NA' was entered for 'start_time' (and 'end_time' in 2016)
       
       'NA' was entered for monarch numbers by 'bin' or meter section or 'watch_monarch'
       
       'stems', 'eggs', and 'instar' data were still collected regardless of weather
-      
-
-Missing data and issues
-
-2016
-      
-      transect length changed as noted in '2016_survey_dates_transect_lengths' at sites: cre1, nkn1, nkn2, sie1, pre1a 
- 
-2016 Round 3: ber3, dun2, har1, van2, fis1, vos1, jon1
   
-      'stems', 'eggs', 'instar' data was collected on 8/11/2016 but adult monarch data was not taken because of rain. Adult monarch data was sampled on 8/17/2016 to make up for missed data. No 'stems', 'eggs', 'instar' data was collected on 8/17/2016.
-  
-2016 Round 1: Data is NA for uth3 as site did not yet exist.
 
-2017
-
-     transect length remained the same as round 3 2016 except at sut2 and pre1a
-2017, 2018
-
-     transect length remained the same across all surveys
-
-2017 Round 3 8-15-17 fis1. No survey, rain
-      
-      'NA' was entered for 'start_time', '#_inside_plot', '#_outside_plot', 'extra_monarchs'
-
-2017 Round 3: Cra1 was resampled 8-30-17 from original date of 8-15-17  
   
   
   
