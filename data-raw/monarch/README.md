@@ -37,7 +37,7 @@ Data verification: incomplete
     
       An observation within a section indicates the number of an adult monarchs observed within the plot while standing in the section noted. 
       
-      Section length: 2016- see spreadsheet to determine if sections were 10m or 20m. 2017,2018 section length always 10m.
+      Section length: 2016- see spreadsheet to determine if sections were 10m or 20m.
 
   Bins were only used for round 3 data 2016
       
@@ -94,7 +94,7 @@ Data verification: incomplete
     
   '#_inside_plot' and '#_outside_plot' are count data of adult monarchs observed during a survey where first sighting was either inside the plot or outside the defined plot perimeter
   
-  'common_ramets' 'swamp_ramets' 'butterfly_ramets' indicate the number of milkweed ramets observed for each species of milkweed with an upper limit of 20 milkweed ramets per species. 'eggs' and 'instar' indicate total number of eggs and monarch instars observed, summed across all milkweed ramets observed for each specific milkweed species.
+  'common_ramets' 'swamp_ramets' 'butterfly_ramets' indicate the number of milkweed ramets observed for each species of milkweed with an upper limit of 10 milkweed ramets per species. 'eggs' and 'instar' indicate total number of eggs and monarch instars observed, summed across all milkweed ramets observed for each specific milkweed species.
   
   'palmer_amaranth' indicates observed number of palmer amaranth plants within the plot perimeter. No palmer plants have been observed at any site.
     
