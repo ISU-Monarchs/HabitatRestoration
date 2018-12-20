@@ -1,7 +1,7 @@
 The environment data is stored in this directory. 
 Seth Appelgate is in charge of this directory.
 Data entry individuals: 2017: Riley Nylin. 2018: Sydney Lizotte-Hall.
-Data verification: incomplete
+Data verification: 2017, 2018 complete: Jacob Handel
 
 Environment surveyed the weather at the time of data collection and the area outside the perimeter of the plot to determine milkweed ramet abundance and % ground cover of flowering plants. 
 
