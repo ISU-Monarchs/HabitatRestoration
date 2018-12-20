@@ -1,7 +1,7 @@
 The bee data is stored in this directory. 
 Seth Appelgate is in charge of this directory.
 Data entry individuals: 2016: Cory Haggard. 2017: Riley Nylin. 2018: Sydney Lizotte-Hall.
-Data verification: 2016,2017,2018: Jacob Handel.
+Data verification: 2016,2017,2018 Complete: Jacob Handel.
 
 If no bees are present for entry, header is present but no bees are listed.
 
