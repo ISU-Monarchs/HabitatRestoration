@@ -45,8 +45,12 @@ Environment data does not exist for 2016. Environment data was collected in 2017
     
     If multiple species were codominant; multiple species were listed separated by a semicolon
     
-Missing data: funding cut. Round 1 data NA (not sampled) for sites under grant 'pork'. See '2017_survey_dates_transect_length'
+Missing data: funding cut. Round 1 2017 data NA (not sampled) for sites under grant 'pork'. See '2017_survey_dates_transect_length'
    
     pre1a, pre1b, pre2a, pre2b, pre3a, pre3b, pre4a, pre4b, bcr1, bcr2, tie1, app1
 
 Resample, missing data. Cra1 was resampled for 'bee' and 'environment' data 8-30-17 from original date of 8-15-17
+
+Missing data: fis1 all rounds 2018
+  
+    site eliminated from study due to establishment failure. No more data to be collected.
