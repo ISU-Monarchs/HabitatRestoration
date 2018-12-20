@@ -33,7 +33,7 @@ Data verification: incomplete
     
   'temp'
       
-      Data was collected from nearest weather station using various apps accessible via mobile device at time of data collection 
+      °F. Data was collected from nearest weather station using various apps accessible via mobile device at time of data collection 
   
   'start_time', 'end_time'
   
