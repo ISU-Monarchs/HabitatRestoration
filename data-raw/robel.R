@@ -33,7 +33,7 @@ robel = read_dir(path = "daubenmire",
   gather(distance, count,
          -Direction, 
          -year, -month, -day, 
-         -site, -transect, -round,
+         -siteID, -transectID, -round,
          na.rm = TRUE) %>%
   
   mutate(count = as.numeric(gsub(">","",count))) # 16 and above are 16
