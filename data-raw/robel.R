@@ -26,7 +26,7 @@ robel = read_dir(path = "daubenmire",
                   pattern = "csv2",
                   into = c("robel",
                            "year","month","day","observer",
-                           "site","transect","round",
+                           "siteID","transectID","round",
                            "extension")) %>%
   select(-robel, -extension, -observer) %>%             
 
