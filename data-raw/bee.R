@@ -45,7 +45,14 @@ bee = read_dir(path = "bee",
          -year, -month, -day, -siteID, -transectID, -round,
          na.rm=TRUE) %>% 
 	
-	mutate(count = as.numeric(count))            # some columns are character
+	mutate(count = as.numeric(count),
+	       section = distance) %>%      # some columns are character
+  
+  dplyr::select(year, month, day, 
+                siteID, transectID, 
+                round, section,
+                everything(),
+                -distance)
 	
 
 #   # The above gather should really explicitly gather the distances, but the code below doesn't work
