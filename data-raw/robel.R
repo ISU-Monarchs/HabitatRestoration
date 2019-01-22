@@ -36,7 +36,14 @@ robel = read_dir(path = "daubenmire",
          -siteID, -transectID, -round,
          na.rm = TRUE) %>%
   
-  mutate(count = as.numeric(gsub(">","",count))) # 16 and above are 16
+  mutate(count = as.numeric(gsub(">","",count)), # 16 and above are 16
+         section = distance) %>%
+  
+  dplyr::select(year, month, day, 
+                siteID, transectID, 
+                round, section,
+                everything(),
+                -distance)
 	
 devtools::use_data(robel,
                    overwrite = TRUE)
