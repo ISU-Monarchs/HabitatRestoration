@@ -41,7 +41,7 @@ nectar = read_dir(path = "nectar",
          na.rm=TRUE) %>% 
 	
   dplyr::group_by(`Nectar Plant Species`, year, month, day, siteID, transectID,
-                  round) %>%
+                  round, distance) %>%
   
 	dplyr::summarize(count = sum(count)) %>%
   
@@ -50,7 +50,15 @@ nectar = read_dir(path = "nectar",
   dplyr::mutate(siteID     = factor(siteID),
                 transectID = factor(transectID),
                 
-                year = as.numeric(year))
+                section = distance,
+                
+                year = as.numeric(year)) %>%
+  
+  dplyr::select(year, month, day, 
+                siteID, transectID, 
+                round, section,
+                everything(),
+                -distance)
 	
 
 devtools::use_data(nectar,
