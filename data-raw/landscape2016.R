@@ -27,7 +27,10 @@ landscape2016 = read_dir(path = "landscape",
                               "year","month","day","observer",
                               "siteID","transectID","round",
                               "extension")) %>%
-  select(-landscape, -extension, -observer) 
+  select(year, month, day, 
+         siteID, transectID, 
+         round, everything(),
+         -landscape, -extension)
 
 devtools::use_data(landscape2016,
                    overwrite = TRUE)
