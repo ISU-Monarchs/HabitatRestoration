@@ -40,5 +40,5 @@ survey <- tmp %>%
   mutate(transectID = factor(transectID),
          siteID = factor(siteID))
 
-# devtools::use_data(nectar,
+# devtools::use_data(survey,
 #                    overwrite = TRUE)
