@@ -1,35 +1,44 @@
 library("dplyr")
+library("tidyr")
+library("readr")
 
-tmp <- readxl::read_excel("Site Metadata Git 4-7-17.xlsx", 
-                          sheet = 1,
-                          na = c("","NA")) 
-tmp <- tmp[, !duplicated(names(tmp))]
+my_read_csv = function(f, into) {
+  cat("Reading",f,"\n")
+  readr::read_csv(f, 
+                  col_types = readr::cols(.default = "c")) %>%
+    dplyr::mutate(file=f) %>%
+    tidyr::separate(file, into)
+}
 
-# 2016
-survey_2016 <- tmp %>%
-  rename(transectID   = transect_id,
-         round1 = `2016_r1_transect_length`,
-         round2 = `2016_r2_transect_length`,
-         round3 = `2016_r3_transect_length`) %>%
-  select(transectID, round1, round2, round3) %>%
-  tidyr::gather(round, length, -transectID) %>%
+read_dir = function(path, pattern, into) {
+  files = list.files(path = path,
+                     pattern = pattern,
+                     recursive = TRUE,
+                     full.names = TRUE)
+  plyr::ldply(files, my_read_csv, into = into)
+}
+
+# Above taken from https://gist.github.com/jarad/8f3b79b33489828ab8244e82a4a0c5b3
+
+###########################################################
+
+
+tmp = read_dir(path = "survey",
+               pattern = "*.csv",
+               into = c("dataset", "year"))
+
+# Remove columns that are all NAs
+survey <- tmp %>% 
+  select_if(function(x) any(!is.na(x))) %>%
+  rename(siteID = site_id,
+         transectID = transect_id,
+         round1 = `r1_transect_length`,
+         round2 = `r2_transect_length`,
+         round3 = `r3_transect_length`,
+         length = `sum_transect_lengths`) %>%
+  select(-dataset) %>%
   mutate(transectID = factor(transectID),
-         year = 2016)
+         siteID = factor(siteID))
 
-# 2017
-survey_2017 <- tmp %>%
-  mutate(transectID   = transect_id,
-         
-         # This is hacky, but all rounds in 2017 had the same length.
-         # But were surveys done in all rounds?
-         round1 = final_transect_length,
-         round2 = final_transect_length,
-         round3 = final_transect_length) %>%
-  select(transectID, round1, round2, round3) %>%
-  tidyr::gather(round, length, -transectID) %>%
-  mutate(transectID = factor(transectID),
-         year = 2017)
-
-survey <- bind_rows(survey_2016,
-                    survey_2017) %>%
-  na.omit
+# devtools::use_data(nectar,
+#                    overwrite = TRUE)
