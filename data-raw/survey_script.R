@@ -36,7 +36,7 @@ survey <- tmp %>%
          round2 = `r2_transect_length`,
          round3 = `r3_transect_length`,
          length = `sum_transect_lengths`) %>%
-  select(-dataset) %>%
+  select(-dataset, year, siteID, transectID, everything()) %>%
   mutate(transectID = factor(transectID),
          siteID = factor(siteID))
 
