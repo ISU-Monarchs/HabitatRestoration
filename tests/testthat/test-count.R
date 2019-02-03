@@ -10,3 +10,9 @@ context("recorder")
 
 test_that("recorder exists",
 					expect_true(all(nectar$recorder %in% c("Seth","Teresa"))))
+
+
+# context("species names")
+# 
+# test_that("species exists",
+#           expect_true(all(nectar$`Nectar Plant Species` %in% species$common_name)))
