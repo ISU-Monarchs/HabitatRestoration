@@ -59,7 +59,7 @@ survey <- tmp1 %>%
   left_join(tmp3, by=c('transectID', 'year', 'round')) %>%
   rename(length = transect_length,
          area = area_m2) %>%
-  select(-area_m2.y, -area_m2.x)
+  select(transectID, year, round, length, section_length, area, monarch_time, -area_m2.y, -area_m2.x)
 
 # Drop surveys that weren't done
 survey <- survey %>% drop_na(length, section_length, monarch_time)
