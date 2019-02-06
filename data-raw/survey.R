@@ -62,12 +62,12 @@ survey <- tmp1 %>%
   select(transectID, year, round, length, section_length, area, monarch_time, -area_m2.y, -area_m2.x)
 
 # Drop surveys that weren't done
-survey <- survey %>% drop_na(length, section_length, monarch_time)
+survey <- survey %>% drop_na(length)
 
 # Write out csvs for each individual year
-survey %>% filter(year %in% "2016") %>% write.csv(.,file = "survey/2016/survey2016.csv")
-survey %>% filter(year %in% "2017") %>% write.csv(.,file = "survey/2017/survey2017.csv")
-survey %>% filter(year %in% "2018") %>% write.csv(.,file = "survey/2018/survey2018.csv")
+survey %>% filter(year %in% "2016") %>% write.csv(.,file = "survey/2016/survey2016.csv", row.names=FALSE)
+survey %>% filter(year %in% "2017") %>% write.csv(.,file = "survey/2017/survey2017.csv", row.names=FALSE)
+survey %>% filter(year %in% "2018") %>% write.csv(.,file = "survey/2018/survey2018.csv", row.names=FALSE)
 
 
 
