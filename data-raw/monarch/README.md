@@ -1,7 +1,7 @@
 The monarch data is stored in this directory. 
 Seth Appelgate is in charge of this directory.
 Data entry individuals: 2016: Cory Haggard. 2017: Riley Nylin. 2018: Sydney Lizotte-Hall.
-Data verification: incomplete
+Data verification: 2016,2017,2018 Complete: Jacob Handel.
 
 2016 Notes
 
