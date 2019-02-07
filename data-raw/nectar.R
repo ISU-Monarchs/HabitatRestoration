@@ -61,5 +61,5 @@ nectar = read_dir(path = "nectar",
                 -distance)
 	
 
-devtools::use_data(nectar,
+usethis::use_data(nectar,
                    overwrite = TRUE)

@@ -44,5 +44,5 @@ environment <- environment %>%
          currently_flowering_plants = factor(currently_flowering_plants,
                                              levels = c("0","0-5","5-25","25-50","50-75")))
 
-devtools::use_data(environment,
+usethis::use_data(environment,
                    overwrite = TRUE)

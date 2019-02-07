@@ -44,5 +44,5 @@ monarch = read_dir(path = "monarch",
 	mutate(count = as.numeric(count))            # some columns are character
 	
 
-devtools::use_data(monarch,
+usethis::use_data(monarch,
                    overwrite = TRUE)

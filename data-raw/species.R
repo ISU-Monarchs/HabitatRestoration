@@ -8,5 +8,5 @@ species <- species %>%
   select_if(function(x) any(!is.na(x)))
 
 
-devtools::use_data(species,
+usethis::use_data(species,
                    overwrite = TRUE)

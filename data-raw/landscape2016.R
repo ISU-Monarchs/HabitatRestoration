@@ -32,5 +32,5 @@ landscape2016 = read_dir(path = "landscape",
          round, everything(),
          -landscape, -extension)
 
-devtools::use_data(landscape2016,
+usethis::use_data(landscape2016,
                    overwrite = TRUE)

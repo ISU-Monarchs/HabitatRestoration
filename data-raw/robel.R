@@ -45,5 +45,5 @@ robel = read_dir(path = "daubenmire",
                 everything(),
                 -distance)
 	
-devtools::use_data(robel,
+usethis::use_data(robel,
                    overwrite = TRUE)

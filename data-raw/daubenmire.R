@@ -55,5 +55,5 @@ daubenmire = read_dir(path = "daubenmire",
 # litter has one new column: depth
 
 
-devtools::use_data(daubenmire,
+usethis::use_data(daubenmire,
                    overwrite = TRUE)

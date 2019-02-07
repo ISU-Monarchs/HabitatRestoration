@@ -64,5 +64,5 @@ bee = read_dir(path = "bee",
 #           gather_cols = c("0-19m", "20-39m", "40-50m", "60-79m", "80-100m"),
 #           na.rm       = TRUE) %>%
 
-devtools::use_data(bee,
+usethis::use_data(bee,
                    overwrite = TRUE)
