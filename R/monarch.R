@@ -7,7 +7,6 @@
 #'   \item year: year of observation
 #'   \item month: month of observation
 #'   \item day: day of observation
-#'   \item recorder: individual who observed (and possibly recorded) the observations
 #'   \item siteID: id of the site
 #'   \item transectID: id of the transect
 #'   \item round: the round number: 1, 2, or 3
