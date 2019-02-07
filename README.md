@@ -14,15 +14,14 @@ The website <github.com> hosts the Git repository.
 Currently 
 [Jarad Niemi](https://monarch.ent.iastate.edu/people/jarad-niemi) and 
 [Seth Applegate](https://monarch.ent.iastate.edu/people/seth-appelgate)
-are in charge of data entry while 
-[Sydney Lizotte-Hall](https://monarch.ent.iastate.edu/people/sydney-lizotte-hall) 
-is doing most of the actual data entry. 
+are in charge of data entry while undergraduate interns are doing most of the actual data entry. 
 [Additional individuals](https://github.com/jarad/ISUmonarch/graphs/contributors)
 have contributed along the way.
 
 ## Data entry setup
 
-For anybody who will be entering data, 
+For anybody who will be entering data, follow the protocol outlined in 'initial computer.personnel set up'
+
 you will need to install 
 [R](https://www.r-project.org/),
 [RStudio](https://www.rstudio.com/products/rstudio/#Desktop), and
@@ -33,3 +32,6 @@ We also suggest you set up
 [ssh keys](https://www.r-bloggers.com/rstudio-pushing-to-github-with-ssh-authentication/)
 to make pushing and pulling to the repository easy. 
 
+## data-raw
+
+Contains all data collected
