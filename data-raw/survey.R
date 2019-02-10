@@ -31,35 +31,37 @@ tmp = read_dir(path = "survey",
 tmpsurvey <- tmp %>% 
   select_if(function(x) any(!is.na(x))) %>% # Remove columns that are all NAs
   rename(transectID = transect_id,
+         siteID = site_id,
          round1 = `r1_transect_length`,
          round2 = `r2_transect_length`,
          round3 = `r3_transect_length`,
          length = `sum_transect_lengths`) %>%
-  select( -grant, -site_name, -site_id,
+  select( -grant, -site_name,
          -dataset, -r1_date, -r2_date, -r3_date, -acres, 
          -`r3_date_bee/environment_resample`, -`total_#_rounds`) %>%
-  mutate(transectID = factor(transectID))
+  mutate(transectID = factor(transectID),
+         siteID = factor(siteID))
 
 # Melt/gather the dataframes by round
 tmp1 <- tmpsurvey %>% gather(round, transect_length, round1:round3) %>% 
   mutate(round = readr::parse_number(round)) %>% 
-  select(transectID, year, round, transect_length, area_m2)
+  select(siteID, transectID, year, round, transect_length, area_m2)
 
 tmp2 <- tmpsurvey %>% gather(round, section_length, c(r1_section_length, r2_section_length, r3_section_length)) %>% 
   mutate(round = readr::parse_number(round)) %>% 
-  select(transectID, year, round, section_length, area_m2)
+  select(siteID, transectID, year, round, section_length, area_m2)
 
 tmp3 <- tmpsurvey %>% gather(round, monarch_time, c(r1_monarch_time, r2_monarch_time, r3_monarch_time)) %>% 
   mutate(round = readr::parse_number(round)) %>% 
-  select(transectID, year, round, monarch_time, area_m2)
+  select(siteID, transectID, year, round, monarch_time, area_m2)
 
 # Leftjoin the datasets to create survey dataset
 survey <- tmp1 %>% 
-  left_join(tmp2, by=c('transectID', 'year', 'round')) %>%
-  left_join(tmp3, by=c('transectID', 'year', 'round')) %>%
+  left_join(tmp2, by=c('siteID', 'transectID', 'year', 'round')) %>%
+  left_join(tmp3, by=c('siteID', 'transectID', 'year', 'round')) %>%
   rename(length = transect_length,
          area = area_m2) %>%
-  select(transectID, year, round, length, section_length, area, monarch_time, -area_m2.y, -area_m2.x)
+  select(siteID, transectID, year, round, length, section_length, area, monarch_time, -area_m2.y, -area_m2.x)
 
 # Drop surveys that weren't done
 survey <- survey %>% drop_na(length)
