@@ -4,7 +4,7 @@ test_that("count is non-negative",
 					expect_true(all(nectar$count>=0)))
 
 test_that("count is not too large",
-					expect_true(all(nectar$count<501)))
+					expect_true(all(nectar$count<9001)))
 
 context("recorder")
 
