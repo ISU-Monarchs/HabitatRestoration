@@ -1,4 +1,3 @@
 library(testthat)
-library(monarchExampleDataPackage)
 
-test_check("monarchExampleDataPackage")
+test_check("ISUmonarch")
