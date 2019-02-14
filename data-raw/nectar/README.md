@@ -48,6 +48,8 @@ Meter sections
 
     Classification as either planted or non planted. Indicating which species were in the native seed mix planted.
 
+    smartweed: observers were not able to identify smartweed species with confidence. Some observers attempted to identify by species from 2016-2018 and physical data sheets reflect these attempts. Decision was made to rename all species as smartweed and to proceed with only identifying plants as smartweed. It is highly likely that the smartweed species being identified are one of the four species listed by their scientific name in the 'nectar_species...' file
+
 2017 and Years Following Notes
 
   ‘common_milkweed_ramet’ ‘swamp_milkweed_ramet’ ‘butterfly_milkweed_ramet’
