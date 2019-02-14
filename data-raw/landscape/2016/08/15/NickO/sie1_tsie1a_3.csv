@@ -1,2 +1,5 @@
 "direction",milkweed,flowering_plants
-"general",no,no
+"n",no,no
+"e",yes,yes
+"s",yes,yes
+"w",no,no
