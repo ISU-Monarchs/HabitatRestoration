@@ -1,7 +1,7 @@
 The landscape data is stored in this directory. 
 Seth Appelgate is in charge of this directory.
 Data entry individuals: 2016: Cory Haggard.
-Data verification: incomplete
+Data verification: 2016 complete: Seth Appelgate
 
 Landscape surveyed the area outside the perimeter of the plot to determine if milkweed and flowering plants were present. Physical data sheet also listed ‘type of habitat’ which was outside the plot but this data was too ambiguous to be used so it was not recorded in the Git ‘landscape’ data set. Plot perimeter was not established until round 3 2016 data collection. Round 1/2 landscape surveyed area was at the discretion of the observer as to what was ‘outside’ the plot.
 

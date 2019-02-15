@@ -1,7 +1,7 @@
 The nectar data is stored in this directory. 
 Seth Appelgate is in charge of this directory.
 Data entry individuals: 2016: Cory Haggard. 2017: Riley Nylin. 2018: Sydney Lizotte-Hall.
-Data verification: incomplete
+Data verification: 2016,2017,2018 Complete: Seth Appelgate (2016,2017,2018 7/17-R3) Jacob Handel(2018 R1-7/17)
 
 Nectar plants were surveyed by an observer walking along a permanent transect line. Observer walked a line parallel to the transect at a length of 1.5m to the right of the transect. Observer visually surveyed a 1m wide band along the whole length of the transect, recording every visual detection of a blooming floral resource.
 
