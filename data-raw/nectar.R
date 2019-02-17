@@ -59,7 +59,19 @@ nectar = read_dir(path = "nectar",
                 round, section,
                 everything(),
                 -distance)
-	
 
-usethis::use_data(nectar,
-                   overwrite = TRUE)
+
+# Get names with Ramet in them
+rametnm <- unique(nectar$`Nectar Plant Species`[grep("ramet", nectar$`Nectar Plant Species`)])
+
+# Create `ramet` data.frame from nectar where species are ramet type
+ramet <- nectar %>% filter(`Nectar Plant Species` %in% rametnm)
+
+# Remove ramet species from nectar data.frame 
+nectar <- nectar %>% filter(!(`Nectar Plant Species` %in% rametnm))
+nectar %>% filter(`Nectar Plant Species` %in% rametnm) # quick check to make sure that the ramet names are removed.
+                                                       # should print no data
+
+
+usethis::use_data(nectar, overwrite = TRUE)
+usethis::use_data(ramet, overwrite = TRUE)
