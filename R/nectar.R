@@ -1,6 +1,11 @@
 #' Nectar plant species
 #'
-#' This data set contains the count of the number of plant species specific floral units observed within certain sections of a transect.
+#' This data set contains the count of the number of plant species specific 
+#' floral units observed within certain sections of a transect.
+#'
+#' @section NewSection: test
+#' 
+#' Here is some information.
 #'
 #' @format A data frame with the following variables:
 #' \itemize{
@@ -14,5 +19,5 @@
 #'   \item Nectar Plant Species: common name for nectar plant species which were flowering at the time of the survey
 #'   \item count: number of plant species specific floral units observed
 #' }
-#' @format A data frame with the variables above.
+#' @references Here is a reference.
 "nectar"
