@@ -58,7 +58,7 @@ Meter sections
     
     Survey is not technically a part of the ‘nectar’ survey but was included on the data sheet for because area covered was exact same as ‘nectar’ data
 
-    Length of transect as noted in '2016_survey_dates_transect_lengths', '2017_survey_dates_transect_lengths', and '2018_survey_dates_transect_lengths' can be used to calculate area surveyed. Area surveyed/detected milkweed ramets = milkweed ramet density for each species.
+    Length of transect as noted in files within 'survey' folder can be used to calculate density. Detected milkweed ramets/transect length = milkweed ramets/m2 for each species.
 
   ‘milkweed strip: common milkweed ramet’
 
