@@ -9,18 +9,18 @@ If no nectar plants are present for entry, header is present but no plants are l
 
 Transect length
   
-    Transect length differed between sites. Transect length ranged from 30 meters to 100 meters in length. See '2016_survey_dates_transect_lengths', '2017_survey_dates_transect_lengths', and '2018_survey_dates_transect_lengths', to determine transect length for each site.
+    Transect length differed between sites. Transect length ranged from 30 meters to 100 meters in length. See files in 'survey' folder, to determine transect length for each site.
 
-    Transect length sometimes differed at the same site across different rounds. See '2016_survey_dates_transect_lengths', '2017_survey_dates_transect_lengths', and '2018_survey_dates_transect_lengths', to determine transect length for each site.
+    Transect length sometimes differed at the same site across different rounds. See files in 'survey' folder to determine transect length for each site.
 
-        transect length changed as noted in '2016_survey_dates_transect_lengths' at sites: cre1, nkn1, nkn2, sie1, pre1a 
+        transect length changed as noted in 'survey2016' at sites: cre1, nkn1, nkn2, sie1, pre1a 
 
         transect length changed at sut2 and pre1a between round 3 2016 and round 1 2017
         
         transect length remained the same at all sites from round 1 2017 and following
 Section length 
 
-    2016- see datasheet or '2016_survey_dates_transect_lengths' document to determine if sections were 10 meters or 20 meters in length in 2016. 
+    2016- see datasheet or 'survey2016' document to determine if sections were 10 meters or 20 meters in length in 2016. 
 
     All sections were 10 meter lengths in 2017 and years following
 
