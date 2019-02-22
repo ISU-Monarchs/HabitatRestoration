@@ -2,6 +2,20 @@
 #'
 #' This data set contains the count of bees observed and the specific flowering plant they were nectaring on observed within certain sections of a transect.
 #'
+#' @section Data Collection Protocol
+#' 
+#' Bees and the nectar plants on which the bees were nectaring were surveyed by an observer walking along a permanent transect line. 
+#' Observer walked a line parallel to the transect at a length of 1.5m to the left of the transect at a rate of 2minutes/10m section. 
+#' Surveys were conducated for 20 minutes.
+#' If transect was shorter than 100m (20 minutes), observer stop the time at the end of the transect, walk around plot, return to start of transect, and continue survey until reaching 20 minutes (100m total).
+#' Observer visually surveyed a 3m wide band along the whole length of the transect, recording every visual detection of a bee and the plant it was nectaring on at the time of first observation.
+#' Observer observed 180 degrees in front of themselves. 
+#' 
+#' "Bee Species": Only nectaring bees were counted. There are 3 possible options for bee names: “honey bee” “bumble bee” “solitary bee”
+#'
+#' "Nectar Plant Species": the specific nectar plant on which the bee was nectaring 
+#' Nectar species scientific names and full list of common names are in the folder 'data-raw/nectar' in the file named 'nectar_species_scientific_name_counting_unit'
+#' 
 #' @format A data frame with the following variables:
 #' \itemize{
 #'   \item year: year of observation
