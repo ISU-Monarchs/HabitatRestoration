@@ -12,7 +12,7 @@
 #' If transect was shorter than 100m (20 minutes), observer stopped the time at the end of the transect, walked around plot, returned to start of transect, and continued survey until reaching 20 minutes (100m total).
 #' Observer visually surveyed 180 degrees in front of themselves, recording every visual detection of a monarch and it's location at the time of first observation.
 #'
-#' See readme in 'monarch' folder for all other details.
+#' See readme in 'monarch' folder in 'data-raw' for all other details.
 #'
 #' @format A data frame with the following variables:
 #' \itemize{
