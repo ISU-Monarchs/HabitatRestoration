@@ -30,7 +30,8 @@ nectar = read_dir(path = "nectar",
                            "year","month","day","observer",
                            "siteID","transectID","round",
                            "extension")) %>%
-  dplyr::select(-nectar, -extension, -observer) %>%             # Might want to include type in the future
+  dplyr::select(-nectar, -extension) %>%
+                # , -observer) %>%             # Might want to include type in the future
 
   # rename(nectar_plant_species = `Nectar Plant Species`) %>%
 
@@ -38,10 +39,11 @@ nectar = read_dir(path = "nectar",
          -`Nectar Plant Species`, 
          -year, -month, -day, 
          -siteID, -transectID, -round,
+         -observer,
          na.rm=TRUE) %>% 
 	
   dplyr::group_by(`Nectar Plant Species`, year, month, day, siteID, transectID,
-                  round, distance) %>%
+                  round, distance, observer) %>%
   
 	dplyr::summarize(count = sum(count)) %>%
   
@@ -57,6 +59,7 @@ nectar = read_dir(path = "nectar",
   dplyr::select(year, month, day, 
                 siteID, transectID, 
                 round, section,
+                observer,
                 everything(),
                 -distance)
 
