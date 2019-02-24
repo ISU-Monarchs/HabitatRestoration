@@ -53,6 +53,7 @@ bee = read_dir(path = "bee",
   dplyr::select(year, month, day, 
                 siteID, transectID, 
                 round, section,
+                observer,
                 everything(),
                 -distance)
 	
