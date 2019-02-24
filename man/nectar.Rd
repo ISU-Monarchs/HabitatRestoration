@@ -23,12 +23,6 @@ nectar
 This data set contains the count of the number of plant species specific 
 floral units observed within certain sections of a transect.
 }
-\section{NewSection}{
- test
-
-Here is some information.
-}
-
 \references{
 Here is a reference.
 }
