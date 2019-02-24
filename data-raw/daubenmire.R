@@ -28,12 +28,14 @@ daubenmire = read_dir(path = "daubenmire",
                            "year","month","day","observer",
                            "siteID","transectID","round",
                            "extension")) %>%
-  select(-daubenmire, -extension, -observer) %>%             
+  select(-daubenmire, -extension) %>%
+         # , -observer) %>%
 
   gather(land_cover, percentage,
          -section, 
          -year, -month, -day, 
          -siteID, -transectID, -round,
+         -observer,
          na.rm = TRUE) %>%
   
   mutate(percentage = as.numeric(gsub("<","",percentage)),
@@ -44,7 +46,9 @@ daubenmire = read_dir(path = "daubenmire",
          
          round = as.numeric(round)) %>%
   
-  select(year, month, day, siteID, transectID, round, section, land_cover, percentage)
+  select(year, month, day, siteID, transectID, round, section,
+         observer,
+         land_cover, percentage)
 
 # Need to create 3 data.frames: cover, milkweed, litter
 # see issue #38
