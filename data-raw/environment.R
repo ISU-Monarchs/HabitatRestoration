@@ -28,7 +28,8 @@ environment <- read_dir(path = "environment",
                         "year","month","day","observer",
                         "siteID","transectID","round",
                         "extension")) %>%
-  select(-environment, -extension, -observer) %>%
+  select(-environment, -extension) %>%
+         # , -observer) %>%
   tidyr::spread(variable, value)
 
 names(environment) <- gsub('“', '', names(environment)) 
@@ -42,7 +43,8 @@ environment <- environment %>%
          temperature    = as.numeric(temperature),
          
          currently_flowering_plants = factor(currently_flowering_plants,
-                                             levels = c("0","0-5","5-25","25-50","50-75")))
+                                             levels = c("0","0-5","5-25","25-50","50-75"))) %>%
+  select(year, month, day, siteID, transectID, round, observer, everything())
 
 usethis::use_data(environment,
                    overwrite = TRUE)
