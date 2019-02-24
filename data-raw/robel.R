@@ -28,12 +28,14 @@ robel = read_dir(path = "daubenmire",
                            "year","month","day","observer",
                            "siteID","transectID","round",
                            "extension")) %>%
-  select(-robel, -extension, -observer) %>%             
+  select(-robel, -extension) %>%
+         # , -observer) %>%             
 
   gather(distance, count,
          -Direction, 
          -year, -month, -day, 
          -siteID, -transectID, -round,
+         -observer,
          na.rm = TRUE) %>%
   
   mutate(count = as.numeric(gsub(">","",count)), # 16 and above are 16
@@ -42,6 +44,7 @@ robel = read_dir(path = "daubenmire",
   dplyr::select(year, month, day, 
                 siteID, transectID, 
                 round, section,
+                observer,
                 everything(),
                 -distance)
 	
