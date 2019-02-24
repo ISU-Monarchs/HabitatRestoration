@@ -29,7 +29,8 @@ monarch = read_dir(path = "monarch",
                         "siteID","transectID","round",
                         "extension")) %>%
   
-  select(-monarch, -extension, -observer) %>%
+  select(-monarch, -extension) %>%
+         # , -observer) %>%
 
   spread(key, value) %>%  
   
@@ -39,10 +40,11 @@ monarch = read_dir(path = "monarch",
   gather(distance, count,
          -year, -month, -day, -siteID, -transectID, -round,
          -end_time, -sky, -start_time, -wind, -temp,
+         -observer,
          na.rm=TRUE) %>% 
 	
-	mutate(count = as.numeric(count))            # some columns are character
-	
+	mutate(count = as.numeric(count))  %>%          # some columns are character
+	select(year, month, day, siteID, transectID, round, observer, everything())
 
 usethis::use_data(monarch,
                    overwrite = TRUE)
