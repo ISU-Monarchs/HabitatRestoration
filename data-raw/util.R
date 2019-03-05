@@ -95,9 +95,22 @@ grep("pre2_tpre2a", files, value=TRUE)
 grep("pre3_tpre3b", files, value=TRUE)
 
 
+#check that the locations will be the same
+tmp1 = list.files(pattern=".csv|.csv2|.pdf", recursive = TRUE)
+tmp2 = files
+tmp1 = sapply(strsplit(tmp1, "/"), FUN = function(x) paste(x[1:5], collapse="/"))
+tmp2 = sapply(strsplit(files, "/"), FUN = function(x) paste(x[1:5], collapse="/"))
+all.equal(tmp1, tmp2)
+
+file.rename(list.files(pattern=".csv|.csv2|.pdf", recursive = TRUE), files)
 
 
-# Relabel some 
+
+
+
+# Relabel names
+files <- list.files(pattern=".csv|.csv2|.pdf", recursive = TRUE)
+
 length(grep("van2_tvan2a", files, value=TRUE))
 files = gsub("van2_tvan2a", "dav1_tdav1a", files)
 length(grep("van2_tvan2a", files, value=TRUE))
