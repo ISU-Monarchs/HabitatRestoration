@@ -1,8 +1,8 @@
 "wind",moderate_breeze
 "sky",mostly_clear
-"temp",73
-"start_time",7:21AM
-"end_time",7:41AM
+"temp",79
+"start_time",8:32AM
+"end_time",8:52AM
 "extra_monarch",0
 "0-20m",0
 "20-40m",0
@@ -10,10 +10,4 @@
 "60-80m",0
 "80-100m",0
 "watch_monarch",0
-"stems",2
-"eggs",1
-"1instar",0
-"2instar",0
-"3instar",0
-"4instar",0
-"5instar",0
+"stems",0

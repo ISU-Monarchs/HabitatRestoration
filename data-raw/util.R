@@ -57,3 +57,117 @@ d %>%
   mutate(missing = gsub("\\$","",missing)) %>%
   write_csv(path="missing_files.csv")
 ################################################################################
+
+
+
+
+################################################################################
+## Replace names as described in: https://github.com/jarad/ISUmonarch/issues/61
+
+# Fix misspellings in the og data
+files <- list.files(pattern=".csv|.csv2|.pdf", recursive = TRUE)
+grep("pre2_tpre2b", files, value=TRUE)
+files = gsub("pre2_tpre2b", "pre2b_tpre2b", files)
+grep("pre3_tpre3a", files, value=TRUE)
+files = gsub("pre3_tpre3a", "pre3a_tpre3a", files)
+grep("pre4_tpre4a", files, value=TRUE)
+files = gsub("pre4_tpre4a", "pre4a_tpre4a", files)
+grep("pre4_tpre4b", files, value=TRUE)
+files = gsub("pre4_tpre4b", "pre4b_tpre4b", files)
+grep("pre1_tpre1a", files, value=TRUE)
+files = gsub("pre1_tpre1a", "pre1a_tpre1a", files)
+grep("pre1_tpre1b", files, value=TRUE)
+files = gsub("pre1_tpre1b", "pre1b_tpre1b", files)
+grep("pre2_tpre2a", files, value=TRUE)
+files = gsub("pre2_tpre2a", "pre2a_tpre2a", files)
+grep("pre3_tpre3b", files, value=TRUE)
+files = gsub("pre3_tpre3b", "pre3b_tpre3b", files)
+
+
+
+grep("pre2_tpre2b", files, value=TRUE)
+grep("pre3_tpre3a", files, value=TRUE)
+grep("pre4_tpre4a", files, value=TRUE)
+grep("pre4_tpre4b", files, value=TRUE)
+grep("pre1_tpre1a", files, value=TRUE)
+grep("pre1_tpre1b", files, value=TRUE)
+grep("pre2_tpre2a", files, value=TRUE)
+grep("pre3_tpre3b", files, value=TRUE)
+
+
+#check that the locations will be the same
+tmp1 = list.files(pattern=".csv|.csv2|.pdf", recursive = TRUE)
+tmp2 = files
+tmp1 = sapply(strsplit(tmp1, "/"), FUN = function(x) paste(x[1:5], collapse="/"))
+tmp2 = sapply(strsplit(files, "/"), FUN = function(x) paste(x[1:5], collapse="/"))
+all.equal(tmp1, tmp2)
+
+file.rename(list.files(pattern=".csv|.csv2|.pdf", recursive = TRUE), files)
+
+
+
+
+
+# Relabel names
+files <- list.files(pattern=".csv|.csv2|.pdf", recursive = TRUE)
+
+length(grep("van2_tvan2a", files, value=TRUE))
+files = gsub("van2_tvan2a", "dav1_tdav1a", files)
+length(grep("van2_tvan2a", files, value=TRUE))
+length(grep("dav1_tdav1a", files, value=TRUE))
+
+unique(nectar[grep("pre", nectar$siteID),c("siteID", "transectID")])
+
+length(grep("pre4b_tpre4b", files, value=TRUE))
+files = gsub("pre4b_tpre4b", "pre8_tpre8a", files)
+length(grep("pre4b_tpre4b", files, value=TRUE))
+length(grep("pre8_tpre8a", files, value=TRUE))
+
+length(grep("pre4a_tpre4a", files, value=TRUE))
+files = gsub("pre4a_tpre4a", "pre7_tpre7a", files)
+length(grep("pre4a_tpre4a", files, value=TRUE))
+length(grep("pre7_tpre7a", files, value=TRUE))
+
+length(grep("pre3b_tpre3b", files, value=TRUE))
+files = gsub("pre3b_tpre3b", "pre6_tpre6a", files)
+length(grep("pre3b_tpre3b", files, value=TRUE))
+length(grep("pre6_tpre6a", files, value=TRUE))
+
+length(grep("pre3a_tpre3a", files, value=TRUE))
+files = gsub("pre3a_tpre3a", "pre5_tpre5a", files)
+length(grep("pre3a_tpre3a", files, value=TRUE))
+length(grep("pre5_tpre5a", files, value=TRUE))
+
+length(grep("pre2b_tpre2b", files, value=TRUE))
+files = gsub("pre2b_tpre2b", "pre4_tpre4a", files)
+length(grep("pre2b_tpre2b", files, value=TRUE))
+length(grep("pre4_tpre4a", files, value=TRUE))
+
+length(grep("pre2a_tpre2a", files, value=TRUE))
+files = gsub("pre2a_tpre2a", "pre3_tpre3a", files)
+length(grep("pre2a_tpre2a", files, value=TRUE))
+length(grep("pre3_tpre3a", files, value=TRUE))
+
+length(grep("pre1b_tpre1b", files, value=TRUE))
+files = gsub("pre1b_tpre1b", "pre2_tpre2a", files)
+length(grep("pre1b_tpre1b", files, value=TRUE))
+length(grep("pre2_tpre2a", files, value=TRUE))
+
+length(grep("pre1a_tpre1a", files, value=TRUE))
+files = gsub("pre1a_tpre1a", "pre1_tpre1a", files)
+length(grep("pre1a_tpre1a", files, value=TRUE))
+length(grep("pre1_tpre1a", files, value=TRUE))
+
+#check that the locations will be the same
+tmp1 = list.files(pattern=".csv|.csv2|.pdf", recursive = TRUE)
+tmp2 = files
+tmp1 = sapply(strsplit(tmp1, "/"), FUN = function(x) paste(x[1:5], collapse="/"))
+tmp2 = sapply(strsplit(files, "/"), FUN = function(x) paste(x[1:5], collapse="/"))
+all.equal(tmp1, tmp2)
+
+file.rename(list.files(pattern=".csv|.csv2|.pdf", recursive = TRUE), files)
+
+
+
+
+################################################################################
