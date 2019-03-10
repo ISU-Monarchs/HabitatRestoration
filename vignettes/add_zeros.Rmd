@@ -14,49 +14,55 @@ suppressWarnings(library("tidyverse"))
 library(ISUmonarch)
 ```
 
-```{r sites, echo=FALSE}
-sites = c("byd1", "byd2", "cra1", "uth1", "uth2", "uth3")
-```
-
 
 ## Bee data
 
 Here is the bee data.frame in the simplest form.
-
-```{r bee, results='asis', echo=TRUE}
+```{r bee_basic, results='asis', echo=TRUE}
 pander::pandoc.table(bee %>%
-  filter(siteID %in% sites) %>%
-  group_by(`Nectar Plant Species`, round, siteID) %>%
-  summarize(count = sum(count)) %>%
     head(.))
+```
+
+
+If we wanted to get a count by species, round and siteID, we could get it like this:
+```{r bee, results='asis', echo=TRUE}
+pander::pandoc.table(
+  bee %>%
+  group_by(`Bee Species`, round, siteID) %>%
+  summarize(count = sum(count)) %>%
+    head(.)
+  )
 ```
 
 If we wanted to find the average count per species per siteID, we could do this:
 ```{r bee_avg_wrong, results='asis', echo=TRUE}
-pander::pandoc.table(bee %>%
-  filter(siteID %in% sites) %>%
-  group_by(`Nectar Plant Species`, round, siteID) %>%
+pander::pandoc.table(
+  bee %>%
+  group_by(`Bee Species`, round, siteID) %>%
   summarize(count = sum(count)) %>%
-  group_by(`Nectar Plant Species`, siteID) %>%
+  group_by(`Bee Species`, siteID) %>%
   summarize(mean_count = mean(count)) %>%
-    head(.))
+    head(.)
+  )
 ```
 
 
-While this table may look fine, it gives incorrect results. This is because the rounds where no data is recorded is missing. To correct this, we need to add back the rounds with 0 counts.
+While this table may look fine, it gives incorrect results. This is because the rounds where no data is recorded is missing. To correct this, we need to add back the rounds and surveys with 0 counts.
 
-```{r bee_zeros, results='asis', echo=TRUE}
-pander::pandoc.table(bee %>%
+```{r bee_zeros, results='asis', warning=FALSE, message=FALSE, echo=TRUE}
+pander::pandoc.table(
+  bee %>%
   mutate(round = as.factor(round)) %>%
-  filter(siteID %in% sites) %>%
-  group_by(`Nectar Plant Species`, round, siteID) %>%
+  full_join(survey %>% left_join(transect) %>% select("siteID","year"), by=c("siteID","year")) %>%
+  complete(`Bee Species`, siteID, round, fill = list(count = 0)) %>%
+  group_by(`Bee Species`, round, siteID) %>%
   summarize(count = sum(count)) %>%
-  complete(`Nectar Plant Species`, siteID, round, fill = list(count = 0)) %>%
-  group_by(`Nectar Plant Species`, siteID) %>%
+  group_by(`Bee Species`, siteID) %>%
   summarize(mean_count = mean(count)) %>%
-    head(.))
+    head(.)
+  )
 ```
 
-Notice now that `alfalfa` in `uth2` corrctly displays a mean count of .333 since there was only 1 count accross the rounds. The key was using the `complete` function.
+The key was using the `complete` function and linking the `survey` and `transect` datasets to include sites that didn't record anything.
 
 
