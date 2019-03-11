@@ -50,14 +50,33 @@ daubenmire = read_dir(path = "daubenmire",
          observer,
          land_cover, percentage)
 
-# Need to create 3 data.frames: cover, milkweed, litter
-# see issue #38
-#
+# Create 3 data.frames: cover, milkweed, litter
 # all three data.frames have these variables: year, month, day, siteID, transectID, round, section
 # cover has two new variables: class and percentage
 # milkweed has two new variables: milkweed_species and ramets
 # litter has one new column: depth
 
+milkweed = daubenmire %>% 
+  filter(land_cover %in% c("common_ramet","swamp_ramet","butterfly_ramet")) %>%
+  rename(milkweed_species = land_cover,
+         ramets = percentage)
 
-usethis::use_data(daubenmire,
+litter = daubenmire %>% 
+  filter(land_cover %in% c("litter_depth")) %>%
+  rename(depth = percentage) %>%
+  select(everything(), -land_cover)
+
+cover = daubenmire %>% 
+  filter(!land_cover %in% c("common_ramet","swamp_ramet","butterfly_ramet","litter_depth")) %>%
+  rename(class = land_cover)
+
+
+
+usethis::use_data(milkweed,
                    overwrite = TRUE)
+
+usethis::use_data(litter,
+                  overwrite = TRUE)
+
+usethis::use_data(cover,
+                  overwrite = TRUE)
