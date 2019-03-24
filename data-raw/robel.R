@@ -46,7 +46,8 @@ robel = read_dir(path = "daubenmire",
                 round, section,
                 observer,
                 everything(),
-                -distance)
+                -distance) %>%
+  mutate(count = count*10) # Transposing to cm instead of # bands
 	
 usethis::use_data(robel,
                    overwrite = TRUE)
