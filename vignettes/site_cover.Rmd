@@ -1,0 +1,57 @@
+---
+title: "Combining Cover with native status from Site"
+author: "Nehemias Ulloa"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Combining Cover with native status from Site}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+```{r, message=FALSE, echo=FALSE}
+suppressWarnings(library("tidyverse"))
+library(ISUmonarch)
+```
+
+
+## Cover data
+
+Here is the `cover` data.frame
+```{r cover_basic, results='asis', echo=TRUE}
+pander::pandoc.table(cover %>%
+    head(.))
+```
+
+and the `site` data.frame in their simplest form.
+```{r site_basic, results='asis', echo=TRUE}
+pander::pandoc.table(site %>%
+    head(.))
+```
+
+
+We want to combine the status of the plant before any thing was does to the plot i.e. `2016_csg_native_status` and `2016_wsg_native_status` with the cover data based on the class being either `csg` or `wsg`.
+```{r site16, results='asis', message=FALSE, warning=FALSE, echo=TRUE, include=TRUE}
+site16 <- ISUmonarch::site %>%
+  select(siteID, transectID, `2016_csg_native_status`, `2016_wsg_native_status`) %>%
+  gather("class","status",-siteID, -transectID) %>%
+  mutate(class = sapply(strsplit(.$class,"_"), `[`, 2))
+```
+```{r site16_tab, results='asis', message=FALSE, warning=FALSE, echo=FALSE}
+pander::pandoc.table(
+  head(site16)
+  )
+```
+
+After creating the above data.frame, we simply join it with the `cover` data.frame.
+```{r comb, results='asis', echo=TRUE, message=FALSE, warning=FALSE}
+pander::pandoc.table(
+  cover %>%
+  left_join(site16, by=c("siteID", "transectID", "class")) %>%
+  head()
+  )
+```
+
+
+
+
