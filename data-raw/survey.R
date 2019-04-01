@@ -25,50 +25,24 @@ read_dir = function(path, pattern, into) {
 
 tmp = read_dir(path = "survey",
                pattern = "*.csv",
-               into = c("dataset", "year"))
+               into = c("dataset", "year", "filename", "ext"))
 
-# Create tmp dataframe and clean up a bit
-tmpsurvey <- tmp %>% 
-  select_if(function(x) any(!is.na(x))) %>% # Remove columns that are all NAs
-  rename(transectID = transect_id,
-         round1 = `r1_transect_length`,
-         round2 = `r2_transect_length`,
-         round3 = `r3_transect_length`,
-         length = `sum_transect_lengths`) %>%
-  select( -grant, -site_name, -site_id,
-         -dataset, -r1_date, -r2_date, -r3_date, -acres, 
-         -`r3_date_bee/environment_resample`, -`total_#_rounds`) %>%
-  mutate(transectID = factor(transectID))
+# Create survey dataframe and change values
+survey <- tmp %>% 
+  select(-filename, -ext, -dataset) %>%
+  mutate(transectID = gsub(pattern="van2_tvan2a",  replacement="dav1_tdav1a", x=transectID)) %>%
+  mutate(transectID = gsub(pattern="pre4b_tpre4b", replacement="pre8_tpre8a", x=transectID)) %>%
+  mutate(transectID = gsub(pattern="pre4a_tpre4a", replacement="pre7_tpre7a", x=transectID)) %>%
+  mutate(transectID = gsub(pattern="pre3b_tpre3b", replacement="pre6_tpre6a", x=transectID)) %>%
+  mutate(transectID = gsub(pattern="pre3a_tpre3a", replacement="pre5_tpre5a", x=transectID)) %>%
+  mutate(transectID = gsub(pattern="pre2b_tpre2b", replacement="pre4_tpre4a", x=transectID)) %>%
+  mutate(transectID = gsub(pattern="pre2a_tpre2a", replacement="pre3_tpre3a", x=transectID)) %>%
+  mutate(transectID = gsub(pattern="pre1b_tpre1b", replacement="pre2_tpre2a", x=transectID)) %>%
+  mutate(transectID = gsub(pattern="pre1a_tpre1a", replacement="pre1_tpre1a", x=transectID))
 
-# Melt/gather the dataframes by round
-tmp1 <- tmpsurvey %>% gather(round, transect_length, round1:round3) %>% 
-  mutate(round = readr::parse_number(round)) %>% 
-  select(transectID, year, round, transect_length, area_m2)
-
-tmp2 <- tmpsurvey %>% gather(round, section_length, c(r1_section_length, r2_section_length, r3_section_length)) %>% 
-  mutate(round = readr::parse_number(round)) %>% 
-  select(transectID, year, round, section_length, area_m2)
-
-tmp3 <- tmpsurvey %>% gather(round, monarch_time, c(r1_monarch_time, r2_monarch_time, r3_monarch_time)) %>% 
-  mutate(round = readr::parse_number(round)) %>% 
-  select(transectID, year, round, monarch_time, area_m2)
-
-# Leftjoin the datasets to create survey dataset
-survey <- tmp1 %>% 
-  left_join(tmp2, by=c('transectID', 'year', 'round')) %>%
-  left_join(tmp3, by=c('transectID', 'year', 'round')) %>%
-  rename(length = transect_length,
-         area = area_m2) %>%
-  select(transectID, year, round, length, section_length, area, monarch_time, -area_m2.y, -area_m2.x)
 
 # Drop surveys that weren't done
 survey <- survey %>% drop_na(length)
-
-# Add section_length for 2017 & 2018 - always 10
-survey[which(survey$year %in% c("2017", "2018")),"section_length"] <- 10
-
-# Add monarch_time for 2017 & 2018 - always 20
-survey[which(survey$year %in% c("2017", "2018")),"monarch_time"] <- 20
 
 # Write out csvs for each individual year
 survey %>% filter(year %in% "2016") %>% write.csv(.,file = "survey/2016/survey2016.csv", row.names=FALSE)
