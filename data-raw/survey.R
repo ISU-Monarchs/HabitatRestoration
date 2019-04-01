@@ -30,15 +30,15 @@ tmp = read_dir(path = "survey",
 # Create survey dataframe and change values
 survey <- tmp %>% 
   select(-filename, -ext, -dataset) %>%
-  mutate(transectID = gsub(pattern="van2_tvan2a",  replacement="dav1_tdav1a", x=transectID)) %>%
-  mutate(transectID = gsub(pattern="pre4b_tpre4b", replacement="pre8_tpre8a", x=transectID)) %>%
-  mutate(transectID = gsub(pattern="pre4a_tpre4a", replacement="pre7_tpre7a", x=transectID)) %>%
-  mutate(transectID = gsub(pattern="pre3b_tpre3b", replacement="pre6_tpre6a", x=transectID)) %>%
-  mutate(transectID = gsub(pattern="pre3a_tpre3a", replacement="pre5_tpre5a", x=transectID)) %>%
-  mutate(transectID = gsub(pattern="pre2b_tpre2b", replacement="pre4_tpre4a", x=transectID)) %>%
-  mutate(transectID = gsub(pattern="pre2a_tpre2a", replacement="pre3_tpre3a", x=transectID)) %>%
-  mutate(transectID = gsub(pattern="pre1b_tpre1b", replacement="pre2_tpre2a", x=transectID)) %>%
-  mutate(transectID = gsub(pattern="pre1a_tpre1a", replacement="pre1_tpre1a", x=transectID))
+  mutate(transectID = gsub(pattern="tvan2a", replacement="tdav1a", x=transectID)) %>%
+  mutate(transectID = gsub(pattern="tpre4b", replacement="tpre8a", x=transectID)) %>%
+  mutate(transectID = gsub(pattern="tpre4a", replacement="tpre7a", x=transectID)) %>%
+  mutate(transectID = gsub(pattern="tpre3b", replacement="tpre6a", x=transectID)) %>%
+  mutate(transectID = gsub(pattern="tpre3a", replacement="tpre5a", x=transectID)) %>%
+  mutate(transectID = gsub(pattern="tpre2b", replacement="tpre4a", x=transectID)) %>%
+  mutate(transectID = gsub(pattern="tpre2a", replacement="tpre3a", x=transectID)) %>%
+  mutate(transectID = gsub(pattern="tpre1b", replacement="tpre2a", x=transectID)) %>%
+  mutate(transectID = gsub(pattern="tpre1a", replacement="tpre1a", x=transectID))
 
 
 # Drop surveys that weren't done
