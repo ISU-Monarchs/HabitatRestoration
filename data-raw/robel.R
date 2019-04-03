@@ -47,7 +47,8 @@ robel = read_dir(path = "daubenmire",
                 observer,
                 everything(),
                 -distance) %>%
-  mutate(count = count*10) # Transposing to cm instead of # bands
+  mutate(count = count*10, # Transposing to cm instead of # bands
+         censored = ifelse(count > 160, "right", "not"))
 	
 usethis::use_data(robel,
                    overwrite = TRUE)
