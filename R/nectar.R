@@ -3,7 +3,7 @@
 #' This data set contains the count of the number of plant species specific 
 #' floral units observed within certain sections of a transect.
 #'
-#' @section Data Collection Protocol
+#' @section Data Collection Protocol:
 #' 
 #' Nectar plants were surveyed by an observer walking along a permanent transect line. 
 #' Observer walked a line parallel to the transect at a length of 1.5m to the right of the transect. 
@@ -18,7 +18,7 @@
 #' Data allows for calculation of milkweed density for these three species.
 #' 
 #' 
-#' @section ‘nectar_species_scientific_name_counting_unit’ document explanation
+#' @section ‘nectar_species_scientific_name_counting_unit’ document explanation:
 #' ‘common_name’ 'genus' 'species' common names and corresponding scientific names
 #' 'field count unit' specific to each species. Counting units are either umbel, head, ramet, or spike
 #' 'native_introduced_both' classification of plants as defined by the USDA PLANTS database.
