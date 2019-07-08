@@ -21,7 +21,7 @@ nectar
 }
 \description{
 This data set contains the count of the number of plant species specific 
-floral units observed within certain sections of a transect.
+inflorescences observed within certain sections of a transect.
 }
 \section{Data Collection Protocol}{
 
