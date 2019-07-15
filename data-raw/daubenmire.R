@@ -57,7 +57,7 @@ daubenmire = read_dir(path = "daubenmire",
 # litter has one new column: depth
 
 milkweed = daubenmire %>% 
-  filter(land_cover %in% c("milkweed","common_ramet","swamp_ramet","butterfly_ramet")) %>%
+  filter(land_cover %in% c("common_ramet","swamp_ramet","butterfly_ramet")) %>%
   rename(milkweed_species = land_cover,
          ramets = percentage)
 
@@ -67,7 +67,7 @@ litter = daubenmire %>%
   select(everything(), -land_cover)
 
 cover = daubenmire %>% 
-  filter(!land_cover %in% c("milkweed","common_ramet","swamp_ramet","butterfly_ramet","litter_depth")) %>%
+  filter(!land_cover %in% c("common_ramet","swamp_ramet","butterfly_ramet","litter_depth")) %>%
   rename(class = land_cover)
 
 
