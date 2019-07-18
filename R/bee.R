@@ -2,7 +2,7 @@
 #'
 #' This data set contains the count of bees observed and the specific flowering plant they were nectaring on observed within certain sections of a transect.
 #'
-#' @section Data Collection Protocol
+#' @section Data Collection Protocol:
 #' 
 #' Bees and the nectar plants on which the bees were nectaring were surveyed by an observer walking along a permanent transect line. 
 #' Observer walked a line parallel to the transect at a length of 1.5m to the left of the transect at a rate of 2minutes/10m section. 
