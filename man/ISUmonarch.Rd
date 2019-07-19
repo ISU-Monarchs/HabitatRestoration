@@ -7,5 +7,5 @@
 File to document ISUmonarch package
 }
 \seealso{
-\code{\link{bee}}, \code{\link{daubenmire}}
+\code{\link{bee}}, \code{\link{robel}}
 }
