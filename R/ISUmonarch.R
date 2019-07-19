@@ -2,5 +2,5 @@
 #' 
 #' @name ISUmonarch
 #' 
-#' @seealso \code{\link{bee}}, \code{\link{daubenmire}}
+#' @seealso \code{\link{bee}}, \code{\link{robel}}
 NULL
