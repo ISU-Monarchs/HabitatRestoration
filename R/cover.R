@@ -1,4 +1,4 @@
-#' Daubenmire
+#' Cover
 #'
 #' This data set contains daubenmire land cover %'s, count data for 3 milkweed species, and litter depth in cm observed at 10m intervals inside a 0.5m square along a transect.
 #'
@@ -68,4 +68,4 @@
 #'   \item percentage: daubenmire specific cover classes in percentages. Numbers indicatenam birds eye coverage of specific cover category within 0.5m frame
 #' }
 #' @format A data frame with the variables above.
-"daubenmire"
+"cover"
