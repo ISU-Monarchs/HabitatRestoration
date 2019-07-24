@@ -1,13 +1,13 @@
-#' Milkweed Ramets within Daubenmire Frames
+#' Milkweed Ramets - within Daubenmire Frames
 #'
-#' This data set contains daubenmire land cover %'s, count data for 3 milkweed species, and litter depth in cm observed at 10m intervals inside a 0.5m square along a transect.
+#' This data set contains count data for 3 milkweed species observed at 10m intervals inside a 0.5m square along a transect.
 #'
 #' @section Data Collection Protocol:
 #' 
-#' Daubenmire and robel data share the same directory and are both saved with the same file name except that robel data is saved with a '2' after the .csv extension.
+#' **Note** Daubenmire and robel data share the same directory and are both saved with the same file name except that robel data is saved with a '2' after the .csv extension.
 #' site_transect_round.csv2
 #' 
-#' Daubenmire
+#' Data was collected at same time and in same 0.5m square as daubenmire cover class data.
 #' 
 #' Daubenmire survey was done at 10m lengths along a permanent transect line. Observer placed a quadrant (1 meter x 0.5m rectangle) on the left side of the transect. Quadrant was placed with 1 meter edge perpendicular to the 100m tape and 0.5 meter edge extending from transect point to 0.5 meters along transect length. Observations started at 0 meters on the transect and were taken every 10m of the transect. Observations were at a point on the transect and did not encompass the full length of a section. Data collection began at 0 meter starting point of the transect and stopped before the transect ended. A transect length of 100m will have points recorded for 0 meters through 90 meters; 10 points. Data is not taken at the final point on the transect as this area is outside the transect.  
 #' 
