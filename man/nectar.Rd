@@ -20,32 +20,48 @@
 nectar
 }
 \description{
-This data set contains the count of the number of plant species specific 
-inflorescences observed within certain sections of a transect.
+This data set contains the count of the number of plant species specific inflorescences (floral counting units) observed within certain sections of a transect.
 }
 \section{Data Collection Protocol}{
 
 
 Nectar plants were surveyed by an observer walking along a permanent transect line. 
-Observer walked a line parallel to the transect at a length of 1.5m to the right of the transect. 
-Observer visually surveyed a 1m wide band along the whole length of the transect, recording every visual detection of an actively flowering floral resource.
-Area surveyed was the same as the length of transect because width of survey was 1m along whole length of transect.
-Transect lengths can be found in 'survey' folder.
-‘nectar_species_scientific_name_counting_unit’ document contains information which denotes species, specific counting units, and other plant information. 
-File is located in the folder 'data-raw/nectar' in the Git repository ISUmonarch.
 
-Observer also recorded every visual detection of a common milkweed, swamp milkweed, or butterfly milkweed ramet.
-Milkweed ramet was recorded regardless of whether or not it was flowering. 
-Data allows for calculation of milkweed density for these three species.
+Observer walked a line parallel to the transect at a length of 1.5m to the right of the transect. 
+
+Observer visually surveyed a 1m wide band along the whole length of the transect, recording every visual detection of an actively flowering floral resource.
+
+Area surveyed was the same as the length of transect because width of survey was 1m along whole length of transect.
+
+Transect lengths can be found in 'survey' folder.
+
+'nectar_species_scientific_name_counting_unit' document contains information which denotes species, specific counting units, and other plant information. 
+File is located in the folder 'data-raw/nectar' in the Git repository ISUmonarch.
 }
 
-\section{‘nectar_species_scientific_name_counting_unit’ document explanation}{
+\section{Data Collection Protocol added in 2017. No data for 2016}{
 
-‘common_name’ 'genus' 'species' common names and corresponding scientific names
-'field count unit' specific to each species. Counting units are either umbel, head, ramet, or spike
+
+Observer recorded every visual detection of a common milkweed, swamp milkweed, or butterfly milkweed ramet.
+
+Milkweed ramet was recorded regardless of whether or not it was flowering. 
+
+Data allows for calculation of milkweed density for these three species but only in years 2017-2019.
+}
+
+\section{'nectar_species_scientific_name_counting_unit' - document explanation}{
+
+
+'common_name' 'genus' 'species': common names and corresponding scientific names
+
+'field count unit' specific to each species. Floral counting units are either umbel, head, ramet, or spike
+
 'native_introduced_both' classification of plants as defined by the USDA PLANTS database.
-'planted_non_planted' Indicating which species were in the native seed mix planted. Seed mix same at all plots.
+
+'planted_non_planted' Indicates which species were in the native seed mix planted. Seed mix same at all plots.
+
 'technical_count' more specifc description of 'field_count_unit'
+
 'inflorescence_name_when_technical' details if inflorescence is not easily explained
 }
 

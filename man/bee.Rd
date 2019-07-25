@@ -3,7 +3,7 @@
 \docType{data}
 \name{bee}
 \alias{bee}
-\title{Bee species and nectar plant species}
+\title{Bee species and nectar plant species bees utilized}
 \format{A data frame with the following variables:
 \itemize{
   \item year: year of observation
@@ -26,18 +26,29 @@ This data set contains the count of bees observed and the specific flowering pla
 \section{Data Collection Protocol}{
 
 
-Bees and the nectar plants on which the bees were nectaring were surveyed by an observer walking along a permanent transect line.  
-Observer walked a line parallel to the transect at a length of 1.5m to the left of the transect at a rate of 2minutes/10m section.  
-Surveys were conducated for 20 minutes.  
-If transect was shorter than 100m (20 minutes), observer stopped the time at the end of the transect, walked around plot, returned to start of transect, and continued survey until reaching 20 minutes (100m total).  
-Observer visually surveyed a 3m wide band along the whole length of the transect, recording every visual detection of nectaring bee and the plant it was nectaring on at the time of first observation.  
+Bees and the nectar plants on which the bees were nectaring were surveyed by an observer walking along a permanent transect line. 
+ 
+Observer walked a line parallel to the transect at a length of 1.5m to the left of the transect at a rate of 2minutes/10m section.
+  
+Surveys were conducated for 20 minutes.
+  
+If transect was shorter than 100m (20 minutes), observer stopped the time at the end of the transect, walked around plot, returned to start of transect, and continued survey until reaching 20 minutes (100m total).
+  
+Observer visually surveyed a 3m wide band along the whole length of the transect, recording every visual detection of nectaring bee and the plant it was nectaring on at the time of first observation. 
+ 
 Observer only counted nectaring bees and did not include flying bees.  
-Observer observed 180 degrees in front of themselves.  
 
-"Bee Species": Only nectaring bees were counted. There were 3 possible options for bee names: “honey bee” “bumble bee” “solitary bee”
+Observer observed 180 degrees in front of themselves.
+}
 
-"Nectar Plant Species": the specific nectar plant on which the bee was nectaring    
-Nectar species scientific names and corresponding common names are in folder 'data-raw/nectar' in file 'nectar_species_scientific_name_counting_unit'
+\section{Variable Notes}{
+
+
+*Nectar Plant Species* the specific nectar plant on which the bee was nectaring 
+   
+     Nectar species scientific names and corresponding common names are in folder 'data-raw/nectar' in file 'nectar_species_scientific_name_counting_unit'
+
+*Bee Species* Only nectaring bees were counted. There were 3 possible options for bee names: *honey bee* *bumble bee* *solitary bee*
 }
 
 \seealso{
