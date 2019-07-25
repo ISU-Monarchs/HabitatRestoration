@@ -14,17 +14,8 @@
 #' 
 #' Transect lengths can be found in 'survey' folder.
 #' 
-#' 'nectar_species_scientific_name_counting_unit' document contains information which denotes species, specific counting units, and other plant information. 
+#' 'nectar_species_scientific_name_counting_unit' document contains information which denotes species common and scientific names, specific counting units, and other plant information. 
 #' File is located in the folder 'data-raw/nectar' in the Git repository ISUmonarch.
-#' 
-#' @section Data Collection Protocol added in 2017. No data for 2016:
-#' 
-#' Observer recorded every visual detection of a common milkweed, swamp milkweed, or butterfly milkweed ramet.
-#' 
-#' Milkweed ramet was recorded regardless of whether or not it was flowering. 
-#' 
-#' Data allows for calculation of milkweed density for these three species but only in years 2017-2019.
-#' 
 #' 
 #' @section 'nectar_species_scientific_name_counting_unit' - document explanation:
 #' 
