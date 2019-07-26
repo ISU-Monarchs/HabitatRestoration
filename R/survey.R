@@ -1,0 +1,17 @@
+#' Survey
+#'
+#' This data set contains transect lengths in meters, section lengths in meters, meter square area of the plot, and adult monarch survey length of time in minutes.
+#' This data occasionally changed between surveys (years/rounds) so data is recorded for every survey (round/year combination) for every site.
+#' 
+#' @format A data frame with the following variables:
+#' \itemize{
+#'   \item transectID: id of the transect
+#'   \item round: the round number: 1, 2, or 3
+#'   \item length: length of transect in meters
+#'   \item section_length: length of section within transect in meters. length is 10m or 20m in 2016. length is 10m for all transects 2017-2019.
+#'   \item area: area of plot in meters squared
+#'   \item monarch_time: length of time of adult monarch survey in minutes. time is variables in 2016. time is always 20 minutes for 2017-2019.
+#'   \item year: year of observation
+#' }
+#' @format A data frame with the variables above.
+"survey"
