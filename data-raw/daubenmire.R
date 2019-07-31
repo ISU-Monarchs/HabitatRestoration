@@ -38,7 +38,9 @@ daubenmire = read_dir(path = "daubenmire",
          -observer,
          na.rm = TRUE) %>%
   
-  mutate(percentage = as.numeric(gsub("<","",percentage)),
+  mutate(percentage = gsub("<","",percentage),
+         percentage = gsub(">","",percentage),
+         percentage = as.numeric(percentage),
          
          year = as.numeric(year),
          month = as.numeric(month),
