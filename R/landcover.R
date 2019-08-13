@@ -20,7 +20,7 @@
 #'   \item developed: acres of developed land within the 1552.5 acre circle. This includes any man made, non natural structure, i.e. roads and buildings.
 #'   \item barren: acres of non vegetated land within the 1552.5 acre circle. 
 #'   \item shadows: acres of shadows within the 1552.5 acre circle. The true landcover of these acres are unknown due to shadows.
-#'   \item water: acres of surface of ponded water within the 1552.5 acre circle. This could include lakes, streams, water treatment facilities, or any standing water.
+#'   \item water: acres of surface water within the 1552.5 acre circle. This could include lakes, streams, water treatment facilities, or any standing water.
 #'   \item water_shadows: acres of land which were either water or shadows within the 1552.5 acre circle. Water/shadow differences could not be determined.
 #'   \item water_barren: acres of land which were either water or barren within the 1552.5 acre circle. Water/barren differences could not be determined.
 #'   \item water_grass: acres of land which were either water or grass within the 1552.5 acre circle. Water/grass differences could not be determined.
