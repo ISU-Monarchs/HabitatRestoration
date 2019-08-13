@@ -13,10 +13,10 @@
   \item transectID: id of the transect
   \item round: the round number: 1, 2, or 3
   \item end_time: time survey ended
-  \item sky: cloud cover (clear, mostly clear, mostly cloudy, cloudy, rain)
+  \item sky: cloud cover (clear, mostly clear, mostly cloudy, cloudy, rain) for 2016 data. See 'environment' data set for 2017-2019 data.
   \item start_time: time survey began
-  \item temp: temperature in fahrenheit at start of survey
-  \item wind: wind in miles per hour at start of survey for 2017-2019 data. 2016 data see 'variable notes' in this helpfile.
+  \item temp: temperature in fahrenheit at start of survey for 2016 data. See 'environment' data set for 2017-2019 data.
+  \item wind: wind in miles per hour at start of survey for for 2016 data. See 'environment' data set for 2017-2019 data.
   \item distance: contains many variables 
 
 MONARCH ADULTS WITHIN SURVEY TIME 
@@ -101,9 +101,11 @@ See readme in 'monarch' folder in 'data-raw' for all other details.
 
 *end time* data only exists for 2016. Was not necessary to collect in 2017-2019 as all surveys were 20 minutes long.
 
-*sky* *temp* *wind* available in this dataset for 2016 round 2 and 3. Available from 'landscape2016' dataset for 2016 round 1. Available from 'environment' data set for 2017-2019.
+*sky* *temp* *wind* use this dataset for 2016 data. Original 2016 round 1 data was recorded on 'landscape2016' data sheets and on 'monarch' data sheets round 2 and 3 2016. 
 
-*wind* 2016 only issue: terminology changed. Definition of each of the 4 categories of wind was subjective to the observer; not based on any defined scale. Round1:calm, light, moderate, very windy. Round2/3:  calm, breeze, moderate breeze, too windy to monitor
+This data is recorded in 'environment' data set for 2017-2019.
+
+*wind* 2016 applicable issue: terminology changed. Definition of each of the 4 categories of wind was subjective to the observer; not based on any defined scale. Round1:calm, light, moderate, very windy. Round2/3:  calm, breeze, moderate breeze, too windy to monitor
 
 *start_time* *end_time* 2016 only issue: start_time and end_time should have always been 20 minutes apart. A 20 minute survey in total. Observer mistakes were made and survey time varied at select sites and rounds. See 'data' > 'survey' header 'monarch_time' for length in minutes of each survey. Length of survey is sometimes NA due to missing data.
 
