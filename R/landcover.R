@@ -6,7 +6,8 @@
 #' 
 #' @section Protocol:
 #' 
-#' The center of each plot was determined. From that center point a circle of radius 1.41km or 0.88miles or total area of 1552.5 acres was drawn.
+#' The center of each plot was determined. 
+#' From that center point a circle of radius 1.41km or 0.88miles or total area of 1552.5 acres was drawn.
 #' Within the area of the circle GIS tools were used to quantify the landcover type for each major landcover group variable listed in this dataset.
 #'
 #' @format A data frame with the following variables:
@@ -26,4 +27,4 @@
 #'   \item barren_shadows: acres of land which were either barren or shadows within the 1552.5 acre circle. Barren/shadows differences could not be determined.
 #' }
 #' @format A data frame with the variables above.
-"transect"
+"landcover"
