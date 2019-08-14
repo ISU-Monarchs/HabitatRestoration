@@ -15,6 +15,9 @@
   \item section: the interval of the observation in length of meters along transect
   \item Direction: direction from pole in which observation was taken. n, e, w, or s
   \item count: visual obstruction robel pole reading. Height in cm. Numbers above 160 are 160. 160 was max.
+  \item censored: censored data are 'count' that exceeded 160cm (the height of our pole). 
+  Numbers above 160cm are estimates. Data is either 'not' or 'right' censored.
+  'right' *censored* values exceed 160cm.
 }}
 \usage{
 robel
