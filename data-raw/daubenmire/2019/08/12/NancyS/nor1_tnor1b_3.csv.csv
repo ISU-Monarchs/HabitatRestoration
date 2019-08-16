@@ -1,0 +1,6 @@
+"section",csg,wsg,forbs,milkweed,common_ramet,swamp_ramet,butterfly_ramet,woody_species,bare_ground,leaf_litter,litter_depth
+"0m",63,38,3,0,0,0,0,0,0,38,1.00
+"10m",16,0,63,0,0,0,0,0,38,16,0.25
+"20m",3,0,63,0,0,0,0,0,63,3,0.25
+"30m",86,0,16,0,0,0,0,0,16,63,1.00
+"40m",63,0,38,0,0,0,0,0,16,63,1.00
