@@ -35,3 +35,16 @@ to make pushing and pulling to the repository easy.
 ## data-raw
 
 Contains all data collected
+
+## Data Entry - RStudio
+
+Contains data entry protocols such as how to set up a computer with the github repository, scan/upload pdfs, and enter data.
+
+## R
+
+caontains information about how each type of data was collected in the field as well as specifications for site and plant ID. 
+
+## Data
+
+Contains files which compile every piece of data collected and allows you to view it in one place. 
+Click on the file you want to load under the data file. When asked if you want to load the R data file into the golbal environemnt, click yes. Then in the top right panel of R, click on the environemnt tab and click on the file you want to load. 
