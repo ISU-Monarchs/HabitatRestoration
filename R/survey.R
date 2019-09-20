@@ -5,13 +5,13 @@
 #' 
 #' @format A data frame with the following variables:
 #' \itemize{
-#'   \item transectID: id of the transect
-#'   \item round: the round number: 1, 2, or 3
-#'   \item length: length of transect in meters
-#'   \item section_length: length of section within transect in meters. length is 10m or 20m in 2016. length is 10m for all transects 2017-2019.
-#'   \item area: area of plot in meters squared
-#'   \item monarch_time: length of time of adult monarch survey in minutes. time is variables in 2016. time is always 20 minutes for 2017-2019.
-#'   \item year: year of observation
+#'   \item transectID: character, ID of the transect
+#'   \item round: character, round number: 1, 2, or 3
+#'   \item length: numeric, length of transect in meters
+#'   \item section_length: numeric, length of section within transect in meters. length is 10m or 20m in 2016. length is 10m for all transects 2017-2019.
+#'   \item area: numeric, area of plot in meters squared
+#'   \item monarch_time: numeric, length of time of adult monarch survey in minutes. time is variables in 2016. time is always 20 minutes for 2017-2019.
+#'   \item year: numeric, year of observation
 #' }
 #' @format A data frame with the variables above.
 "survey"

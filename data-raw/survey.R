@@ -30,7 +30,13 @@ tmp = read_dir(path = "survey",
 # Drop surveys that weren't done and unused variables: dataset, filename, ext
 survey <- tmp %>% 
   select(-dataset, -filename, -ext) %>% 
-  drop_na(length)
+  drop_na(length) %>%
+  
+  mutate(length         = as.numeric(length),
+         section_length = as.numeric(section_length),
+         area           = as.numeric(area),
+         monarch_time   = as.numeric(monarch_time),
+         year           = as.numeric(year))
 
 
 
