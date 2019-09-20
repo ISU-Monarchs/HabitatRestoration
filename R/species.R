@@ -8,16 +8,15 @@
 #'
 #' @format A data frame with the following variables:
 #' \itemize{
-#'   \item common_name: common name of the flowering plant species. Common names are not based on any standard name list.
-#'   \item field_count_unit: physiological plant component used to count floral units for each species.
+#'   \item common_name: character, common name of the flowering plant species. Common names are not based on any standard name list.
+#'   \item field_count_unit: character, physiological plant component used to count floral units for each species.
 #'   Options are: 'umbel' 'ramet' 'head' 'spike' 'spike (flower cluster)'
-#'   \item genus: genus of the plant according to USDA PLANTS Database
-#'   \item species: species of the plant according to USDA PLANTS Database
-#'   \item native_introduced_both: native status of the plant according to USDA PLANTS Database. 
-#'   Options are: 'native' 'introduced' 'both'
-#'   \item planted_non_planted: indicates if plant species was included in the seed mix planted in fall 2016. Options are: 'planted' 'non planted'
-#'   \item technical_count: clarification of *field_count_unit* if necessary
-#'   \item infloresence_name_when_technical: clarification of *technical_count* if necessary
+#'   \item genus: character, genus of the plant according to USDA PLANTS Database
+#'   \item species: character, species of the plant according to USDA PLANTS Database
+#'   \item native_introduced_both: character, 'native', 'introduced', or 'both'. Native status of the plant according to USDA PLANTS Database. 
+#'   \item planted_non_planted: character, 'planted' or 'non planted'. Indicates if plant species was included in the seed mix planted in fall 2016. 
+#'   \item technical_count: character, clarification of *field_count_unit* if necessary
+#'   \item infloresence_name_when_technical: character, clarification of *technical_count* if necessary
 #' }
 #' @format A data frame with the variables above.
 "species"

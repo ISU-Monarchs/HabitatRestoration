@@ -43,7 +43,13 @@ monarch = read_dir(path = "monarch",
          -observer,
          na.rm=TRUE) %>% 
 	
-	mutate(count = as.numeric(count))  %>%          # some columns are character
+	mutate(year  = as.numeric(year),
+	       month = as.numeric(month),
+	       day   = as.numeric(day),
+	       temp  = as.numeric(temp),
+	       count = as.numeric(count),
+	       
+	       )  %>%          # some columns are character
 	select(year, month, day, siteID, transectID, round, observer, everything())
 
 usethis::use_data(monarch,

@@ -6,18 +6,18 @@
 \title{Monarch}
 \format{A data frame with the following variables:
 \itemize{
-  \item year: year of observation
-  \item month: month of observation
-  \item day: day of observation
+  \item year: numeric, year of observation
+  \item month: numeric, month of observation
+  \item day: numeric, day of observation
   \item siteID: id of the site
   \item transectID: id of the transect
   \item round: the round number: 1, 2, or 3
   \item end_time: time survey ended
   \item sky: cloud cover (clear, mostly clear, mostly cloudy, cloudy, rain) for 2016 data. See 'environment' data set for 2017-2019 data.
   \item start_time: time survey began
-  \item temp: temperature in fahrenheit at start of survey for 2016 data. See 'environment' data set for 2017-2019 data.
-  \item wind: wind in miles per hour at start of survey for for 2016 data. See 'environment' data set for 2017-2019 data.
-  \item distance: contains many variables 
+  \item temp: numeric, temperature in Fahrenheit at start of survey for 2016 data. See 'environment' data set for 2017-2019 data.
+  \item wind: character, wind category at start of survey for for 2016 data. See 'environment' data set for 2017-2019 data.
+  \item distance: numeric, contains many variables 
 
 MONARCH ADULTS WITHIN SURVEY TIME 
 

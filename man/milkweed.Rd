@@ -6,15 +6,15 @@
 \title{Milkweed Ramets - within Daubenmire Frames}
 \format{A data frame with the following variables:
 \itemize{
-  \item year: year of observation
-  \item month: month of observation
-  \item day: day of observation
-  \item siteID: id of the site
-  \item transectID: id of the transect
-  \item round: the round number: 1, 2, or 3
-  \item section: point along the transect at which data was collected inside a 0.5m rectangle
-  \item milkweed_species: *common_ramet* *swamp_ramet* or *butterfly_ramet*
-  \item ramets: count data of milkweed ramets observed for each of the three species within the 0.5 rectangle
+  \item year: numeric, year of observation
+  \item month: numeric, month of observation
+  \item day: numeric, day of observation
+  \item siteID: character, id of the site
+  \item transectID: character, id of the transect
+  \item round: character, the round number: 1, 2, or 3
+  \item section: character, point along the transect at which data was collected inside a 0.5m rectangle
+  \item milkweed_species: character, *common_ramet* *swamp_ramet* or *butterfly_ramet*
+  \item ramets: numeric, count data of milkweed ramets observed for each of the three species within the 0.5 rectangle
 }}
 \usage{
 milkweed

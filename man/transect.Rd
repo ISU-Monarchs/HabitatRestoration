@@ -6,9 +6,9 @@
 \title{Transect}
 \format{A data frame with the following variables:
 \itemize{
-  \item siteID: id of the site
-  \item transectID: id of the transect
-  \item grant: grant associated with each transect/site. 
+  \item siteID: character, id of the site
+  \item transectID: character, id of the transect
+  \item grant: character, grant associated with each transect/site. 
   
   'iacig' is Iowa NRCS Consevation Innovation Grant. Establishing habitat in existing grasslands on top of saturated buffers, as riparian buffers, beside oxbows, and bordering wetlands.
   
@@ -18,7 +18,7 @@
   
   'pork' is Iowa Pork Producers Association/National Pork Board Grant. Replacing lawn with pollinator habitat at hog confinement facilities.
     
-  \item county: county in Iowa associated with each transect/site.
+  \item county: character, county in Iowa associated with each transect/site.
 }}
 \usage{
 transect

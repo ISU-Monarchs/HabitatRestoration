@@ -48,6 +48,10 @@ bee = read_dir(path = "bee",
          na.rm=TRUE) %>% 
 	
 	mutate(count = as.numeric(count),
+	       year  = as.numeric(year),
+	       month = as.numeric(month),
+	       day   = as.numeric(day),
+	       
 	       section = distance) %>%      # some columns are character
   
   dplyr::select(year, month, day, 

@@ -6,18 +6,18 @@
 \title{Landscape2016}
 \format{A data frame with the following variables:
 \itemize{
-  \item year: year of observation
-  \item month: month of observation
-  \item day: day of observation
-  \item siteID: id of the site
-  \item transectID: id of the transect
-  \item round: the round number: 1, 2, or 3
-  \item direction: direction 'n' 'e' 's' 'w' of the surrouding landscape from the plot. 
+  \item year: numeric, year of observation
+  \item month: numeric, month of observation
+  \item day: numeric, day of observation
+  \item siteID: character, id of the site
+  \item transectID: character, id of the transect
+  \item round: character, the round number: 1, 2, or 3
+  \item direction: character, direction 'n' 'e' 's' 'w' of the surrouding landscape from the plot. 
   
   'general'- round 1 (and a few round 2) sites did not include cardinal directions. Only one observation was made, named as 'general'
   
-  \item milkweed: presence/abence survey of milkweed present in surrounding landscape, 'yes' 'no' answer
-  \item flowering_plants: presence/absence of currently flowering plants present in surrounding landscape. 'yes' 'no' answer
+  \item milkweed: character, presence/abence survey of milkweed present in surrounding landscape, 'yes' 'no' answer
+  \item flowering_plants: character, presence/absence of currently flowering plants present in surrounding landscape. 'yes' 'no' answer
 }}
 \usage{
 landscape2016

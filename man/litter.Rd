@@ -6,14 +6,14 @@
 \title{Litter - Sourced from Daubenmire}
 \format{A data frame with the following variables:
 \itemize{
-  \item year: year of observation
-  \item month: month of observation
-  \item day: day of observation
-  \item siteID: id of the site
-  \item transectID: id of the transect
-  \item round: the round number: 1, 2, or 3
-  \item section: point along the transect at which data was collected inside a 0.5m square
-  \item depth: depth of horizontal dead plant material on the soil surface in cm. cm values limited to measurement by 0.25cm increments.
+  \item year: numeric, year of observation
+  \item month: numeric, month of observation
+  \item day: numeric, day of observation
+  \item siteID: character, id of the site
+  \item transectID: character, id of the transect
+  \item round: character, the round number: 1, 2, or 3
+  \item section: character, point along the transect at which data was collected inside a 0.5m square
+  \item depth: numeric, depth of horizontal dead plant material on the soil surface in cm. cm values limited to measurement by 0.25cm increments.
 }}
 \usage{
 litter

@@ -1,7 +1,9 @@
 library("dplyr")
 
 
-species = read.csv("nectar/nectar_species_scientific_name_counting_unit.txt", header=TRUE)
+species = read.csv("nectar/nectar_species_scientific_name_counting_unit.txt",
+                   header           = TRUE,
+                   stringsAsFactors = FALSE)
 
 # Remove columns that are all NA
 species <- species %>% 

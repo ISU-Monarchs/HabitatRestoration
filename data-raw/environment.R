@@ -32,19 +32,27 @@ environment <- read_dir(path = "environment",
          # , -observer) %>%
   tidyr::spread(variable, value)
 
+# Remove quotes from column names
 names(environment) <- gsub('“', '', names(environment)) 
 names(environment) <- gsub('”', '', names(environment))
+
 environment <- environment %>%
 
   mutate(year           = as.numeric(year),
          month          = as.numeric(month),
          day            = as.numeric(day),
-         milkweed_ramet = as.numeric(milkweed_ramet),
+         
+         milkweed_ramet = as.integer(milkweed_ramet),
          temperature    = as.numeric(temperature),
+         wind           = as.numeric(wind),
          
          currently_flowering_plants = factor(currently_flowering_plants,
                                              levels = c("0","0-5","5-25","25-50","50-75"))) %>%
-  select(year, month, day, siteID, transectID, round, observer, everything())
+  
+  select(year, month, day, 
+         siteID, transectID, round, 
+         currently_flowering_plants, dominant_flowering_species, milkweed_ramet,
+         sky, temperature, wind)
 
 usethis::use_data(environment,
                    overwrite = TRUE)

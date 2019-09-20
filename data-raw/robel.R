@@ -38,17 +38,22 @@ robel = read_dir(path = "daubenmire",
          -observer,
          na.rm = TRUE) %>%
   
-  mutate(count = as.numeric(gsub(">","",count)), # 16 and above are 16
-         section = distance) %>%
+  dplyr::mutate(
+    # above 16, recorded as ">16" are right censored
+    censored = ifelse(grepl(">", count), "right", "not"),
+    count    = as.numeric(gsub(">","",count)),
+    
+    # convert to cm instead of # bands
+    height = count*10,
+    
+    year  = as.numeric(year),
+    month = as.numeric(month),
+    day   = as.numeric(day)) %>% 
+  
+  dplyr::rename(section = distance) %>%
   
   dplyr::select(year, month, day, 
-                siteID, transectID, 
-                round, section,
-                observer,
-                everything(),
-                -distance) %>%
-  mutate(count = count*10, # Transposing to cm instead of # bands
-         censored = ifelse(count > 160, "right", "not"))
+                siteID, transectID, round, section,
+                observer, Direction, height, censored)
 	
-usethis::use_data(robel,
-                   overwrite = TRUE)
+usethis::use_data(robel, overwrite = TRUE)

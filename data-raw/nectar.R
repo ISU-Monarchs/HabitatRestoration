@@ -49,19 +49,20 @@ nectar = read_dir(path = "nectar",
   
   ungroup %>%
   
-  dplyr::mutate(siteID     = factor(siteID),
-                transectID = factor(transectID),
+  dplyr::mutate(year  = as.numeric(year),
+                month = as.numeric(month),
+                day   = as.numeric(day),
                 
-                section = distance,
-                
-                year = as.numeric(year)) %>%
+                siteID     = siteID,
+                transectID = transectID) %>%
+  
+  dplyr::rename(section = distance) %>%
   
   dplyr::select(year, month, day, 
                 siteID, transectID, 
                 round, section,
                 observer,
-                everything(),
-                -distance)
+                everything())
 
 
 # Get names with Ramet in them

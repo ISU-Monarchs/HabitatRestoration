@@ -44,9 +44,7 @@ daubenmire = read_dir(path = "daubenmire",
          
          year = as.numeric(year),
          month = as.numeric(month),
-         day = as.numeric(day),
-         
-         round = as.numeric(round)) %>%
+         day = as.numeric(day)) %>%
   
   select(year, month, day, siteID, transectID, round, section,
          observer,

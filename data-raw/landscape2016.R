@@ -27,10 +27,14 @@ landscape2016 = read_dir(path = "landscape",
                               "year","month","day","observer",
                               "siteID","transectID","round",
                               "extension")) %>%
+  
+  dplyr::mutate(year = as.numeric(year),
+                month = as.numeric(month),
+                day = as.numeric(day)) %>%
+  
   select(year, month, day, 
          siteID, transectID, 
-         round, everything(),
-         -landscape, -extension)
+         round, direction, milkweed, flowering_plants)
 
 usethis::use_data(landscape2016,
                    overwrite = TRUE)
