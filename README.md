@@ -7,14 +7,13 @@ computing software [R](https://www.r-project.org/) which makes loading the data
 in R easy.
 The R package utilizes 
 [Git](https://git-scm.com/) for version control and recording keeping.
-The website <github.com> hosts the Git repository.
+The website <http://github.com> hosts the Git repository.
 
 ## People
 
 Currently 
-[Jarad Niemi](https://monarch.ent.iastate.edu/people/jarad-niemi) and 
-[Seth Applegate](https://monarch.ent.iastate.edu/people/seth-appelgate)
-are in charge of data entry while undergraduate interns are doing most of the actual data entry. 
+[Jarad Niemi](https://monarch.ent.iastate.edu/people/jarad-niemi)
+is in charge of data processing while undergraduate interns are doing most of the actual data entry. 
 [Additional individuals](https://github.com/jarad/ISUmonarch/graphs/contributors)
 have contributed along the way.
 
@@ -32,19 +31,27 @@ We also suggest you set up
 [ssh keys](https://www.r-bloggers.com/rstudio-pushing-to-github-with-ssh-authentication/)
 to make pushing and pulling to the repository easy. 
 
-## data-raw
+## data-raw/
 
 Contains all data collected
 
-## Data Entry - RStudio
+## data-raw/Data Entry - RStudio/
 
-Contains data entry protocols such as how to set up a computer with the github repository, scan/upload pdfs, and enter data.
+Contains data entry protocols such as how to set up a computer with the github 
+repository, scan/upload pdfs, and enter data.
 
-## R
+## R/
 
-caontains information about how each type of data was collected in the field as well as specifications for site and plant ID. 
+Contains information about how each type of data was collected in the field as 
+well as specifications for site and plant ID. 
+These files become the R help files.
 
-## Data
+## Data/
 
-Contains files which compile every piece of data collected and allows you to view it in one place. 
-Click on the file you want to load under the data file. When asked if you want to load the R data file into the golbal environemnt, click yes. Then in the top right panel of R, click on the environemnt tab and click on the file you want to load. 
+RData (.rda) binary files created from the scripts in the data-raw/ folder.
+These files contain every piece of data collected and allows you to view it in 
+one place. 
+Click on the file you want to load under the data file. 
+When asked if you want to load the R data file into the golbal environemnt, 
+click yes. Then in the top right panel of R, 
+click on the environemnt tab and click on the file you want to load. 
