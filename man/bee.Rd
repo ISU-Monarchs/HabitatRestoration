@@ -15,7 +15,7 @@
   \item section: character, the interval of the observation in length of meters along transect
   \item Nectar Plant Species: character, common name for nectar plant species on which the bee was nectaring
   \item Bee Species: character, type of bee: honey bee, bumble bee, or solitary bee
-  \item count: numeric, number of bees observed for each bee type
+  \item count: integer, number of bees observed for each bee type
 }}
 \usage{
 bee

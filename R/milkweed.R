@@ -37,7 +37,7 @@
 #'   \item round: character, the round number: 1, 2, or 3
 #'   \item section: character, point along the transect at which data was collected inside a 0.5m rectangle
 #'   \item milkweed_species: character, *common_ramet* *swamp_ramet* or *butterfly_ramet*
-#'   \item ramets: numeric, count data of milkweed ramets observed for each of the three species within the 0.5 rectangle
+#'   \item ramets: integer, count data of milkweed ramets observed for each of the three species within the 0.5 rectangle
 #' }
 #' @format A data frame with the variables above.
 "milkweed"

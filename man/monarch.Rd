@@ -64,7 +64,7 @@ PALMER AMARANTH DETECTED WITHIN THE PLOT
 
   --  'palmer amaranth' count data for palmer amaranth
   
-  \item count: count data for all variables within 'distance' described above
+  \item count: integer, count data for all variables within 'distance' described above
 }}
 \usage{
 monarch
@@ -105,9 +105,17 @@ See readme in 'monarch' folder in 'data-raw' for all other details.
 
 This data is recorded in 'environment' data set for 2017-2019.
 
-*wind* 2016 applicable issue: terminology changed. Definition of each of the 4 categories of wind was subjective to the observer; not based on any defined scale. Round1:calm, light, moderate, very windy. Round2/3:  calm, breeze, moderate breeze, too windy to monitor
+*wind* 2016 applicable issue: terminology changed. Definition of each of the 
+4 categories of wind was subjective to the observer; 
+not based on any defined scale. 
+Round1: calm, light, moderate, very windy. 
+Round2/3: calm, breeze, moderate breeze, too windy to monitor
 
-*start_time* *end_time* 2016 only issue: start_time and end_time should have always been 20 minutes apart. A 20 minute survey in total. Observer mistakes were made and survey time varied at select sites and rounds. See 'data' > 'survey' header 'monarch_time' for length in minutes of each survey. Length of survey is sometimes NA due to missing data.
+*start_time* *end_time* 2016 only issue: start_time and end_time should have 
+always been 20 minutes apart. A 20 minute survey in total. 
+Observer mistakes were made and survey time varied at select sites and rounds. 
+See 'data' > 'survey' header 'monarch_time' for length in minutes of each survey. 
+Length of survey is sometimes NA due to missing data.
 
 2017-2019 adult monarch survey time was always 20 minutes
 }

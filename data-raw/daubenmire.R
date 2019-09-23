@@ -23,60 +23,58 @@ read_dir = function(path, pattern, into) {
 ###########################################################
 
 daubenmire = read_dir(path = "daubenmire",
-                  pattern = "csv$",
-                  into = c("daubenmire",
-                           "year","month","day","observer",
-                           "siteID","transectID","round",
-                           "extension")) %>%
-  select(-daubenmire, -extension) %>%
-         # , -observer) %>%
-
-  gather(land_cover, percentage,
-         -section, 
-         -year, -month, -day, 
-         -siteID, -transectID, -round,
-         -observer,
-         na.rm = TRUE) %>%
+                      pattern = "csv$",
+                      into = c("daubenmire",
+                               "year","month","day","observer",
+                               "siteID","transectID","round",
+                               "extension")) %>%
+  dplyr::select(-daubenmire, -extension) %>%
+  # , -observer) %>%
   
-  mutate(percentage = gsub("<","",percentage),
-         percentage = gsub(">","",percentage),
-         percentage = as.numeric(percentage),
-         
-         year = as.numeric(year),
-         month = as.numeric(month),
-         day = as.numeric(day)) %>%
+  tidyr::gather(land_cover, percentage,
+                -section, 
+                -year, -month, -day, 
+                -siteID, -transectID, -round,
+                -observer,
+                na.rm = TRUE) %>%
   
-  select(year, month, day, siteID, transectID, round, section,
-         observer,
-         land_cover, percentage)
+  dplyr::mutate(percentage = gsub("<","",percentage),
+                percentage = gsub(">","",percentage),
+                percentage = as.numeric(percentage),
+                
+                year = as.numeric(year),
+                month = as.numeric(month),
+                day = as.numeric(day)) %>%
+  
+  dplyr::select(year, month, day, siteID, transectID, round, section,
+                observer,
+                land_cover, percentage)
 
 # Create 3 data.frames: cover, milkweed, litter
 # all three data.frames have these variables: year, month, day, siteID, transectID, round, section
-# cover has two new variables: class and percentage
-# milkweed has two new variables: milkweed_species and ramets
-# litter has one new column: depth
+# cover    has two new variables: class, percentage
+# milkweed has two new variables: milkweed_species, ramets
+# litter   has one new variable : depth
 
 milkweed = daubenmire %>% 
-  filter(land_cover %in% c("common_ramet","swamp_ramet","butterfly_ramet")) %>%
-  rename(milkweed_species = land_cover,
-         ramets = percentage)
+  dplyr::filter(land_cover %in% c("common_ramet","swamp_ramet","butterfly_ramet")) %>%
+  dplyr::rename(
+    milkweed_species = land_cover,
+    ramets = percentage) %>%
+  dplyr::mutate(ramets = as.integer(ramets))
 
 litter = daubenmire %>% 
-  filter(land_cover %in% c("litter_depth")) %>%
-  rename(depth = percentage) %>%
-  select(everything(), -land_cover)
+  dplyr::filter(land_cover %in% c("litter_depth")) %>%
+  dplyr::rename(depth = percentage) %>%
+  dplyr::select(everything(), -land_cover)
 
 cover = daubenmire %>% 
-  filter(!land_cover %in% c("common_ramet","swamp_ramet","butterfly_ramet","litter_depth")) %>%
-  rename(class = land_cover)
+  dplyr::filter(!land_cover %in% c("common_ramet","swamp_ramet",
+                                   "butterfly_ramet","litter_depth")) %>%
+  dplyr::rename(class = land_cover)
 
 
 
-usethis::use_data(milkweed,
-                   overwrite = TRUE)
-
-usethis::use_data(litter,
-                  overwrite = TRUE)
-
-usethis::use_data(cover,
-                  overwrite = TRUE)
+usethis::use_data(milkweed,  overwrite = TRUE)
+usethis::use_data(litter,    overwrite = TRUE)
+usethis::use_data(cover,     overwrite = TRUE)
