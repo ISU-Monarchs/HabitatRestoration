@@ -1,6 +1,6 @@
 Package: ISUmonarch
 Title: An example of constructing an R package for data
-Version: 0.3.1
+Version: 0.3.2
 Authors@R: person("Jarad", "Niemi", email = "niemi@iastate.edu", role = c("aut", "cre"))
 Description: Contains an example data set as an R package. The raw data are
     available in data-raw/ and are then compiled and available to the package in
