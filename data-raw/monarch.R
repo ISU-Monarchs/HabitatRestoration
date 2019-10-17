@@ -68,11 +68,10 @@ monarch = read_dir(path = "monarch",
     type = ifelse(distance == "palmer_amaranth", "palmer amaranth", type),
     
     # For ramets, eggs, and instars identify the type of milkweed 
-    # (not available for 2016)
     milkweed = NA,
-    milkweed = ifelse(grepl("common",    distance), "common",   milkweed),
-    milkweed = ifelse(grepl("butterfly", distance), "butterly", milkweed),
-    milkweed = ifelse(grepl("swamp",     distance), "swamp",    milkweed)) %>%
+    milkweed = ifelse(grepl("common",    distance), "common",    milkweed),
+    milkweed = ifelse(grepl("butterfly", distance), "butterfly", milkweed),
+    milkweed = ifelse(grepl("swamp",     distance), "swamp",     milkweed)) %>%
   
   
 	mutate(year  = as.numeric(year),
