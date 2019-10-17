@@ -106,6 +106,7 @@
 #' 
 #'   --  'palmer amaranth' count data for palmer amaranth
 #'   
+#'   \item type: character, converts distance column into more useful categories
 #'   \item count: integer, count data for all variables within 'distance' described above
 #' }
 #' @format A data frame with the variables above.
