@@ -37,10 +37,7 @@ Observer visually surveyed a 1m wide band along the whole length of the transect
 
 Area surveyed was the same as the length of transect because width of survey was 1m along whole length of transect.
 
-Transect lengths can be found in 'survey' folder.
-
-'nectar_species_scientific_name_counting_unit' document contains information which denotes species common and scientific names, specific counting units, and other plant information. 
-File is located in the folder 'data-raw/nectar' in the Git repository ISUmonarch.
+Transect lengths can be found in \code{\link{survey}} data.frame.
 
 
 
@@ -63,22 +60,6 @@ Observer visually surveyed a 1m wide band along the whole length of the transect
 Area surveyed was the same as the length of transect because width of survey was 1m along whole length of transect.
 
 Transect lengths can be found in 'survey' folder.
-}
-
-\section{'nectar_species_scientific_name_counting_unit' - document explanation}{
-
-
-'common_name' 'genus' 'species': common names and corresponding scientific names
-
-'field count unit' specific to each species. Floral counting units are either umbel, head, ramet, or spike
-
-'native_introduced_both' classification of plants as defined by the USDA PLANTS database.
-
-'planted_non_planted' Indicates which species were in the native seed mix planted. Seed mix same at all plots.
-
-'technical_count' more specifc description of 'field_count_unit'
-
-'inflorescence_name_when_technical' details if inflorescence is not easily explained
 }
 
 \references{
