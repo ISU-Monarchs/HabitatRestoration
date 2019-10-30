@@ -29,4 +29,4 @@
 #' 
 #' @seealso \code{\link{monarch}}, \code{\link{bee}}, \code{\link{species}}
 #' 
-"bee_plant"
+"bee_plants"
