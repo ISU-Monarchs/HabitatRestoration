@@ -6,6 +6,28 @@ e.g. `bee/README.md`.
 
 ## Data entry
 
+For anybody who will be entering data, 
+you will need to install 
+ - [R](https://www.r-project.org/),
+ - [RStudio](https://www.rstudio.com/products/rstudio/#Desktop), and
+ - [Git](https://git-scm.com/downloads).
+
+You will need an account on <github.com> where you can request an 
+[education discount](https://education.github.com/) 
+([discount no longer needed](https://github.blog/2019-01-07-new-year-new-github/)).
+We also suggest you set up 
+[ssh keys](https://www.r-bloggers.com/rstudio-pushing-to-github-with-ssh-authentication/)
+to make pushing and pulling to the repository easy. 
+
+For data entry, the relevant directories in the repository are 
+
+ - data-raw/ - contains all data collected
+ - data-raw/Data Entry - RStudio/ - contains data entry protocols such as how to set up a computer with the github repository, scan/upload pdfs, and enter data.
+ - R/ - contains R help files that provide information about how each type of data was collected in the field as well as specifications for site and plant ID. 
+ - data/ - scripts in data-raw/ convert data files into RData (.rda) binary files, you won't need to touch this directory
+
+
+
 Data entry should mirror physical data sheet as much as possible.
 
 ### Directories
