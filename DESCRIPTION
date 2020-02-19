@@ -1,10 +1,10 @@
-Package: ISUmonarch
-Title: An example of constructing an R package for data
-Version: 0.3.8
+Package: HabitatRestoration
+Title: Monarch butterfly habitat restoration data
+Version: 0.0.1
 Authors@R: person("Jarad", "Niemi", email = "niemi@iastate.edu", role = c("aut", "cre"))
-Description: Contains an example data set as an R package. The raw data are
-    available in data-raw/ and are then compiled and available to the package in
-    data/.
+Description: Contains data on a series of monarch habitat restoration sites 
+    including vegetation heights (Robel pole), percent cover (Daubenmire), 
+    nectar plant surveys, monarch surveys, and bee surveys from 2016 to 2019. 
 Depends:
     R (>= 3.2)
 License: GPL-2

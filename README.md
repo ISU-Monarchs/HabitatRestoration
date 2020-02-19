@@ -1,4 +1,4 @@
-# ISUmonarch
+# Habitat Restoration
 
 This repository is being used to store some of the data for the 
 [Iowa Monarch Conservation Consortium](https://monarch.ent.iastate.edu/).
