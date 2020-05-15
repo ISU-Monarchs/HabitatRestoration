@@ -1,7 +1,3 @@
-library("dplyr")
-library("tidyr")
-# requires "plyr" but doesn't load it
-
 source("common.R")
 
 read_bee_csv = function(f, into) {
@@ -51,13 +47,13 @@ bee_surveys = bee_files %>%
 bee_raw = bee_files %>%
   plyr::ldply(read_bee_csv, into = directory_and_file_structure) %>%
   
-  # Some data files used Bee Species and others used Pollinator Species
   dplyr::mutate(filename = paste(siteID, transectID, round, sep="_"),
                 filename = paste0(filename,".",extension),
                 filepath = paste(bee, year, month, day, observer, filename, sep="/"),
                 
                 date = as.Date(paste(year, month, day, sep="-")),
                 
+                # Some data files used Bee Species and others used Pollinator Species
                 `Bee Species` = ifelse(is.na(`Bee Species`), 
                                        `Pollinator Species`,
                                        `Bee Species`)) %>%
@@ -72,7 +68,7 @@ bee_raw = bee_files %>%
 
 
 # The following data.frame is used to `complete` the bee data with missing counts
-# we use this rather than `complete` because there are surveys were nothing
+# we use this rather than `complete` because there are surveys where nothing
 # was observed and thus are completely missing from the `bee_raw` data.frame
 bee_surveys_with_bee_types <- bee_surveys %>%
   merge(tibble::tibble(`Bee Type` = unique(bee_raw$`Bee Type`)), by = NULL)
@@ -92,8 +88,7 @@ bee <- bee_raw   %>%
   dplyr::summarize(count = sum(count, na.rm = TRUE)) %>% # non-existent combinations are given NA counts
   dplyr::ungroup() %>%
 
-  # Add missing zeros for surveys done, but missing in the data set
-  # bee_surveys data.frame, constructed above from file names, includes all surveys
+  # Add missing zeros for surveys done, but missing in the data set.
   dplyr::right_join(bee_surveys_with_bee_types,
                     by = c("date","transectID","round","observer","Bee Type")) %>%
   tidyr::replace_na(list(count = 0)) %>%

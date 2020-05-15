@@ -36,7 +36,9 @@ survey <- tmp %>%
          section_length = as.numeric(section_length),
          area           = as.numeric(area),
          monarch_time   = as.numeric(monarch_time),
-         year           = as.numeric(year))
+         year           = as.numeric(year)) %>%
+  
+  dplyr::select(year, round, transectID, length, area, section_length, monarch_time)
 
 
 
