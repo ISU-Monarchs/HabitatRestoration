@@ -4,15 +4,13 @@
 \name{bee}
 \alias{bee}
 \title{Bee counts}
-\format{A data frame with the following variables:
+\format{A data.frame with the following variables:
 \itemize{
-  \item year: numeric, year of observation
-  \item month: numeric, month of observation
-  \item day: numeric, day of observation
-  \item siteID: character, id of the site
+  \item date: Date, date of survey
   \item transectID: character, id of the transect
   \item round: character, the round number: 1, 2, or 3
-  \item Bee Species: character, type of bee: honey bee, bumble bee, or solitary bee
+  \item transect_length: integer, length of transect in meters
+  \item Bee Type: character, type of bee: honey bee, bumble bee, or solitary bee
   \item count: integer, number of bees observed for each bee type (NAs are due to observer misclassification)
 }}
 \usage{
@@ -46,6 +44,6 @@ Observer observed 180 degrees in front of themselves.
 }
 
 \seealso{
-\code{\link{monarch}}, \code{\link{bee_plant}}
+\code{\link{monarch}}, \code{\link{bee_plant}}, \code{\link{bee_raw}}
 }
 \keyword{datasets}

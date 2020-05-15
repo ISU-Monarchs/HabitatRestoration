@@ -1,112 +1,158 @@
 library("dplyr")
 library("tidyr")
+# requires "plyr" but doesn't load it
 
-my_read_csv = function(f, into) {
-  cat("Reading",f,"\n")
+source("common.R")
+
+read_bee_csv = function(f, into) {
+  # cat("Reading",f,"\n")
   readr::read_csv(f, 
                   skip = 1,
                   col_types = readr::cols(.default = "c")) %>%
-    mutate(file=f) %>%
+    mutate(file = f) %>%
     separate(file, into)
 }
 
-read_dir = function(path, pattern, into) {
-  files = list.files(path = path,
-                     pattern = pattern,
-                     recursive = TRUE,
-                     full.names = TRUE)
-  plyr::ldply(files, my_read_csv, into = into)
-}
-
-# Above taken from https://gist.github.com/jarad/8f3b79b33489828ab8244e82a4a0c5b3
-
 ###########################################################
 
+bee_files = list.files(path = "bee",
+                       pattern = "*.csv",
+                       recursive = TRUE,
+                       full.names = TRUE)
+
+directory_and_file_structure = c("bee",
+                                 "year","month","day","observer",
+                                 "siteID","transectID","round",
+                                 "extension")
+
+
 # Read filenames to get a complete list of all surveys completed
-surveys = list.files(path = "bee",
-                     pattern = "*.csv",
-                     recursive = TRUE,
-                     full.names = TRUE) %>%
+bee_surveys = bee_files %>%
+  plyr::ldply(read_first_line, into = directory_and_file_structure) %>%
   
-  as.data.frame(stringsAsFactors = FALSE) %>%
+  tidyr::pivot_longer(
+    cols = starts_with("X"),
+    names_to = "nothing",
+    values_to = "sections"
+  ) %>%
   
-  tidyr::separate(col = 1,
-                  into = c("bee","year","month","day","observer",
-                           "siteID","transectID","round","extension")) %>%
-  dplyr::select(-bee, -extension, -siteID)
+  dplyr::mutate(date = as.Date(paste(year, month, day, sep="-"))) %>%
+  
+  dplyr::group_by(date, round, observer, transectID) %>%
+  dplyr::summarize(transect_length = max_length(sections)) 
 
 
-# Read file contents to get all non-zero counts
-# If a file has no rows (other than a header), the data are missing but are 
-# imputed below based on surveys data.frame above
-bee_and_plants = read_dir(path = "bee",
-               pattern = "*.csv",
-               into = c("bee",
-                        "year","month","day","observer",
-                        "siteID","transectID","round",
-                        "extension")) %>%
+
+
+
+# Read files to get all non-zero counts
+bee_raw = bee_files %>%
+  plyr::ldply(read_bee_csv, into = directory_and_file_structure) %>%
   
   # Some data files used Bee Species and others used Pollinator Species
-  dplyr::mutate(`Bee Species` = ifelse(is.na(`Bee Species`), 
-                                `Pollinator Species`,
-                                `Bee Species`)) %>%
+  dplyr::mutate(filename = paste(siteID, transectID, round, sep="_"),
+                filename = paste0(filename,".",extension),
+                filepath = paste(bee, year, month, day, observer, filename, sep="/"),
+                
+                date = as.Date(paste(year, month, day, sep="-")),
+                
+                `Bee Species` = ifelse(is.na(`Bee Species`), 
+                                       `Pollinator Species`,
+                                       `Bee Species`)) %>%
   
-  dplyr::select(-bee, -extension, -`Pollinator Species`, -siteID) %>% 
+  dplyr::rename(`Bee Type` = `Bee Species`) %>%
   
-  tidyr::gather(distance, count,
-         -`Nectar Plant Species`, 
-         -`Bee Species`,
-         -year, -month, -day, -transectID, -round, 
-         -observer) %>% 
+  dplyr::select(-bee, -extension, -`Pollinator Species`, -filename,
+                -year, -month, -day) %>%
+  dplyr::select(filepath, date, round, observer, siteID, transectID,
+                `Bee Type`, `Nectar Plant Species`, everything()) %>%
+  dplyr::arrange(date, observer, transectID)
+
+
+# The following data.frame is used to `complete` the bee data with missing counts
+# we use this rather than `complete` because there are surveys were nothing
+# was observed and thus are completely missing from the `bee_raw` data.frame
+bee_surveys_with_bee_types <- bee_surveys %>%
+  merge(tibble::tibble(`Bee Type` = unique(bee_raw$`Bee Type`)), by = NULL)
+
+
+bee <- bee_raw   %>%
   
+  dplyr::select(-`Nectar Plant Species`, -siteID, -filepath) %>%
+  
+  tidyr::gather(section, count,
+         -`Bee Type`,
+         -date, -transectID, -round, -observer) %>% 
   
   # Gather data across sections since sections aren't consistent across years
-  mutate(count = as.integer(count)) %>% 
-  group_by(`Nectar Plant Species`,`Bee Species`, year, month, day, transectID, round, observer) %>%  
-  summarize(count = sum(count, na.rm = TRUE)) %>% # non-existent distances are given NA counts
-  ungroup() %>%
+  dplyr::mutate(count = as.integer(count)) %>% 
+  dplyr::group_by(`Bee Type`, date, transectID, round, observer) %>%  
+  dplyr::summarize(count = sum(count, na.rm = TRUE)) %>% # non-existent combinations are given NA counts
+  dplyr::ungroup() %>%
 
-  
   # Add missing zeros for surveys done, but missing in the data set
-  # surveys data.frame, constructed above from file names, includes all surveys
-  dplyr::full_join(surveys, by = names(surveys)) %>%
-  tidyr::complete(
-    nesting(transectID, year, month, day, round, observer), `Bee Species`, 
-    fill = list(count = 0)) %>%
+  # bee_surveys data.frame, constructed above from file names, includes all surveys
+  dplyr::right_join(bee_surveys_with_bee_types,
+                    by = c("date","transectID","round","observer","Bee Type")) %>%
+  tidyr::replace_na(list(count = 0)) %>%
   
-  dplyr::filter(!is.na(`Bee Species`)) %>% # It's unclear how these NAs arise
+  # observer misclassified look-alike insects as solitary bees
+  dplyr::mutate(count = ifelse(observer == "CodyA" & 
+                                 `Bee Type` == "solitary bee",
+                               NA, count)) %>%
   
-  
-  # observer misclassification: look-alike insects as solitary bees
-  dplyr::mutate(count = ifelse(observer == "CodyA" & `Bee Species` == "solitary bee",
-                              NA, count)) %>%
-  
-	dplyr::mutate(
-	  year  = as.numeric(year),
-	  month = as.numeric(month),
-	  day   = as.numeric(day),
-	  
-	  count = as.integer(count)) %>%      # some columns are character
-  
-  dplyr::select(year, month, day, transectID, round, 
-                `Nectar Plant Species`, `Bee Species`, count)
+	# dplyr::mutate(
+	#   year  = as.integer(year),
+	#   month = as.integer(month),
+	#   day   = as.integer(day),
+	#   
+	#   count = as.integer(count)) %>%      # some columns are character
+
+  dplyr::select(date, transectID, round, transect_length,
+                `Bee Type`, count) %>%
+  dplyr::arrange(date, round, transectID)
 	
 
 ###############################################################################
 
-bee_plants <- bee_and_plants %>%
-  filter(!is.na(`Nectar Plant Species`), 
-         !is.na(count)) # should only exclude the misclassification above
+# The following data.frame is used to `complete` the bee data with missing counts
+# we use this rather than `complete` because there are surveys were nothing
+# was observed and thus are completely missing from the `bee_raw` data.frame
+bee_surveys_with_plants <- bee_surveys %>%
+  merge(expand.grid(`Bee Type` = unique(bee_raw$`Bee Type`),
+                    `Nectar Plant Species` = unique(bee_raw$`Nectar Plant Species`),
+                    stringsAsFactors = FALSE), 
+        by = NULL) %>%
+  dplyr::arrange(date, round, transectID, `Bee Type`, `Nectar Plant Species`)
 
 
-###############################################################################
-
-bee <- bee_and_plants %>%
-  group_by(year, month, day, transectID, round, `Bee Species`) %>%
-  summarize(count = sum(count)) # NAs in count should be due to misclassification above
 
 
+bee_plants <- bee_raw %>%
+  
+  dplyr::select(-siteID, -filepath, -observer) %>%
+  
+  tidyr::gather(section, count,
+                -`Bee Type`, -`Nectar Plant Species`,
+                -date, -transectID, -round) %>% 
+  
+  dplyr::group_by(date, round, transectID, 
+                  `Nectar Plant Species`, `Bee Type`) %>%
+  dplyr::summarize(count = sum(as.integer(count), na.rm = TRUE)) %>%
+  
+  # Add missing zeros for surveys done, but missing in the data set
+  # bee_surveys data.frame, constructed above from file names, includes all surveys
+  dplyr::right_join(bee_surveys_with_plants,
+                    by = c("date","transectID","round",
+                           "Nectar Plant Species", "Bee Type")) %>%
+  tidyr::replace_na(list(count = 0)) %>%
+  dplyr::mutate(count = as.integer(count)) %>%
+  
+  dplyr::select(date, round, transectID, transect_length,
+                `Bee Type`, `Nectar Plant Species`, count)
 
 
-usethis::use_data(bee,        overwrite = TRUE)
-usethis::use_data(bee_plants, overwrite = TRUE)
+usethis::use_data(bee_surveys, overwrite = TRUE)
+usethis::use_data(bee_raw,     overwrite = TRUE)
+usethis::use_data(bee,         overwrite = TRUE)
+usethis::use_data(bee_plants,  overwrite = TRUE)
