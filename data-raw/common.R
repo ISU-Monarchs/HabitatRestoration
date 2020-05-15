@@ -1,5 +1,5 @@
-read_first_line = function(f, into) {
-  readr::read_csv(f, col_names = FALSE, n_max = 1, skip = 1) %>%
+read_first_line = function(f, into, skip = 0) {
+  readr::read_csv(f, col_names = FALSE, n_max = 1, skip = skip) %>%
     dplyr::mutate(file = f) %>%
     tidyr::separate(file, into)
 }

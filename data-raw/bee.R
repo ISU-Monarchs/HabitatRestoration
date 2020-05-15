@@ -28,7 +28,8 @@ directory_and_file_structure = c("bee",
 
 # Read filenames to get a complete list of all surveys completed
 bee_surveys = bee_files %>%
-  plyr::ldply(read_first_line, into = directory_and_file_structure) %>%
+  plyr::ldply(read_first_line, skip = 1,
+              into = directory_and_file_structure) %>%
   
   tidyr::pivot_longer(
     cols = starts_with("X"),
