@@ -39,7 +39,8 @@ bee_surveys = bee_files %>%
   dplyr::mutate(date = as.Date(paste(year, month, day, sep="-"))) %>%
   
   dplyr::group_by(date, round, observer, transectID) %>%
-  dplyr::summarize(transect_length = max_length(sections)) 
+  dplyr::summarize(transect_length = max_length(sections)) %>% 
+  ungroup() 
 
 
 
@@ -139,6 +140,7 @@ bee_plants <- bee_raw %>%
   dplyr::group_by(date, round, transectID, 
                   `Nectar Plant Species`, `Bee Type`) %>%
   dplyr::summarize(count = sum(as.integer(count), na.rm = TRUE)) %>%
+  ungroup() %>%
   
   # Add missing zeros for surveys done, but missing in the data set
   # bee_surveys data.frame, constructed above from file names, includes all surveys
