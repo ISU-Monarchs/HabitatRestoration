@@ -34,10 +34,9 @@ bee_surveys = bee_files %>%
   ) %>%
   
   dplyr::mutate(date = as.Date(paste(year, month, day, sep="-"))) %>%
+  dplyr::select(date, round, transectID, observer, section) %>%
+  dplyr::filter(substr(section,1,1) %in% 0:10)
   
-  dplyr::group_by(date, round, observer, transectID) %>%
-  dplyr::summarize(transect_length = max_length(section)) %>% 
-  ungroup() 
 
 
 
@@ -82,32 +81,30 @@ bee <- bee_raw   %>%
          -`Bee Type`,
          -date, -transectID, -round, -observer) %>% 
   
-  # Gather data across sections since sections aren't consistent across years
-  dplyr::mutate(count = as.integer(count)) %>% 
-  dplyr::group_by(`Bee Type`, date, transectID, round, observer) %>%  
-  dplyr::summarize(count = sum(count, na.rm = TRUE)) %>% # non-existent combinations are given NA counts
-  dplyr::ungroup() %>%
-
+  # Bee data are duplicated because they are recorded by plant type
+  # Since we are ignoring plant type for data, we aggregate these counts.
+  dplyr::group_by(date, round, observer, transectID, section, `Bee Type`) %>%
+  dplyr::summarize(count = sum(as.integer(count), na.rm = TRUE)) %>%
+  ungroup() %>%
+  
   # Add missing zeros for surveys done, but missing in the data set.
   dplyr::right_join(bee_surveys_with_bee_types,
-                    by = c("date","transectID","round","observer","Bee Type")) %>%
+                    by = c("date","round","transectID","observer","section","Bee Type")) %>%
   tidyr::replace_na(list(count = 0)) %>%
+  
+  # Gather data across sections since sections aren't consistent across years
+  # dplyr::mutate(count = as.integer(count)) %>% 
+  # dplyr::group_by(`Bee Type`, date, transectID, round, observer) %>%  
+  # dplyr::summarize(count = sum(count, na.rm = TRUE)) %>% # non-existent combinations are given NA counts
+  # dplyr::ungroup() %>%
   
   # observer misclassified look-alike insects as solitary bees
   dplyr::mutate(count = ifelse(observer == "CodyA" & 
                                  `Bee Type` == "solitary bee",
                                NA, count)) %>%
-  
-	# dplyr::mutate(
-	#   year  = as.integer(year),
-	#   month = as.integer(month),
-	#   day   = as.integer(day),
-	#   
-	#   count = as.integer(count)) %>%      # some columns are character
 
-  dplyr::select(date, transectID, round, transect_length,
-                `Bee Type`, count) %>%
-  dplyr::arrange(date, round, transectID)
+  dplyr::select(date, round, transectID, section, `Bee Type`, count) %>%
+  dplyr::arrange(date, transectID, section)
 	
 
 ###############################################################################
@@ -120,20 +117,23 @@ bee_surveys_with_plants <- bee_surveys %>%
                     `Nectar Plant Species` = unique(bee_raw$`Nectar Plant Species`),
                     stringsAsFactors = FALSE), 
         by = NULL) %>%
-  dplyr::arrange(date, round, transectID, `Bee Type`, `Nectar Plant Species`)
+  dplyr::arrange(date, transectID, section, `Bee Type`, `Nectar Plant Species`)
 
 
 
-
+cat("Creating bee_plants.\n")
 bee_plants <- bee_raw %>%
   
-  dplyr::select(-siteID, -filepath, -observer) %>%
+  dplyr::select(-siteID, -filepath) %>%
   
   tidyr::gather(section, count,
-                -`Bee Type`, -`Nectar Plant Species`,
-                -date, -transectID, -round) %>% 
+                -date, -transectID, -round, -observer, 
+                -`Bee Type`, -`Nectar Plant Species`) %>% 
   
-  dplyr::group_by(date, round, transectID, 
+  # Observations are duplicated, see e.g. 
+  # data-raw/2016/06/28/KelseyFJohnP/byd2_tbyd2a_1.pdf
+  # this will remove duplications
+  dplyr::group_by(date, round, transectID, observer, section,
                   `Nectar Plant Species`, `Bee Type`) %>%
   dplyr::summarize(count = sum(as.integer(count), na.rm = TRUE)) %>%
   ungroup() %>%
@@ -141,12 +141,17 @@ bee_plants <- bee_raw %>%
   # Add missing zeros for surveys done, but missing in the data set
   # bee_surveys data.frame, constructed above from file names, includes all surveys
   dplyr::right_join(bee_surveys_with_plants,
-                    by = c("date","transectID","round",
+                    by = c("date","round", "transectID","section","observer",
                            "Nectar Plant Species", "Bee Type")) %>%
   tidyr::replace_na(list(count = 0)) %>%
   dplyr::mutate(count = as.integer(count)) %>%
   
-  dplyr::select(date, round, transectID, transect_length,
+  # observer misclassified look-alike insects as solitary bees
+  dplyr::mutate(count = ifelse(observer == "CodyA" & 
+                                 `Bee Type` == "solitary bee",
+                               NA, count)) %>%
+  
+  dplyr::select(date, round, transectID, section,
                 `Bee Type`, `Nectar Plant Species`, count)
 
 
