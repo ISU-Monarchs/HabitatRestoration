@@ -1,6 +1,7 @@
 require("dplyr")
 require("tidyr")
 require("readr")
+require("usethis")
 
 read_first_line = function(f, into, skip = 0) {
   readr::read_csv(f, col_names = FALSE,

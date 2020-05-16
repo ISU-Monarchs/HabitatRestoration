@@ -1,8 +1,7 @@
-library("dplyr")
+source("common.R")
 
-
-transect <- read.csv("transect/transect.csv", 
-                     header           = TRUE,
-                     stringsAsFactors = FALSE)
+transect <- readr::read_csv("transect/transect.csv",
+                            col_types = cols(.default = "c")) %>%
+  dplyr::arrange(transectID)
 
 usethis::use_data(transect, overwrite = TRUE)
