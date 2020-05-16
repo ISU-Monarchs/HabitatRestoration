@@ -97,7 +97,7 @@ nectar = nectar_and_ramets %>% filter(!grepl("ramet", `Nectar Plant Species`))
 ramet  = nectar_and_ramets %>% 
   dplyr::filter( grepl("ramet", `Nectar Plant Species`)) %>%
   dplyr::rename(milkweed = `Nectar Plant Species`) %>%
-  dplyr::mutate(in_strip = ifelse(grepl("milkweed strips:",milkweed), "Yes", "No"),
+  dplyr::mutate(in_strip = ifelse(grepl("milkweed strip:",milkweed), "Yes", "No"),
                 milkweed = gsub("milkweed strip:", "", milkweed)) 
 
 # This eliminates sections and computes transect_length, but maybe we should 
