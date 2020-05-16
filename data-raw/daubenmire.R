@@ -24,7 +24,7 @@ daubenmire_surveys = daubenmire_files %>%
   plyr::ldply(read_daubenmire_csv,
               into = directory_and_file_structure) %>%
   dplyr::mutate(date = as.Date(paste(year, month, day, sep="-"))) %>%
-  dplyr::select(date, round, transectID, observer, section) %>%
+  dplyr::select(date, round, observer, transectID, section) %>%
   dplyr::arrange(date, transectID, section)
 
 

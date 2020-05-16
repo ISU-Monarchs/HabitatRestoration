@@ -35,7 +35,7 @@ bee_surveys = bee_files %>%
   dplyr::filter(substr(section,1,1) %in% 0:10) %>%
   
   dplyr::mutate(date = as.Date(paste(year, month, day, sep="-"))) %>%
-  dplyr::select(date, round, transectID, observer, section) %>%
+  dplyr::select(date, round, observer, transectID, section) %>%
   dplyr::arrange(date, transectID, section)
   
 
