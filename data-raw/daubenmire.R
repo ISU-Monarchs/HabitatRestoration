@@ -21,11 +21,11 @@ directory_and_file_structure = c("daubenmire",
                                  "extension")
 
 daubenmire_surveys = daubenmire_files %>%
-  plyr::ldply(read_first_line, skip = 0,
+  plyr::ldply(read_daubenmire_csv,
               into = directory_and_file_structure) %>%
-  
   dplyr::mutate(date = as.Date(paste(year, month, day, sep="-"))) %>%
-  dplyr::select(date, round, observer, transectID)
+  dplyr::select(date, round, transectID, observer, section) %>%
+  dplyr::arrange(date, transectID, section)
 
 
 daubenmire_raw = daubenmire_files %>%
@@ -40,7 +40,7 @@ daubenmire_raw = daubenmire_files %>%
                   
   dplyr::select(-daubenmire, -year, -month, -day, -extension, -filename) %>%
   dplyr::select(filepath, date, round, observer, siteID, transectID, everything()) %>%
-  dplyr::arrange(date, observer, transectID)
+  dplyr::arrange(date, observer, transectID, section)
 
 
 
@@ -69,10 +69,12 @@ daubenmire <- daubenmire_raw %>%
   
   # Add missing zeros for surveys done, but missing in the data set.
   dplyr::right_join(daubenmire_surveys_with_cover_types,
-                    by = c("date","round","observer", "transectID","land_cover")) %>%
+                    by = c("date","round", "observer", "transectID", "section",
+                           "land_cover")) %>%
   tidyr::replace_na(list(percentage = 0)) %>%
   
-  dplyr::select(date, round, transectID, section, land_cover, percentage)
+  dplyr::select(date, round, transectID, section, land_cover, percentage) %>%
+  dplyr::arrange(date, transectID, section)
 
 # Create 3 data.frames: cover, milkweed, litter
 # all three data.frames have these variables: date, transectID, round, section
