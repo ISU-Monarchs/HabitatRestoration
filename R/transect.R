@@ -19,5 +19,5 @@
 #'   \item county: character, county in Iowa associated with each transect/site.
 
 #' }
-#' @format A data frame with the variables above.
+#' 
 "transect"
