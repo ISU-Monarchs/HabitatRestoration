@@ -30,13 +30,13 @@ bee_surveys = bee_files %>%
   tidyr::pivot_longer(
     cols = starts_with("X"),
     names_to = "nothing",
-    values_to = "sections"
+    values_to = "section"
   ) %>%
   
   dplyr::mutate(date = as.Date(paste(year, month, day, sep="-"))) %>%
   
   dplyr::group_by(date, round, observer, transectID) %>%
-  dplyr::summarize(transect_length = max_length(sections)) %>% 
+  dplyr::summarize(transect_length = max_length(section)) %>% 
   ungroup() 
 
 
