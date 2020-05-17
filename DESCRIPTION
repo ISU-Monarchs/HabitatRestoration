@@ -1,6 +1,6 @@
 Package: HabitatRestoration
 Title: Monarch butterfly habitat restoration data
-Version: 0.0.2
+Version: 0.0.2.1
 Authors@R: c(
     person("Jarad", "Niemi", email = "niemi@iastate.edu", role = c("aut", "cre")),
     person("Steve", "Bradbury", email = "spbrad@iastate.edu", role = c("cph")),
