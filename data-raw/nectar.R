@@ -1,7 +1,7 @@
 source("common.R")
 
 read_nectar_csv = function(f, into) {
-  # cat("Reading",f,"\n")
+  cat("Reading",f,"\n")
   readr::read_csv(f, 
                   col_types = readr::cols(
                     "Nectar Plant Species" = "c",
@@ -47,7 +47,7 @@ nectar_surveys = nectar_files %>%
   dplyr::arrange(date, round, observer, transectID)
 
 
-nectar_raw = nectar_files %>%
+nectar_with_strip = nectar_files %>%
   plyr::ldply(read_nectar_csv, 
               into = directory_and_file_structure) %>%
   
@@ -60,6 +60,10 @@ nectar_raw = nectar_files %>%
   dplyr::select(-nectar, -year, -month, -day, -extension, -filename) %>%
   dplyr::select(filepath, date, round, observer, siteID, transectID, everything()) %>%
   dplyr::arrange(date, observer, transectID)
+
+
+nectar_raw  = nectar_with_strip %>% filter(!grepl("milkweed strip:", `Nectar Plant Species`))
+ramet_strip = nectar_with_strip %>% filter( grepl("milkweed strip:", `Nectar Plant Species`))
 
 
 
@@ -96,9 +100,7 @@ nectar = nectar_and_ramets %>% filter(!grepl("ramet", `Nectar Plant Species`))
 
 ramet  = nectar_and_ramets %>% 
   dplyr::filter( grepl("ramet", `Nectar Plant Species`)) %>%
-  dplyr::rename(milkweed = `Nectar Plant Species`) %>%
-  dplyr::mutate(in_strip = ifelse(grepl("milkweed strip:",milkweed), "Yes", "No"),
-                milkweed = gsub("milkweed strip:", "", milkweed)) 
+  dplyr::rename(milkweed = `Nectar Plant Species`) 
 
 # This eliminates sections and computes transect_length, but maybe we should 
 # keep information about sections.
@@ -112,3 +114,4 @@ usethis::use_data(nectar_raw,     overwrite = TRUE)
 usethis::use_data(nectar_surveys, overwrite = TRUE)
 usethis::use_data(nectar,         overwrite = TRUE)
 usethis::use_data(ramet,          overwrite = TRUE)
+usethis::use_data(ramet_strip,    overwrite = TRUE)
