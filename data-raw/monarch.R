@@ -1,7 +1,6 @@
-library("dplyr")
-library("tidyr")
+source("common.R")
 
-my_read_csv = function(f, into) {
+read_monarch_csv = function(f, into) {
   cat("Reading",f,"\n")
   readr::read_csv(f, 
                   col_names = c("key","value"), 
@@ -10,40 +9,58 @@ my_read_csv = function(f, into) {
     separate(file, into)
 }
 
-read_dir = function(path, pattern, into) {
-  files = list.files(path = path,
-                     pattern = pattern,
-                     recursive = TRUE,
-                     full.names = TRUE)
-  plyr::ldply(files, my_read_csv, into = into)
-}
-
-# Above taken from https://gist.github.com/jarad/8f3b79b33489828ab8244e82a4a0c5b3
 
 ###########################################################
 
-monarch = read_dir(path = "monarch",
-               pattern = "*.csv",
-               into = c("monarch",
-                        "year","month","day","observer",
-                        "siteID","transectID","round",
-                        "extension")) %>%
-  
-  select(-monarch, -extension) %>%
-         # , -observer) %>%
+monarch_files = list.files(path = "monarch",
+                       pattern = "*.csv",
+                       recursive = TRUE,
+                       full.names = TRUE)
 
-  spread(key, value) %>%  
+directory_and_file_structure = c("monarch",
+                                 "year","month","day","observer",
+                                 "siteID","transectID","round",
+                                 "extension")
+
+# Read filenames to get a complete list of all surveys completed
+monarch_surveys = monarch_files %>%
+  plyr::ldply(read_first_line, 
+              into = directory_and_file_structure) %>%
+  dplyr::mutate(date = as.Date(paste(year, month, day, sep="-"))) %>%
+  dplyr::select(date, round, observer, transectID) %>%
+  dplyr::arrange(date, observer, transectID)
   
-  mutate(extra_monarchs = ifelse(is.na(extra_monarchs), extra_monarch, extra_monarchs)) %>% 
-  select(-extra_monarch) %>%
+
+
+monarch_raw = monarch_files %>%
+  plyr::ldply(read_monarch_csv, 
+              into = directory_and_file_structure) %>%
   
-  gather(distance, count,
-         -year, -month, -day, -siteID, -transectID, -round,
-         -end_time, -sky, -start_time, -wind, -temp,
-         -observer,
+  dplyr::mutate(filename = paste(siteID, transectID, round, sep="_"),
+                filename = paste0(filename,".",extension),
+                filepath = paste(monarch, year, month, day, observer, filename, sep="/"),
+                
+                date = as.Date(paste(year, month, day, sep="-"))) %>%
+  
+  dplyr::select(-monarch, -year, -month, -day, -extension, -filename) %>%
+  dplyr::select(filepath, date, round, observer, siteID, transectID, everything()) %>%
+  dplyr::arrange(date, observer, transectID)
+
+
+
+monarch = monarch_raw %>%
+  
+  dplyr::select(-filepath, -observer, -siteID) %>%
+  dplyr::mutate(key = dplyr::recode(key, extra_monarch = "extra_monarchs")) %>%
+
+  tidyr::spread(key, value) %>%  
+  
+  tidyr::gather(distance, count,
+         -date, -round, -transectID, 
+         -start_time, -end_time, -temp, -wind, -sky, 
          na.rm = TRUE) %>% 
 	
-  mutate(
+  dplyr::mutate(
     type = NA,
     
     # Monarchs observed during survey time
@@ -56,13 +73,12 @@ monarch = read_dir(path = "monarch",
                   "survey", type),
     
     # Monarchs observed outside of survey time
-    type  = ifelse(distance == "extra_monarchs",
-                   "extra", type),
+    type  = ifelse(distance == "extra_monarchs", "extra", type),
     
     # Ramets, eggs, instars, and palmer amaranth
     type = ifelse(distance %in% c("stems","butterfly_ramets",
                                   "common_ramets","swamp_ramets"),
-                  "ramets",type),
+                  "ramets", type),
     type = ifelse(grepl("eggs",distance), "eggs", type),
     type = ifelse(grepl("instar", distance), "instar", type),
     type = ifelse(distance == "palmer_amaranth", "palmer amaranth", type),
@@ -74,14 +90,22 @@ monarch = read_dir(path = "monarch",
     milkweed = ifelse(grepl("swamp",     distance), "swamp",     milkweed)) %>%
   
   
-	mutate(year  = as.numeric(year),
-	       month = as.numeric(month),
-	       day   = as.numeric(day),
-	       
-	       temp  = as.numeric(temp),
-	       count = as.integer(count)
+  dplyr::mutate(
+    temp  = as.numeric(temp),
+    count = as.integer(count),
+    
+    start_time = as.POSIXct(paste(date, start_time), tz = "America/Chicago", format = "%Y-%m-%d %I:%M%p"),
+    end_time   = as.POSIXct(paste(date,   end_time), tz = "America/Chicago", format = "%Y-%m-%d %I:%M%p")
 	       
 	       )  %>%          # some columns are character
-	select(year, month, day, siteID, transectID, round, observer, everything())
+  
+  # dplyr::select(-siteID) %>%
+  dplyr::select(date, round, transectID, end_time, start_time, temp, wind, sky,
+                type, distance, milkweed, count, everything()) %>%
+  dplyr::arrange(start_time, transectID)
 
-usethis::use_data(monarch, overwrite = TRUE)
+
+
+usethis::use_data(monarch_surveys, overwrite = TRUE)
+usethis::use_data(monarch_raw,     overwrite = TRUE)
+usethis::use_data(monarch,         overwrite = TRUE)
