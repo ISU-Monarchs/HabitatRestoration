@@ -5,8 +5,8 @@
 #'
 #'@section Data Collection Protocol:
 #'
-#' Data collection protocols evolved as the project aged. See README in 
-#' data-raw/monarch for details.
+#' Data collection protocols evolved as the project aged. See 
+#' data-raw/monarch/README.md for details.
 #' 
 #' 2017-2019 protocols were consitent and did not change.
 #' 

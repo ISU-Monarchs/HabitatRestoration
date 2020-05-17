@@ -6,12 +6,9 @@
 \title{Robel}
 \format{A data frame with the following variables:
 \itemize{
-  \item year: numeric, year of observation
-  \item month: numeric, month of observation
-  \item day: numeric, day of observation
-  \item siteID: character, id of the site
-  \item transectID: character, id of the transect
+  \item date:
   \item round: character, the round number: 1, 2, or 3
+  \item transectID: character, id of the transect
   \item section: character, the interval of the observation in length of meters along transect
   \item Direction: character, direction from pole in which observation was taken. n, e, w, or s
   \item height: numeric, visual obstruction robel pole reading. Height in cm. heigths above 160 are right-censored to 160, see censored variable.
@@ -21,7 +18,8 @@
 robel
 }
 \description{
-This data set contains visual obstruction robel pole readings observed at 10m intervals along a transect.
+This data set contains visual obstruction robel pole readings observed at 10m 
+intervals along a transect.
 }
 \section{Data Collection Protocol}{
 
@@ -32,35 +30,47 @@ Robel survey was done at 10m lengths along a permanent transect line.
 
 Observer placed a robel pole on the left side of the transect. 
 
-Our robel pole was marked with bands every 10cm (1 decimeter) starting at a value of '1'. 
+Our robel pole was marked with bands every 10cm (1 decimeter) starting at a 
+value of '1'. 
 
 0-10cm was a value of 1. Pole was 160cm tall or a value of '16'. 
 
-Observer crouched at a distance of 4 meters from the pole and observed at a height of 1 meter above the ground. 
+Observer crouched at a distance of 4 meters from the pole and observed at a 
+height of 1 meter above the ground. 
 
 A robel reading was taken in all 4 cardinal directions (n,e,s,w). 
 
-Robel reading is the highest band (10cm section) on the pole at which vegetation obscures greater than or equal to 50 percent of the band on the pole when vegetation obscures less than or equal to 50 percent of the band above it on the pole. 
+Robel reading is the highest band (10cm section) on the pole at which 
+vegetation obscures greater than or equal to 50 percent of the band on the 
+pole when vegetation obscures less than or equal to 50 percent of the band 
+above it on the pole. 
 
 Example: 4 is barely visible but 5 is unobscured, the reading is 4. 
 
-Visual obstruction readings are allowed to be 0. This would occur if band 1 was less than 50 percent obscured by vegetation.
+Visual obstruction readings are allowed to be 0. This would occur if band 1 
+was less than 50 percent obscured by vegetation.
 
-Observations started at 0 meters on the transect and were taken every 10m of the transect and stopped before the transect ended. 
+Observations started at 0 meters on the transect and were taken every 10m of 
+the transect and stopped before the transect ended. 
 
-A transect length of 100m will have points recorded for 0 meters through 90 meters; 10 points. 
+A transect length of 100m will have points recorded for 0 meters through 90 
+meters; 10 points. 
 
-Data is not taken at the final point on the transect as this area is outside the transect.
+Data is not taken at the final point on the transect as this area is outside 
+the transect.
 }
 
 \section{Variables Notes}{
 
 
-*Direction* 'n' 'e' 's' 'w': Denotes the cardinal direction from which the data was taken. 
+*Direction* 'n' 'e' 's' 'w': Denotes the cardinal direction from which the 
+data was taken. 
 
-    Directions are based on the observers position in relation to the pole, not the direction in which the observer is looking. 
+    Directions are based on the observer's position in relation to the pole, 
+    not the direction in which the observer is looking. 
 
-    Example: 'n' data is taken by the observer when the observer is north of the pole looking south.
+    Example: 'n' data is taken by the observer when the observer is north of 
+    the pole looking south.
 
 
  *count* visual obstruction robel pole reading.

@@ -11,7 +11,8 @@
   \item round: character, the round number: 1, 2, or 3
   \item transect_length: integer, length of transect in meters
   \item Bee Type: character, type of bee: honey bee, bumble bee, or solitary bee
-  \item count: integer, number of bees observed for each bee type (NAs are due to observer misclassification)
+  \item count: integer, number of bees observed for each bee type 
+  (NAs are due to observer misclassification)
 }}
 \usage{
 bee
@@ -22,17 +23,25 @@ This data set contains the count of bees observed
 \section{Data Collection Protocol}{
 
 
-Bees and the nectar plants on which the bees were nectaring were surveyed by an observer walking along a permanent transect line. 
+Bees and the nectar plants on which the bees were nectaring were surveyed by 
+an observer walking along a permanent transect line. 
  
-Observer walked a line parallel to the transect at a length of 1.5m to the left of the transect at a rate of 2minutes/10m section. Section information was removed due to inconsistent methodology from year to year, but this information is available in the raw data.
+Observer walked a line parallel to the transect at a length of 1.5m to the 
+left of the transect at a rate of 2minutes/10m section. Section information 
+was removed due to inconsistent methodology from year to year, but this 
+information is available in the raw data.
   
 Surveys were conducted for 20 minutes.
   
-If transect was shorter than 100m (20 minutes), observer stopped the time at the end of the transect, walked around plot, returned to start of transect, and continued survey until reaching 20 minutes (100m total).
+If transect was shorter than 100m (20 minutes), observer stopped the time at 
+the end of the transect, walked around plot, returned to start of transect, and continued survey until reaching 20 minutes (100m total).
   
-Observer visually surveyed a 3m wide band along the whole length of the transect, recording every visual detection of nectaring bee and the plant it was nectaring on at the time of first observation. 
+Observer visually surveyed a 3m wide band along the whole length of the 
+transect, recording every visual detection of nectaring bee and the plant it was nectaring on at the time of first observation. 
  
-Observer only counted nectaring bees and did not include flying bees. Observer recorded species on plant the bee was on an these data are available in \code{\link{bee_plant}}.
+Observer only counted nectaring bees and did not include flying bees. 
+Observer recorded species on plant the bee was on an these data are available 
+in \code{\link{bee_plant}}.
 
 Observer observed 180 degrees in front of themselves.
 }
@@ -40,7 +49,8 @@ Observer observed 180 degrees in front of themselves.
 \section{Variable Notes}{
 
 
-*Bee Species* Only nectaring bees were counted. There were 3 possible options for bee names: *honey bee* *bumble bee* *solitary bee*
+*Bee Species* Only nectaring bees were counted. There were 3 possible options 
+for bee names: *honey bee* *bumble bee* *solitary bee*
 }
 
 \seealso{

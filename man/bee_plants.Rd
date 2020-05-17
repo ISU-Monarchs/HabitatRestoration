@@ -12,7 +12,8 @@
   \item transect_length: integer, length of transect (meters)
   \item Bee Type: character, type of bee: honey bee, bumble bee, or solitary bee
   \item Nectar Plant Species: character, common name for nectar plant species on which the bee was nectaring
-  \item count: integer, number of bees observed for each bee type (NAs have been removed, see \code{\link{bee}})
+  \item count: integer, number of bees observed for each bee type 
+  (NAs refer to observer misclassification)
 }}
 \usage{
 bee_plants
@@ -39,9 +40,11 @@ Protocol was the same as \code{\link{bee}}
 
 *Nectar Plant Species* the specific nectar plant on which the bee was nectaring 
    
-     Nectar species scientific names and corresponding common names are in \code{\link{species}}
+     Nectar species scientific names and corresponding common names are in 
+     \code{\link{species}}
      
-*Bee Species* Only nectaring bees were counted. There were 3 possible options for bee names: *honey bee* *bumble bee* *solitary bee*
+*Bee Species* Only nectaring bees were counted. There were 3 possible options 
+for bee names: *honey bee* *bumble bee* *solitary bee*
 
 
 

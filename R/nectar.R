@@ -129,3 +129,10 @@
 #' 
 "ramet"
 
+
+#' Ramet strip data
+#' 
+#' It is unclear exactly what these data are. They are derived from data files
+#' in data-raw/nectar, but they are NOT part of the formal survey. 
+#' 
+"ramet_strip"

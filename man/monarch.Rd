@@ -6,17 +6,17 @@
 \title{Monarch}
 \format{A data frame with the following variables:
 \itemize{
-  \item year: numeric, year of observation
-  \item month: numeric, month of observation
-  \item day: numeric, day of observation
-  \item siteID: id of the site
-  \item transectID: id of the transect
+  \item date:
   \item round: the round number: 1, 2, or 3
-  \item end_time: time survey ended
-  \item sky: cloud cover (clear, mostly clear, mostly cloudy, cloudy, rain) for 2016 data. See 'environment' data set for 2017-2019 data.
+  \item transectID: id of the transect
   \item start_time: time survey began
-  \item temp: numeric, temperature in Fahrenheit at start of survey for 2016 data. See 'environment' data set for 2017-2019 data.
-  \item wind: character, wind category at start of survey for for 2016 data. See 'environment' data set for 2017-2019 data.
+  \item end_time: time survey ended
+  \item temp: numeric, temperature in Fahrenheit at start of survey for 2016 
+  data. See 'environment' data set for 2017-2019 data.
+  \item wind: character, wind category at start of survey for for 2016 data. 
+  See 'environment' data set for 2017-2019 data.
+  \item sky: cloud cover (clear, mostly clear, mostly cloudy, cloudy, rain) 
+  for 2016 data. See 'environment' data set for 2017-2019 data.
   \item distance: numeric, contains many variables 
 
 MONARCH ADULTS WITHIN SURVEY TIME 
@@ -72,38 +72,48 @@ PALMER AMARANTH DETECTED WITHIN THE PLOT
 monarch
 }
 \description{
-This data set contains weather data and count data for monarch adults, eggs, and instars during a survey as well as count data for palmer amaranth.
+This data set contains weather data and count data for monarch adults, eggs, 
+and instars during a survey as well as count data for palmer amaranth.
 }
 \section{Data Collection Protocol}{
 
 
-Data collection protocols evolved as the project aged. See readme in 'monarch' folder within 'data-raw' for details.
+Data collection protocols evolved as the project aged. See 
+data-raw/monarch/README.md for details.
 
 2017-2019 protocols were consitent and did not change.
 
 2016 protocols changed by round and differ slightly from 2017-2019 data.
 
-Adult monarchs were surveyed by an observer walking along a permanent transect line.
+Adult monarchs were surveyed by an observer walking along a permanent 
+transect line.
  
-Observer walked a line parallel to the transect, immediately to the right of the transect at a rate of 2minutes/10m section.
+Observer walked a line parallel to the transect, immediately to the right of 
+the transect at a rate of 2minutes/10m section.
  
-Surveys were conducated for 20 minutes. Exceptions noted in files in 'survey' folder.
+Surveys were conducated for 20 minutes. Exceptions noted in files in 'survey' 
+folder.
 
-If transect was shorter than 100m (20 minutes), observer stopped the time at the end of the transect, walked around plot, returned to start of transect, and continued survey until reaching 20 minutes (100m total).
+If transect was shorter than 100m (20 minutes), observer stopped the time at 
+the end of the transect, walked around plot, returned to start of transect, and continued survey until reaching 20 minutes (100m total).
 
-Observer visually surveyed 180 degrees in front of themselves, recording every visual detection of a monarch and it's location at the time of first observation.
-
-See readme in 'monarch' folder in 'data-raw' for all other details.
+Observer visually surveyed 180 degrees in front of themselves, recording 
+every visual detection of a monarch and it's location at the time of first 
+observation.
 }
 
 \section{Variable Notes}{
 
 
-*distance* contains many variables (see bullet point list above and readme in 'monarch' folder within 'data-raw' for details)
+*distance* contains many variables (see bullet point list above and readme in 
+'monarch' folder within 'data-raw' for details)
 
-*end time* data only exists for 2016. Was not necessary to collect in 2017-2019 as all surveys were 20 minutes long.
+*end time* data only exists for 2016. Was not necessary to collect in 
+2017-2019 as all surveys were 20 minutes long.
 
-*sky* *temp* *wind* use this dataset for 2016 data. Original 2016 round 1 data was recorded on 'landscape2016' data sheets and on 'monarch' data sheets round 2 and 3 2016. 
+*sky* *temp* *wind* use this dataset for 2016 data. Original 2016 round 1 
+data was recorded on 'landscape2016' data sheets and on 'monarch' data sheets 
+round 2 and 3 2016. 
 
 This data is recorded in 'environment' data set for 2017-2019.
 
