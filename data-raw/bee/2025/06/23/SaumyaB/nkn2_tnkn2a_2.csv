@@ -1,9 +1,20 @@
-"Bee Species","Nectar Plant Species","0-10m","10-20m","20-30m","30-40m","40-50m","50-60m","60-70m","70-80m","80-90m","90-100m"
-"Bumble Bee","red clover","2","0","0","0","0","0","0","0","0","0"
-"Bumble Bee","birdsfoot trefoil","0","0","0","0","0","0","0","0","0","2"
-"Bumble Bee","foxglove beardtongue","0","0","0","0","0","0","0","1","0","0"
-"Honey Bee","yellow sweet clover","1","0","0","0","0","0","0","0","0","0"
-"Solitary Bee","common yarrow","1","0","0","0","1","0","0","0","1","0"
-"Solitary Bee","birdsfoot trefoil","1","0","0","0","0","2","2","0","1","2"
-"Solitary Bee","ox eye sunflower","0","1","1","0","0","0","0","0","0","0"
-"Solitary Bee","foxglove beardtongue","0","0","0","0","0","0","1","1","0","0"
+start_time,NA,,,,,,,,,,
+"Bee Species","Nectar Plant Species",0-10m,10-20m,20-30m,30-40m,40-50m,50-60m,60-70m,70-80m,80-90m,90-100m
+"Bumble Bee","red clover",2,0,0,0,0,0,0,0,0,0
+"Bumble Bee","yellow sweet clover",,,,,,,,,,
+"Bumble Bee","common yarrow",,,,,,,,,,
+"Bumble Bee","birdsfoot trefoil",0,0,0,0,0,0,0,0,0,2
+"Bumble Bee","ox eye sunflower",,,,,,,,,,
+"Bumble Bee","foxglove beardtongue",0,0,0,0,0,0,0,1,0,0
+"Honey Bee","red clover",,,,,,,,,,
+"Honey Bee","yellow sweet clover",1,0,0,0,0,0,0,0,0,0
+"Honey Bee","common yarrow",,,,,,,,,,
+"Honey Bee","birdsfoot trefoil",,,,,,,,,,
+"Honey Bee","ox eye sunflower",,,,,,,,,,
+"Honey Bee","foxglove beardtongue",,,,,,,,,,
+"Solitary Bee","red clover",,,,,,,,,,
+"Solitary Bee","yellow sweet clover",,,,,,,,,,
+"Solitary Bee","common yarrow",1,0,0,0,1,0,0,0,1,0
+"Solitary Bee","birdsfoot trefoil",1,0,0,0,0,2,2,0,1,2
+"Solitary Bee","ox eye sunflower",0,1,1,0,0,0,0,0,0,0
+"Solitary Bee","foxglove beardtongue",0,0,0,0,0,0,1,1,0,0

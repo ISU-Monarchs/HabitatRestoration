@@ -1,10 +1,16 @@
-"Bee Species","Nectar Plant Species","0-10m","10-20m","20-30m","30-40m","40-50m","50-60m","60-70m","70-80m","80-90m","90-100m"
-"Solitary Bee","wild bergamot","7","1","1","4","5","5","4","2","4","4"
-"Solitary Bee","yellow coneflower","0","0","0","0","1","0","0","0","1","1"
-"Solitary Bee","carolina horsenettle","0","0","0","0","0","1","0","0","0","0"
-"Solitary Bee","birdsfoot trefoil","1","1","3","3","0","2","0","0","0","0"
-"Solitary Bee","common st johnswort","0","0","3","0","1","0","0","0","0","0"
-"Solitary Bee","virginia mountain mint","0","1","0","0","0","0","0","0","0","0"
-"Bumble Bee","wild bergamot","6","0","2","0","1","1","5","1","3","2"
-"Bumble Bee","ox eye sunflower","1","0","0","0","0","0","0","2","0","0"
-"Bumble Bee","birdsfoot trefoil","0","0","1","0","0","0","0","0","0","0"
+start_time,NA,,,,,,,,,,
+"Bee Species","Nectar Plant Species",0-10m,10-20m,20-30m,30-40m,40-50m,50-60m,60-70m,70-80m,80-90m,90-100m
+"Solitary Bee","wild bergamot",7,1,1,4,5,5,4,2,4,4
+"Solitary Bee","yellow coneflower",0,0,0,0,1,0,0,0,1,1
+"Solitary Bee","ox eye sunflower",,,,,,,,,,
+"Solitary Bee","carolina horsenettle",0,0,0,0,0,1,0,0,0,0
+"Solitary Bee","birdsfoot trefoil",1,1,3,3,0,2,0,0,0,0
+"Solitary Bee","common st johnswort",0,0,3,0,1,0,0,0,0,0
+"Solitary Bee","virginia mountain mint",0,1,0,0,0,0,0,0,0,0
+"Bumble Bee","wild bergamot",6,0,2,0,1,1,5,1,3,2
+"Bumble Bee","yellow coneflower",,,,,,,,,,
+"Bumble Bee","ox eye sunflower",1,0,0,0,0,0,0,2,0,0
+"Bumble Bee","carolina horsenettle",,,,,,,,,,
+"Bumble Bee","birdsfoot trefoil",0,0,1,0,0,0,0,0,0,0
+"Bumble Bee","common st johnswort",,,,,,,,,,
+"Bumble Bee","virginia mountain mint",,,,,,,,,,

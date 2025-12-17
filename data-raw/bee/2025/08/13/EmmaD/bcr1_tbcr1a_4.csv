@@ -1,8 +1,9 @@
-"Bee Species","Nectar Plant Species","0-10m","10-20m","20-30m","30-40m","40-50m","50-60m","60-70m","70-80m","80-90m","90-100m"
-"Bumble Bee","ox eye sunflower","1","0","1","0","0","","","","",""
-"Bumble Bee","wild bergamot","1","0","0","0","0","","","","",""
-"Bumble Bee","yellow coneflower","0","1","0","0","0","","","","",""
-"Solitary Bee","ox eye sunflower","3","2","0","0","0","","","","",""
-"Solitary Bee","yellow coneflower","0","0","3","2","0","","","","",""
-"Honey Bee","ox eye sunflower","0","1","0","0","0","","","","",""
-"Honey Bee","yellow coneflower","1","0","0","0","0","","","","",""
+"Start Time",12:28PM
+"Bee Species","Nectar Plant Species",0-10m,10-20m,20-30m,30-40m,40-50m
+"bumble bee","ox eye sunflower",1,0,1,0,0
+"bumble bee","wild bergamot",1,0,0,0,0
+"bumble bee","yellow coneflower",0,1,0,0,0
+"solitary bee","ox eye sunflower",3,2,0,0,0
+"solitary bee","yellow coneflower",0,0,3,2,0
+"honey bee","ox eye sunflower",0,1,0,0,0
+"honey bee","yellow coneflower",1,0,0,0,0
