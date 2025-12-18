@@ -1,0 +1,9 @@
+"Start Time",10:56AM
+"Bee Species","Nectar Plant Species",0-10m,10-20m,20-30m,30-40m,40-50m
+"solitary bee","ox eye sunflower",1,0,0,0,1
+"solitary bee","red clover",0,0,1,0,0
+"solitary bee","partridge pea",0,0,0,1,0
+"solitary bee","yellow coneflower",0,0,1,0,0
+"bumble bee","ox eye sunflower",1,0,0,0,0
+"bumble bee","red clover",0,0,1,0,1
+"bumble bee","partridge pea",0,0,5,3,0

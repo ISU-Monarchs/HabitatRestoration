@@ -1,0 +1,14 @@
+start_time,NA,,,,,,,,,,
+"Bee Species","Nectar Plant Species",0-10m,10-20m,20-30m,30-40m,40-50m,50-60m,60-70m,70-80m,80-90m,90-100m
+"Solitary Bee","yellow coneflower",1,2,0,2,3,0,0,0,3,0
+"Solitary Bee","wild bergamot",,,,,,,,,,
+"Solitary Bee","virginia mountain mint",0,0,1,0,0,0,0,1,0,0
+"Solitary Bee","queen annes lace",,,,,,,,,,
+"Bumble Bee","yellow coneflower",0,0,0,0,0,0,1,1,0,1
+"Bumble Bee","wild bergamot",0,0,1,0,0,1,0,0,0,0
+"Bumble Bee","virginia mountain mint",,,,,,,,,,
+"Bumble Bee","queen annes lace",0,0,0,0,0,0,0,0,0,1
+"Honey Bee","yellow coneflower",0,0,0,1,0,0,0,0,0,0
+"Honey Bee","wild bergamot",,,,,,,,,,
+"Honey Bee","virginia mountain mint",0,0,0,0,2,0,0,0,0,0
+"Honey Bee","queen annes lace",,,,,,,,,,
