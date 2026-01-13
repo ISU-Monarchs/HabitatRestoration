@@ -1,5 +1,5 @@
-"Start Time",10:30AM
-"Bee Species","Nectar Plant Species",0-10m,10-20m,20-30m,30-40m,40-50m
-"NA","NA",NA,NA,NA,NA,NA
-"NA","NA",NA,NA,NA,NA,NA
-"NA","NA",NA,NA,NA,NA,NA
+Start Time,10:30AM,,,,,
+Bee Species,Nectar Plant Species,0-10m,10-20m,20-30m,30-40m,40-50m
+solitary bee,ox eye sunflower,5,0,0,NA,NA
+bumble bee,ox eye sunflower,1,0,0,NA,NA
+solitary bee,yellow coneflower,2,0,0,NA,NA
