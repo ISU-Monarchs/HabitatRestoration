@@ -1,16 +1,17 @@
 Package: HabitatRestoration
 Title: Monarch butterfly habitat restoration data
-Version: 0.0.2.3
+Version: 0.0.3.0
 Authors@R: c(
     person("Jarad", "Niemi", email = "niemi@iastate.edu", role = c("aut", "cre")),
     person("Steve", "Bradbury", email = "spbrad@iastate.edu", role = c("cph")),
     person("Seth", "Applegate", role = "aut"),
-    person("Nehemias", "Ulloa", role = "aut"))
+    person("Nehemias", "Ulloa", role = "aut"),
+    person("Bienvenido", Tibbs-Cortes", role = "ctb"))
 Description: Contains data on a series of monarch habitat restoration sites 
     including vegetation heights (Robel pole), percent cover (Daubenmire), 
-    nectar plant surveys, monarch surveys, and bee surveys from 2016 to 2019. 
+    nectar plant surveys, monarch surveys, and bee surveys from 2016 to 2025. 
 Depends:
-    R (>= 3.2)
+    R (>= 3.5)
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
