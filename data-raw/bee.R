@@ -1,7 +1,7 @@
 source("common.R")
 
 read_bee_csv = function(f, into) {
-  # cat("Reading",f,"\n")
+  cat("Reading",f,"\n")
   readr::read_csv(f, 
                   skip = 1,
                   col_types = readr::cols(.default = "c")) %>%
@@ -60,11 +60,20 @@ bee_raw = bee_files %>%
   
   dplyr::rename(`Bee Type` = `Bee Species`) %>%
   
+  #BTC 1-12-26 - the 2025 data has issues with the formatting of species names
+  dplyr::mutate(`Bee Type` = tolower(`Bee Type`)) %>%
+  dplyr::mutate(`Bee Type` = stringr::str_replace_all(`Bee Type`, "bumblebee", "bumble bee")) %>%
+  
+  
   dplyr::select(-bee, -extension, -`Pollinator Species`, -filename,
                 -year, -month, -day) %>%
   dplyr::select(filepath, date, round, observer, siteID, transectID,
                 `Bee Type`, `Nectar Plant Species`, everything()) %>%
-  dplyr::arrange(date, observer, transectID)
+  dplyr::arrange(date, observer, transectID) #%>%
+  
+  #BTC 1-12-26 - in the raw data, some entries for 2025 have no bee data (bee type is NA)
+    #this NA is then treated as its own bee species, resulting in the item "bee" having a count for NA for each survey
+  #dplyr::filter(is.na(`Bee Type`), is.na(`Nectar Plant Species`))
 
 
 # The following data.frame is used to `complete` the bee data with missing counts
