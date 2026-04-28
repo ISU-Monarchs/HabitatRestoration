@@ -1,5 +1,5 @@
-"Direction",0m,10m,20m,30m,40m
-"n",4,5,NA,NA,NA
-"e",4,6,NA,NA,NA
-"s",3,6,NA,NA,NA
-"w",2,4,NA,NA,NA
+"Direction",0m,10m
+"n",4,5
+"e",4,6
+"s",3,6
+"w",2,4
