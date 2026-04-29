@@ -1,40 +1,14 @@
-"Nectar Plant Species",0-10m,10-20m,20-30m,30-40m,40-50m
-"black eyed susan",0,0,0,0,0
-"black medic",0,0,0,0,0
-"blue vervain",0,0,1,0,0
-"bull thistle",0,0,0,0,0
-"butterfly milkweed ramet",3,3,0,0,0
-"canada thistle",0,0,0,0,0
-"carolina horsenettle",0,0,0,0,0
-"common dandelion",0,0,0,0,0
-"common evening primrose",0,4,0,0,0
-"common milkweed ramet",33,22,29,8,14
-"common st johnswort",0,0,0,0,0
-"crown vetch",0,0,0,0,0
-"curly dock",0,0,0,0,0
-"eastern daisy fleabane",0,0,0,0,1
-"eastern purple coneflower",0,0,0,0,0
-"frost aster",0,0,0,0,0
-"groundcherry",0,0,0,0,0
-"hedge bindweed",0,0,0,0,0
-"hoary vervain",0,0,0,0,0
-"illinois bundleflower",0,0,0,0,0
-"ironweed",0,1,0,0,0
-"new england aster",0,0,0,0,0
-"ox eye sunflower",53,49,40,27,10
-"partridge pea",0,0,0,0,0
-"prairie blazing star",0,0,0,0,0
-"purple prairie clover",8,3,0,0,1
-"red clover",2,3,0,1,17
-"sawtooth sunflower",0,0,0,0,0
-"stiff goldenrod",0,0,0,0,0
-"swamp milkweed ramet",0,4,5,0,0
-"white heath aster",0,0,0,0,0
-"white panicle aster",0,0,0,0,0
-"white sweet clover",47,42,42,26,57
-"white vervain",0,0,0,0,0
-"wild bergamot",27,37,20,68,12
-"wild lettuce",0,0,0,0,0
-"wild parsnip",0,0,0,0,0
-"yellow coneflower",119,113,123,174,126
-"yellow sweet clover",0,0,0,0,0
+Nectar Plant Species,0-10m,10-20m,20-30m,30-40m,40-50m
+common milkweed ramet,33,22,29,8,14
+swamp milkweed ramet,0,4,5,0,0
+butterfly milkweed ramet,3,3,0,0,0
+blue vervain,0,0,1,0,0
+common evening primrose,0,4,0,0,0
+eastern daisy fleabane,0,0,0,0,1
+ironweed,0,1,0,0,0
+ox eye sunflower,53,49,40,27,10
+purple prairie clover,8,3,0,0,1
+red clover,2,3,0,1,17
+white sweet clover,47,42,42,26,57
+wild bergamot,27,37,20,68,12
+yellow coneflower,119,113,123,174,126
