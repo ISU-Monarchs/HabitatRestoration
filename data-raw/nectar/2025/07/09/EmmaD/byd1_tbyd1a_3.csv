@@ -1,68 +1,10 @@
-"Nectar Plant Species",0-10m,10-20m,20-30m,30-40m,40-50m,50-60m,60-70m,70-80m,80-90m,90-100m
-"alfalfa",0,0,0,0,0,0,0,0,0,0
-"birdsfoot trefoil",0,0,0,0,0,0,0,0,0,0
-"black eyed susan",0,0,0,0,0,0,0,0,0,0
-"black medic",0,0,0,0,0,0,0,0,0,0
-"brown eyed susan",0,0,0,0,0,0,0,0,0,0
-"butterfly milkweed ramet",4,0,0,0,0,0,0,0,0,0
-"canada goldenrod",0,0,0,0,0,0,0,0,0,0
-"canada milk vetch",0,0,0,0,0,0,0,0,0,0
-"canada thistle",0,0,0,0,0,0,0,0,0,0
-"carolina horsenettle",0,0,0,0,0,0,0,0,0,0
-"catnip",0,0,0,0,0,0,0,0,0,0
-"common dandelion",0,0,0,0,0,0,0,0,0,0
-"common dogwood",0,0,0,0,0,0,0,0,0,0
-"common evening primrose",0,0,0,0,0,0,0,0,0,0
-"common milkweed ramet",0,0,4,0,1,1,5,0,0,0
-"common st johnswort",0,0,0,0,0,0,0,0,0,0
-"common yarrow",0,0,0,0,0,0,0,0,0,0
-"compass plant",0,0,0,0,0,0,0,0,0,0
-"creeping charlie",0,0,0,0,0,0,0,0,0,0
-"curly dock",0,0,0,0,0,0,0,0,0,0
-"eastern daisy fleabane",0,0,0,0,0,0,0,0,0,0
-"eastern purple coneflower",0,0,0,0,0,0,0,0,0,0
-"elderberry",0,0,0,0,0,0,0,0,0,0
-"flowering spurge",0,0,0,0,0,0,0,0,0,0
-"foxglove beardtongue",0,0,0,0,0,0,0,0,0,0
-"giant ragweed",0,0,0,0,0,0,0,0,0,0
-"groundcherry",0,0,0,0,0,0,0,0,0,0
-"hedge bindweed",0,0,0,0,0,0,0,0,0,0
-"hemp dogbane",0,0,0,0,0,0,0,0,0,0
-"hoary vervain",2,0,0,0,0,0,0,0,0,0
-"honey suckle",0,0,0,0,0,0,0,0,0,0
-"illinois bundleflower",0,0,0,0,0,0,0,0,0,0
-"ironweed",0,0,0,0,0,0,0,0,0,0
-"maximilian sunflower",0,0,0,0,0,0,0,0,0,0
-"morning glory",0,0,0,1,4,6,1,0,0,0
-"mulberry",0,0,0,0,0,0,0,0,0,0
-"new england aster",0,0,0,0,0,0,0,0,0,0
-"ox eye sunflower",1,11,3,14,40,28,21,10,11,12
-"pale purple coneflower",0,0,0,0,0,0,0,0,1,1
-"partridge pea",0,0,0,0,0,0,0,0,0,0
-"prairie blazing star",0,0,0,0,0,0,0,0,0,0
-"prairie coreopsis",0,0,0,0,0,0,0,0,0,0
-"prairie rose",0,0,0,0,0,0,0,0,0,0
-"prickly lettuce",0,0,0,0,0,0,0,0,0,0
-"purple prairie clover",0,0,0,0,0,0,0,0,0,0
-"queen annes lace",0,0,0,0,0,0,0,0,0,0
-"red clover",0,0,0,0,0,0,0,0,0,0
-"rough cinquefoil",0,0,0,0,0,0,0,0,0,0
-"round headed bush clover",0,0,0,0,0,0,0,0,0,0
-"sawtooth sunflower",0,0,0,0,0,0,0,0,0,0
-"shepherds purse",0,0,0,0,0,0,0,0,0,0
-"showy tick trefoil",0,0,0,0,0,0,0,0,0,0
-"stiff goldenrod",0,0,0,0,0,0,0,0,0,0
-"sulphur cinquefoil",0,0,0,0,0,0,0,0,0,0
-"swamp milkweed ramet",0,0,0,0,0,0,0,0,0,0
-"virginia mountain mint",0,0,0,0,0,0,0,0,0,0
-"white avens",0,0,0,0,0,0,0,0,0,0
-"white clover",0,0,0,0,0,0,0,0,0,0
-"white heath aster",0,0,0,0,0,0,0,0,0,0
-"white prairie clover",0,0,0,0,0,0,0,0,0,0
-"white sweet clover",0,0,0,0,0,0,0,0,0,0
-"white wild indigo",0,0,0,0,0,0,0,0,0,0
-"wild bergamot",5,29,35,68,30,23,13,11,10,0
-"wild parsnip",0,0,0,0,0,0,0,0,0,0
-"winged loosestrife",0,0,0,0,0,0,0,0,0,0
-"yellow coneflower",0,1,7,15,2,0,5,0,7,1
-"yellow sweet clover",0,0,0,0,0,0,0,0,0,0
+Nectar Plant Species,0-10m,10-20m,20-30m,30-40m,40-50m,50-60m,60-70m,70-80m,80-90m,90-100m
+common milkweed ramet,0,0,4,0,1,1,5,0,0,0
+swamp milkweed ramet,0,0,0,0,0,0,0,0,0,0
+butterfly milkweed ramet,4,0,0,0,0,0,0,0,0,0
+hoary vervain,2,0,0,0,0,0,0,0,0,0
+morning glory,0,0,0,1,4,6,1,0,0,0
+ox eye sunflower,1,11,3,14,40,28,21,10,11,12
+pale purple coneflower,0,0,0,0,0,0,0,0,1,1
+wild bergamot,5,29,35,68,30,23,13,11,10,0
+yellow coneflower,0,1,7,15,2,0,5,0,7,1
