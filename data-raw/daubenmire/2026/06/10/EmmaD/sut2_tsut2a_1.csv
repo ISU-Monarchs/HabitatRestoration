@@ -1,0 +1,12 @@
+﻿daubenmire template,,,,,,,,,,,
+section,csg,wsg,forbs,milkweed,common_ramet,swamp_ramet,butterfly_ramet,woody_species,bare_ground,leaf_litter,litter_depth
+0m,38,0,16,0,0,0,0,0,0,16,3
+10m,38,0,38,0,0,0,0,0,0,3,3
+20m,16,0,63,0,0,0,0,0,1,16,4
+30m,3,38,16,0,0,0,0,0,0,63,7
+40m,3,0,63,0,0,0,0,0,3,38,2
+50m,1,0,98,0,0,0,0,0,3,38,10
+60m,1,16,98,0,0,0,0,0,0,3,4
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
