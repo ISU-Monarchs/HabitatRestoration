@@ -142,3 +142,5 @@ showy milkweed,,,,Asclepias,speciosa,native,,,,,,,
 silky dogwood,,,,Cornus,amomum,native,,,,,,,
 white panicle aster,,,,Symphyotrichum,lanceolatum,native,,,,,,,
 wild lettuce,,,,Lactuca,virosa,introduced,,,,,,,
+unknown aster,,,,Symphyotrichum,,,,,unknown,,,,,,,
+
